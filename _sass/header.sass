@@ -1,0 +1,33 @@
+.piperider-masthead	
+	position: relative
+	.page-heading, .post-heading
+		padding: 150px 0 50px 0
+		text-align: left
+		h1
+			font-size: 3rem
+	.post-heading
+		h1
+			font-size: 2.6rem
+
+
+#mainNav
+	background-color: $color-brand
+	.navbar-brand, .navbar-toggler
+		color: $color-white
+	&.navbar-light .navbar-toggler
+		border-color: $color-white
+	.navbar-nav 
+		&> li.nav-item
+		 &>a
+		 	font-size: 0.9rem
+	&.is-fixed
+		top: -69px
+		.navbar-brand
+			&:focus, &:hover
+				color: $color-brand
+		@include media-breakpoint-up(lg)
+			.navbar-nav
+				&> li.nav-item
+					&> a:focus, &> a:hover
+	  					color: $color-brand
+

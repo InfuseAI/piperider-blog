@@ -1,17 +1,17 @@
-title:              Clean Blog
+title:              PipeRider
 email:              your-email@example.com
-description:        A Blog Theme by Start Bootstrap
-author:             Start Bootstrap
-baseurl:            "/"
+description:        Data Reliability Automated
+author:             PipeRider
+baseurl:            ""
 url:                https://daveflynn.github.io
 domain:             daveflynn.github.io
 
 # Social Profiles
-twitter_username:   SBootstrap
-github_username:    StartBootstrap
-facebook_username:  StartBootstrap
-instagram_username:  
-linkedin_username:
+twitter_username:   infuseai
+github_username:    infuseai
+facebook_username:  infuseai
+instagram_username: 
+linkedin_username:  infuseai
 
 # Add your google-analytics ID here to activate google analytics
 google_analytics:   UA-XXXXXXXXX-X # out your google-analytics code
@@ -24,3 +24,4 @@ plugins:
   - jekyll-feed
   - jekyll-paginate
   - jekyll-sitemap ## Uncomment this line to silently generate a sitemaps.org compliant sitemap for your Jekyll site
+  - jekyll-youtube

@@ -1,0 +1,40 @@
+I"K<p>After you’ve transformed the data in your data warehouse and sent it on its way, you might think that your job is done. That is, until you get a call that there’s missing data, an unexpected schema change, or some unexpected data or outlier has been introduced. To understand when these issues might have occurred, you need some form of data observability for your pipeline.</p>
+
+<p>Data observability means that you can monitor the data moving through the pipeline, be alerted to any changes or issues with the data structure, and compare data to help visualize change and aid in tracking down issues.</p>
+
+<p>With the open-source data observability toolkit, PipeRider, you can add data observability to your data source and start understanding more about your data in minutes with:</p>
+
+<ul>
+  <li>Non-intrusive implementation — Focus on understanding your data without changing it</li>
+  <li>Data profiling — In-depth analysis of the structure of your data source</li>
+  <li>Data assertions — Ensure your data stays within acceptable ranges through testing</li>
+  <li>Reporting — The data profile and testing results are exported to an HTML report</li>
+</ul>
+
+<p>Following are the steps you need to get starting adding data observability and data assertions to your existing data pipeline.</p>
+
+<h2 id="1-install-piperider">1. Install PipeRider</h2>
+
+<p>PipeRider is installed via pip:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install -U piperider
+</code></pre></div></div>
+
+<p>By default it comes with SQLite, but the following connectors are also available:</p>
+
+<ul>
+  <li>Postgres</li>
+  <li>Snowflake</li>
+  <li>BigQuery</li>
+  <li>Redshift</li>
+  <li>dbt (with one of the supported connectors)</li>
+  <li>duckdb (coming soon)</li>
+  <li>CSV (coming soon)</li>
+  <li>Parquet (coming soon)</li>
+</ul>
+
+<p>Install PipeRider with a connector like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install -U 'piperider[postgres,snowflake]'
+</code></pre></div></div>
+:ET

@@ -1,0 +1,44 @@
+.post-grid
+	display: flex
+	flex-direction: row
+	flex-wrap: wrap
+	justify-content: flex-start
+	align-items: flex-start
+	article
+		display: flex
+		flex-direction: column
+		width: 100%
+		margin-bottom: 2rem
+		position: relative
+		@include media-breakpoint-up(md)
+			width: 47.5%
+			&:nth-of-type(odd)
+				margin-right: 5%
+		@include media-breakpoint-up(lg)
+			width: 32%
+			&:nth-of-type(odd)
+				margin-right: 0
+			&:nth-of-type(3n+1)
+				margin-right: 2%
+			&:nth-of-type(3n)
+				margin-left: 2%
+		.featured-image
+			img
+				width: 100%
+				height: auto
+		h2.post-title
+			font-size: 1.4rem
+			margin-top: 1rem
+			font-weight: 700
+		h3.post-subtitle
+			font-size: 1.2rem
+		a
+			position: absolute
+			top: 0
+			left: 0
+			bottom: 0
+			right: 0
+
+.pager-button
+	text-align: center	
+		
