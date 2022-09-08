@@ -44,7 +44,6 @@ Install PipeRider with a connector like this:
 pip install -U 'piperider[postgres,snowflake]'
 ```
 
-{% youtube "https://www.youtube.com/watch?v=vZVHo09fD-c" %}
 
 <p>You don’t always have the luxury of a complete dataset, and that’s not always a bad thing — there are some cases in which a certain amount of missing data, or null values, can be acceptable in a data source.</p>
 
