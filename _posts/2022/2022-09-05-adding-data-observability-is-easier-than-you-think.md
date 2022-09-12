@@ -46,3 +46,5 @@ Install PipeRider with a connector like this:
 ```
 pip install -U 'piperider[postgres,snowflake]'
 ```
+
+{% youtube "https://www.youtube.com/watch?v=vZVHo09fD-c&list=PLvRlMg0l3Dq1S9KuErlgdQ8hn9LONRsHU" %}
