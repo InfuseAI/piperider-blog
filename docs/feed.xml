@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://daveflynn.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://daveflynn.github.io/" rel="alternate" type="text/html" /><updated>2022-09-12T15:39:00+08:00</updated><id>https://daveflynn.github.io/feed.xml</id><title type="html">PipeRider</title><subtitle>Data Reliability Automated</subtitle><author><name>PipeRider</name></author><entry><title type="html">Define your own Data Quality Tests in PipeRider</title><link href="https://daveflynn.github.io/2022/09/06/custom-data-asssertions-piperider.html" rel="alternate" type="text/html" title="Define your own Data Quality Tests in PipeRider" /><published>2022-09-06T15:25:00+08:00</published><updated>2022-09-06T15:25:00+08:00</updated><id>https://daveflynn.github.io/2022/09/06/custom-data-asssertions-piperider</id><content type="html" xml:base="https://daveflynn.github.io/2022/09/06/custom-data-asssertions-piperider.html"><![CDATA[<p>After you’ve transformed the data in your data warehouse and sent it on its way, you might think that your job is done. That is, until you get a call that there’s missing data, an unexpected schema change, or some data drift or outlier has been introduced. To understand when these issues might have occurred, you need some form of data observability in your pipeline.</p>
+
+<p>Data observability means that you can monitor the data moving through the pipeline, be alerted to any changes or issues with the data structure, and compare data to help visualize change and aid in tracking down issues.</p>
+
+<p>With the open-source data observability toolkit, PipeRider, you can add data observability to your data source and start understanding more about your data in minutes with:</p>
+
+<ul>
+  <li>Non-intrusive implementation - Focus on understanding your data, not changing it</li>
+  <li>Data profiling - In-depth analysis of the structure of your data source</li>
+  <li>Data assertions - Ensure your data stays within acceptable ranges through testing</li>
+  <li>HTML report - The data profile and testing results are exported to an HTML report</li>
+</ul>
+
+<h2 id="1-install-piperider">1. Install PipeRider</h2>
+
+<p>PipeRider is installed via pip:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">piperider</span>
+</code></pre></div></div>
+
+<p>By default it comes with SQLite, but the following connectors are also available:</p>
+
+<ul>
+  <li>Postgres</li>
+  <li>Snowflake</li>
+  <li>BigQuery</li>
+  <li>Redshift</li>
+  <li>dbt (with one of the supported connectors)</li>
+  <li>duckdb (coming soon)</li>
+  <li>CSV (coming soon)</li>
+  <li>Parquet (coming soon)</li>
+</ul>
+
+<p>Install PipeRider with a connector like this:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="s">'piperider[postgres,snowflake]'</span>
+</code></pre></div></div>
+
+<p>You don’t always have the luxury of a complete dataset, and that’s not always a bad thing — there are some cases in which a certain amount of missing data, or null values, can be acceptable in a data source.</p>
+
+<h2>Missing data? No problem</h2>
+
+<p>Let's say you have some incomplete data in a sales database and, even so, you still need to perform some calculations based on the data. You might be willing to allow a certain percentage of missing values before worrying about it affecting your results.</p>
+
+<p>PipeRider has built-in assertions for testing if a column does not contain nulls, or that a it must be null, but there is no middle-ground for allowing for a certain quantity of nulls — custom assertions to the rescue!</p>
+
+<p>Here's a code test:</p>
+
+<p>You can write regular <a href="http://markdowntutorial.com/">markdown</a> here and Jekyll will automatically convert it to a nice webpage.  I strongly encourage you to <a href="http://markdowntutorial.com/">take 5 minutes to learn how to write in markdown</a> - it’ll teach you how to transform regular text into bold/italics/headings/tables/etc.</p>
+
+<p><strong>Here is some bold text</strong></p>
+
+<h2 id="here-is-a-secondary-heading">Here is a secondary heading</h2>
+
+<p>Here’s a useless table:</p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Number</th>
+      <th scope="col">Next number</th>
+      <th scope="col">Previous number </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Five</td>
+      <td>Six</td>
+      <td>Four</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Ten</td>
+      <td>Eleven</td>
+      <td>Nine</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Seven</td>
+      <td>Eight</td>
+      <td>Six</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><img src="/img/posts/06.jpg" alt="foo" /></p>
+
+<p>How about a yummy crepe?</p>
+
+<p><img src="https://s3-media3.fl.yelpcdn.com/bphoto/cQ1Yoa75m2yUFFbY2xwuqw/348s.jpg" alt="Crepe" /></p>
+
+<p>It can also be centered!</p>
+
+<p><img src="https://s3-media3.fl.yelpcdn.com/bphoto/cQ1Yoa75m2yUFFbY2xwuqw/348s.jpg" alt="Crepe" class="mx-auto d-block" /></p>
+
+<p>Here’s a code chunk:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var foo = function(x) {
+  return(x + 5);
+}
+foo(3)
+</code></pre></div></div>
+
+<p>And here is the same code with syntax highlighting:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span><span class="p">(</span><span class="nx">x</span> <span class="o">+</span> <span class="mi">5</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">foo</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>And here is the same code yet again but with line numbers:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span><span class="p">(</span><span class="nx">x</span> <span class="o">+</span> <span class="mi">5</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">foo</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<h2 id="boxes">Boxes</h2>
+<p>You can add notification, warning and error boxes like this:</p>
+
+<h3 id="notification">Notification</h3>
+
+<p class="alert alert-primary"><strong>Note:</strong> This is a primary alert box.</p>
+
+<h3 id="warning">Warning</h3>
+
+<p class="alert alert-warning"><strong>Warning:</strong> This is a warning box.</p>
+
+<h3 id="error">Error</h3>
+
+<p class="alert alert-danger"><strong>Error:</strong> This is an error box.</p>]]></content><author><name>Dave Flynn</name></author><summary type="html"><![CDATA[After you’ve transformed the data in your data warehouse and sent it on its way, you might think that your job is done. That is, until you get a call that there’s missing data, an unexpected schema change, or some data drift or outlier has been introduced. To understand when these issues might have occurred, you need some form of data observability in your pipeline.]]></summary></entry><entry><title type="html">Adding Data Observability and Alerts to your Data Pipeline is easier than you think</title><link href="https://daveflynn.github.io/2022/09/05/adding-data-observability-is-easier-than-you-think.html" rel="alternate" type="text/html" title="Adding Data Observability and Alerts to your Data Pipeline is easier than you think" /><published>2022-09-05T09:00:00+08:00</published><updated>2022-09-05T09:00:00+08:00</updated><id>https://daveflynn.github.io/2022/09/05/adding-data-observability-is-easier-than-you-think</id><content type="html" xml:base="https://daveflynn.github.io/2022/09/05/adding-data-observability-is-easier-than-you-think.html"><![CDATA[<p>After you’ve transformed the data in your data warehouse and sent it on its way, you might think that your job is done. That is, until you get a call that there’s missing data, an unexpected schema change, or some unexpected data or outlier has been introduced. To understand when these issues might have occurred, you need some form of data observability for your pipeline.</p>
+
+<p>Data observability means that you can monitor the data moving through the pipeline, be alerted to any changes or issues with the data structure, and compare data to help visualize change and aid in tracking down issues.</p>
+
+<p>With the open-source data observability toolkit, PipeRider, you can add data observability to your data source and start understanding more about your data in minutes with:</p>
+
+<ul>
+  <li>Non-intrusive implementation — Focus on understanding your data without changing it</li>
+  <li>Data profiling — In-depth analysis of the structure of your data source</li>
+  <li>Data assertions — Ensure your data stays within acceptable ranges through testing</li>
+  <li>Reporting — The data profile and testing results are exported to an HTML report</li>
+</ul>
+
+<p>Following are the steps you need to get starting adding data observability and data assertions to your existing data pipeline.</p>
+
+<h2 id="1-install-piperider">1. Install PipeRider</h2>
+
+<p>PipeRider is installed via pip:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install -U piperider
+</code></pre></div></div>
+
+<p>By default it comes with SQLite, but the following connectors are also available:</p>
+
+<ul>
+  <li>Postgres</li>
+  <li>Snowflake</li>
+  <li>BigQuery</li>
+  <li>Redshift</li>
+  <li>dbt (with one of the supported connectors)</li>
+  <li>duckdb (coming soon)</li>
+  <li>CSV (coming soon)</li>
+  <li>Parquet (coming soon)</li>
+</ul>
+
+<p>Install PipeRider with a connector like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install -U 'piperider[postgres,snowflake]'
+</code></pre></div></div>]]></content><author><name>Dave Flynn</name></author><summary type="html"><![CDATA[After you’ve transformed the data in your data warehouse and sent it on its way, you might think that your job is done. That is, until you get a call that there’s missing data, an unexpected schema change, or some unexpected data or outlier has been introduced. To understand when these issues might have occurred, you need some form of data observability for your pipeline.]]></summary></entry><entry><title type="html">理解 YOLOv7 預測方式並且部署YOLOv7 模型成為一個服務</title><link href="https://daveflynn.github.io/2022/08/19/yolov7.html" rel="alternate" type="text/html" title="理解 YOLOv7 預測方式並且部署YOLOv7 模型成為一個服務" /><published>2022-08-19T09:00:00+08:00</published><updated>2022-08-19T09:00:00+08:00</updated><id>https://daveflynn.github.io/2022/08/19/yolov7</id><content type="html" xml:base="https://daveflynn.github.io/2022/08/19/yolov7.html"><![CDATA[<p>YOLOv7 模型開源出來後，我就一直很想要寫這篇文章，在經過一段時間的整理和理解，終於完成此內容，在這篇文章中，我將帶大家了解一些 YOLOv7 預測模型的使用方法，並且透過 PrimeHub deployment 去部署模型，以及透過PrimeHub Streamlit App 去向大家展示YOLOv7預測前後的內容，相信看完此文章後，大家對於 YOLOv7 應該會有更近一步了解。</p>
+
+<p>2020 年，中央研究院研究員王建堯等人推出了YOLOv4系列的模型，讓預測圖片結果的精確度提升了不少，而在2022年7月份，YOLO又有新的系列釋出了，命名為 YOLOv7，YOLOv7 減少了當今 real-time object detection sota 約 40% 的參數量和約 50% 的運算量，讓 YOLOv7 的架構、運算速度與準確度都有效被改善，詳細的資訊，可以見台灣人工智慧學校助教的文章，裡面有提到更多 YOLOv7 的詳盡介紹。</p>]]></content><author><name>Simon Liu</name></author><summary type="html"><![CDATA[YOLOv7 模型開源出來後，我就一直很想要寫這篇文章，在經過一段時間的整理和理解，終於完成此內容，在這篇文章中，我將帶大家了解一些 YOLOv7 預測模型的使用方法，並且透過 PrimeHub deployment 去部署模型，以及透過PrimeHub Streamlit App 去向大家展示YOLOv7預測前後的內容，相信看完此文章後，大家對於 YOLOv7 應該會有更近一步了解。]]></summary></entry><entry><title type="html">Use the Serverless Function Method to Build a Machine Learning Microservice System</title><link href="https://daveflynn.github.io/2020/01/31/man-must-explore.html" rel="alternate" type="text/html" title="Use the Serverless Function Method to Build a Machine Learning Microservice System" /><published>2020-01-31T22:45:13+08:00</published><updated>2020-01-31T22:45:13+08:00</updated><id>https://daveflynn.github.io/2020/01/31/man-must-explore</id><content type="html" xml:base="https://daveflynn.github.io/2020/01/31/man-must-explore.html"><![CDATA[<p>Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.</p>
+
+<p>Science cuts two ways, of course; its products can be used for both good and evil. But there's no turning back from science. The early warnings about technological dangers also come from science.</p>
+
+<p>What was most significant about the lunar voyage was not that man set foot on the Moon but that they set eye on the earth.</p>
+
+<p>A Chinese tale tells of some men sent to harm a young girl who, upon seeing her beauty, become her protectors rather than her violators. That's how I felt seeing the Earth for the first time. I could not help but love and cherish her.</p>
+
+<p>For those who have seen the Earth from space, and for the hundreds and perhaps thousands more who will, the experience most certainly changes your perspective. The things that we share in our world are far more valuable than those which divide us.</p>
+
+<h2 class="section-heading">The Final Frontier</h2>
+
+<p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>
+
+<p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>
+
+<blockquote class="blockquote">The dreams of yesterday are the hopes of today and the reality of tomorrow. Science has not yet mastered prophecy. We predict too much for the next year and yet far too little for the next ten.</blockquote>
+
+<p>Spaceflights cannot be stopped. This is not the work of any one man or even a group of men. It is a historical process which mankind is carrying out in accordance with the natural laws of human development.</p>
+
+<h2 class="section-heading">Reaching for the Stars</h2>
+
+<p>As we got further and further away, it [the Earth] diminished in size. Finally it shrank to the size of a marble, the most beautiful you can imagine. That beautiful, warm, living object looked so fragile, so delicate, that if you touched it with a finger it would crumble and fall apart. Seeing this has to change a man.</p>
+
+<img class="img-fluid" src="https://source.unsplash.com/Mn9Fa_wQH-M/800x450" alt="Demo Image">
+<span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>
+
+<p>Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, to seek out new life and new civilizations, to boldly go where no man has gone before.</p>
+
+<p>As I stand out here in the wonders of the unknown at Hadley, I sort of realize there’s a fundamental truth to our nature, Man must explore, and this is exploration at its greatest.</p>
+
+<p>Placeholder text by <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by <a href="https://unsplash.com/">Unsplash</a>.</p>]]></content><author><name>Simon Liu</name></author><summary type="html"><![CDATA[Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.]]></summary></entry><entry><title type="html">InfuseAI Recognized in the 2022 Gartner® Market Guide for Artificial Intelligence Startups in the Greater China region</title><link href="https://daveflynn.github.io/2020/01/31/heartbeats.html" rel="alternate" type="text/html" title="InfuseAI Recognized in the 2022 Gartner® Market Guide for Artificial Intelligence Startups in the Greater China region" /><published>2020-01-31T11:45:13+08:00</published><updated>2020-01-31T11:45:13+08:00</updated><id>https://daveflynn.github.io/2020/01/31/heartbeats</id><content type="html" xml:base="https://daveflynn.github.io/2020/01/31/heartbeats.html"><![CDATA[<p>Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.</p>
+
+<p>Science cuts two ways, of course; its products can be used for both good and evil. But there's no turning back from science. The early warnings about technological dangers also come from science.</p>
+
+<p>What was most significant about the lunar voyage was not that man set foot on the Moon but that they set eye on the earth.</p>
+
+<p>A Chinese tale tells of some men sent to harm a young girl who, upon seeing her beauty, become her protectors rather than her violators. That's how I felt seeing the Earth for the first time. I could not help but love and cherish her.</p>
+
+<p>For those who have seen the Earth from space, and for the hundreds and perhaps thousands more who will, the experience most certainly changes your perspective. The things that we share in our world are far more valuable than those which divide us.</p>
+
+<h2 class="section-heading">The Final Frontier</h2>
+
+<p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>
+
+<p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>
+
+<blockquote class="blockquote">The dreams of yesterday are the hopes of today and the reality of tomorrow. Science has not yet mastered prophecy. We predict too much for the next year and yet far too little for the next ten.</blockquote>
+
+<p>Spaceflights cannot be stopped. This is not the work of any one man or even a group of men. It is a historical process which mankind is carrying out in accordance with the natural laws of human development.</p>
+
+<h2 class="section-heading">Reaching for the Stars</h2>
+
+<p>As we got further and further away, it [the Earth] diminished in size. Finally it shrank to the size of a marble, the most beautiful you can imagine. That beautiful, warm, living object looked so fragile, so delicate, that if you touched it with a finger it would crumble and fall apart. Seeing this has to change a man.</p>
+
+<img class="img-fluid" src="https://source.unsplash.com/Mn9Fa_wQH-M/800x450" alt="Demo Image">
+<span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>
+
+<p>Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, to seek out new life and new civilizations, to boldly go where no man has gone before.</p>
+
+<p>As I stand out here in the wonders of the unknown at Hadley, I sort of realize there’s a fundamental truth to our nature, Man must explore, and this is exploration at its greatest.</p>
+
+<p>Placeholder text by <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by <a href="https://unsplash.com/">Unsplash</a>.</p>]]></content><author><name>Cat Hong</name></author><summary type="html"><![CDATA[Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.]]></summary></entry><entry><title type="html">Spotlight on Data Reliability</title><link href="https://daveflynn.github.io/2020/01/30/prophecy.html" rel="alternate" type="text/html" title="Spotlight on Data Reliability" /><published>2020-01-30T11:45:13+08:00</published><updated>2020-01-30T11:45:13+08:00</updated><id>https://daveflynn.github.io/2020/01/30/prophecy</id><content type="html" xml:base="https://daveflynn.github.io/2020/01/30/prophecy.html"><![CDATA[<p>Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.</p>
+
+<p>Science cuts two ways, of course; its products can be used for both good and evil. But there's no turning back from science. The early warnings about technological dangers also come from science.</p>
+
+<p>What was most significant about the lunar voyage was not that man set foot on the Moon but that they set eye on the earth.</p>
+
+<p>A Chinese tale tells of some men sent to harm a young girl who, upon seeing her beauty, become her protectors rather than her violators. That's how I felt seeing the Earth for the first time. I could not help but love and cherish her.</p>
+
+<p>For those who have seen the Earth from space, and for the hundreds and perhaps thousands more who will, the experience most certainly changes your perspective. The things that we share in our world are far more valuable than those which divide us.</p>
+
+<h2 class="section-heading">The Final Frontier</h2>
+
+<p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>
+
+<p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>
+
+<blockquote class="blockquote">The dreams of yesterday are the hopes of today and the reality of tomorrow. Science has not yet mastered prophecy. We predict too much for the next year and yet far too little for the next ten.</blockquote>
+
+<p>Spaceflights cannot be stopped. This is not the work of any one man or even a group of men. It is a historical process which mankind is carrying out in accordance with the natural laws of human development.</p>
+
+<h2 class="section-heading">Reaching for the Stars</h2>
+
+<p>As we got further and further away, it [the Earth] diminished in size. Finally it shrank to the size of a marble, the most beautiful you can imagine. That beautiful, warm, living object looked so fragile, so delicate, that if you touched it with a finger it would crumble and fall apart. Seeing this has to change a man.</p>
+
+<img class="img-fluid" src="https://source.unsplash.com/Mn9Fa_wQH-M/800x450" alt="Demo Image">
+<span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>
+
+<p>Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, to seek out new life and new civilizations, to boldly go where no man has gone before.</p>
+
+<p>As I stand out here in the wonders of the unknown at Hadley, I sort of realize there’s a fundamental truth to our nature, Man must explore, and this is exploration at its greatest.</p>
+
+<p>Placeholder text by <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by <a href="https://unsplash.com/">Unsplash</a>.</p>]]></content><author><name>Dave Flynn</name></author><summary type="html"><![CDATA[Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.]]></summary></entry><entry><title type="html">Transfer the CSV Files into an SQLite Database</title><link href="https://daveflynn.github.io/2020/01/29/exploration.html" rel="alternate" type="text/html" title="Transfer the CSV Files into an SQLite Database" /><published>2020-01-29T11:45:13+08:00</published><updated>2020-01-29T11:45:13+08:00</updated><id>https://daveflynn.github.io/2020/01/29/exploration</id><content type="html" xml:base="https://daveflynn.github.io/2020/01/29/exploration.html"><![CDATA[<p>Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.</p>
+
+<p>Science cuts two ways, of course; its products can be used for both good and evil. But there's no turning back from science. The early warnings about technological dangers also come from science.</p>
+
+<p>What was most significant about the lunar voyage was not that man set foot on the Moon but that they set eye on the earth.</p>
+
+<p>A Chinese tale tells of some men sent to harm a young girl who, upon seeing her beauty, become her protectors rather than her violators. That's how I felt seeing the Earth for the first time. I could not help but love and cherish her.</p>
+
+<p>For those who have seen the Earth from space, and for the hundreds and perhaps thousands more who will, the experience most certainly changes your perspective. The things that we share in our world are far more valuable than those which divide us.</p>
+
+<h2 class="section-heading">The Final Frontier</h2>
+
+<p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>
+
+<p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>
+
+<blockquote class="blockquote">The dreams of yesterday are the hopes of today and the reality of tomorrow. Science has not yet mastered prophecy. We predict too much for the next year and yet far too little for the next ten.</blockquote>
+
+<p>Spaceflights cannot be stopped. This is not the work of any one man or even a group of men. It is a historical process which mankind is carrying out in accordance with the natural laws of human development.</p>
+
+<h2 class="section-heading">Reaching for the Stars</h2>
+
+<p>As we got further and further away, it [the Earth] diminished in size. Finally it shrank to the size of a marble, the most beautiful you can imagine. That beautiful, warm, living object looked so fragile, so delicate, that if you touched it with a finger it would crumble and fall apart. Seeing this has to change a man.</p>
+
+<img class="img-fluid" src="https://source.unsplash.com/Mn9Fa_wQH-M/800x450" alt="Demo Image">
+<span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>
+
+<p>Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, to seek out new life and new civilizations, to boldly go where no man has gone before.</p>
+
+<p>As I stand out here in the wonders of the unknown at Hadley, I sort of realize there’s a fundamental truth to our nature, Man must explore, and this is exploration at its greatest.</p>
+
+<p>Placeholder text by <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by <a href="https://unsplash.com/">Unsplash</a>.</p>]]></content><author><name>Simon Liu</name></author><summary type="html"><![CDATA[Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.]]></summary></entry><entry><title type="html">PipeRider data profiling just got more colorful (and useful)</title><link href="https://daveflynn.github.io/2020/01/28/dreams.html" rel="alternate" type="text/html" title="PipeRider data profiling just got more colorful (and useful)" /><published>2020-01-28T11:45:13+08:00</published><updated>2020-01-28T11:45:13+08:00</updated><id>https://daveflynn.github.io/2020/01/28/dreams</id><content type="html" xml:base="https://daveflynn.github.io/2020/01/28/dreams.html"><![CDATA[<p>Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.</p>
+
+<p>Here’s a code chunk:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var foo = function(x) {
+  return(x + 5);
+}
+foo(3)
+</code></pre></div></div>
+
+<p>And here is the same code with syntax highlighting:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span><span class="p">(</span><span class="nx">x</span> <span class="o">+</span> <span class="mi">5</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">foo</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Science cuts two ways, of course; its products can be used for both good and evil. But there's no turning back from science. The early warnings about technological dangers also come from science.</p>
+
+<p>What was most significant about the lunar voyage was not that man set foot on the Moon but that they set eye on the earth.</p>
+
+<p>A Chinese tale tells of some men sent to harm a young girl who, upon seeing her beauty, become her protectors rather than her violators. That's how I felt seeing the Earth for the first time. I could not help but love and cherish her.</p>
+
+<p>For those who have seen the Earth from space, and for the hundreds and perhaps thousands more who will, the experience most certainly changes your perspective. The things that we share in our world are far more valuable than those which divide us.</p>
+
+<h2 class="section-heading">The Final Frontier</h2>
+
+<p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>
+
+<p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>
+
+<blockquote class="blockquote">The dreams of yesterday are the hopes of today and the reality of tomorrow. Science has not yet mastered prophecy. We predict too much for the next year and yet far too little for the next ten.</blockquote>
+
+<p>Spaceflights cannot be stopped. This is not the work of any one man or even a group of men. It is a historical process which mankind is carrying out in accordance with the natural laws of human development.</p>
+
+<h2 class="section-heading">Reaching for the Stars</h2>
+
+<p>As we got further and further away, it [the Earth] diminished in size. Finally it shrank to the size of a marble, the most beautiful you can imagine. That beautiful, warm, living object looked so fragile, so delicate, that if you touched it with a finger it would crumble and fall apart. Seeing this has to change a man.</p>
+
+<p><img class="img-fluid" src="https://source.unsplash.com/Mn9Fa_wQH-M/800x450" alt="Demo Image" />
+<span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span></p>
+
+<p>Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, to seek out new life and new civilizations, to boldly go where no man has gone before.</p>
+
+<p>As I stand out here in the wonders of the unknown at Hadley, I sort of realize there’s a fundamental truth to our nature, Man must explore, and this is exploration at its greatest.</p>
+
+<p>Placeholder text by <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by <a href="https://unsplash.com/">Unsplash</a>.</p>]]></content><author><name>Dave Flynn</name></author><summary type="html"><![CDATA[Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.]]></summary></entry><entry><title type="html">How to Use PipeRider’s Built-in Assertion and Custom Assertion to Test the Water Quality Kaggle Dataset</title><link href="https://daveflynn.github.io/2020/01/27/dinosaurs.html" rel="alternate" type="text/html" title="How to Use PipeRider’s Built-in Assertion and Custom Assertion to Test the Water Quality Kaggle Dataset" /><published>2020-01-27T11:45:13+08:00</published><updated>2020-01-27T11:45:13+08:00</updated><id>https://daveflynn.github.io/2020/01/27/dinosaurs</id><content type="html" xml:base="https://daveflynn.github.io/2020/01/27/dinosaurs.html"><![CDATA[<p>Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.</p>
+
+<p>Science cuts two ways, of course; its products can be used for both good and evil. But there's no turning back from science. The early warnings about technological dangers also come from science.</p>
+
+<p>What was most significant about the lunar voyage was not that man set foot on the Moon but that they set eye on the earth.</p>
+
+<p>A Chinese tale tells of some men sent to harm a young girl who, upon seeing her beauty, become her protectors rather than her violators. That's how I felt seeing the Earth for the first time. I could not help but love and cherish her.</p>
+
+<p>For those who have seen the Earth from space, and for the hundreds and perhaps thousands more who will, the experience most certainly changes your perspective. The things that we share in our world are far more valuable than those which divide us.</p>
+
+<h2 class="section-heading">The Final Frontier</h2>
+
+<p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>
+
+<p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>
+
+<blockquote class="blockquote">The dreams of yesterday are the hopes of today and the reality of tomorrow. Science has not yet mastered prophecy. We predict too much for the next year and yet far too little for the next ten.</blockquote>
+
+<p>Spaceflights cannot be stopped. This is not the work of any one man or even a group of men. It is a historical process which mankind is carrying out in accordance with the natural laws of human development.</p>
+
+<h2 class="section-heading">Reaching for the Stars</h2>
+
+<p>As we got further and further away, it [the Earth] diminished in size. Finally it shrank to the size of a marble, the most beautiful you can imagine. That beautiful, warm, living object looked so fragile, so delicate, that if you touched it with a finger it would crumble and fall apart. Seeing this has to change a man.</p>
+
+<img class="img-fluid" src="https://source.unsplash.com/Mn9Fa_wQH-M/800x450" alt="Demo Image">
+<span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>
+
+<p>Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, to seek out new life and new civilizations, to boldly go where no man has gone before.</p>
+
+<p>As I stand out here in the wonders of the unknown at Hadley, I sort of realize there’s a fundamental truth to our nature, Man must explore, and this is exploration at its greatest.</p>
+
+<p>Placeholder text by <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by <a href="https://unsplash.com/">Unsplash</a>.</p>]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.]]></summary></entry></feed>
