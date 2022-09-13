@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://localhost:4000/2022/09/12/data-observability-ultimate-guide.html</loc>
+<loc>https://daveflynn.github.io/2022/09/12/data-observability-ultimate-guide.html</loc>
 <lastmod>2022-09-12T15:25:00+08:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/2022/09/13/data-monitoring-ultimate-guide.html</loc>
+<loc>https://daveflynn.github.io/2022/09/13/data-monitoring-ultimate-guide.html</loc>
 <lastmod>2022-09-13T09:00:00+08:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/2022/09/13/data-reliability-ultimate-guide.html</loc>
+<loc>https://daveflynn.github.io/2022/09/13/data-reliability-ultimate-guide.html</loc>
 <lastmod>2022-09-13T09:00:00+08:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/about.html</loc>
+<loc>https://daveflynn.github.io/about.html</loc>
 </url>
 <url>
-<loc>http://localhost:4000/contact.html</loc>
+<loc>https://daveflynn.github.io/contact.html</loc>
 </url>
 <url>
-<loc>http://localhost:4000/posts/</loc>
+<loc>https://daveflynn.github.io/posts/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/</loc>
+<loc>https://daveflynn.github.io/</loc>
 </url>
 </urlset>

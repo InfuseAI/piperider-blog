@@ -2534,6 +2534,10 @@ a:focus, a:hover { color: #FD683E; }
 
 #mainNav .navbar-brand, #mainNav .navbar-toggler { color: #fff; }
 
+#mainNav .navbar-brand img { max-width: 90px; }
+
+#mainNav.is-fixed .navbar-brand img { filter: brightness(0) saturate(100%) invert(68%) sepia(45%) saturate(6727%) hue-rotate(335deg) brightness(100%) contrast(99%); }
+
 #mainNav.navbar-light .navbar-toggler { border-color: #fff; }
 
 #mainNav .navbar-nav > li.nav-item > a { font-size: 0.9rem; }

@@ -14,6 +14,14 @@
 	background-color: $color-brand
 	.navbar-brand, .navbar-toggler
 		color: $color-white
+	.navbar-brand
+		img
+			max-width: 90px
+	&.is-fixed
+		.navbar-brand
+			img
+				filter: brightness(0) saturate(100%) invert(68%) sepia(45%) saturate(6727%) hue-rotate(335deg) brightness(100%) contrast(99%)
+
 	&.navbar-light .navbar-toggler
 		border-color: $color-white
 	.navbar-nav 
