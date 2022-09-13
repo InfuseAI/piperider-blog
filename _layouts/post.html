@@ -29,7 +29,6 @@ layout: default
   </header> -->
 
   <header class="piperider-masthead">
-
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
@@ -54,11 +53,17 @@ layout: default
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
 
-        {% if page.featured-image %}
-          <img src="{{ page.featured-image }}" />
-        {% endif %}
+        <article class="post-single">
 
-        {{ content }}
+          {% if page.featured-image %}
+          <div class="featured-image">
+            <img src="{{ page.featured-image }}" />
+          </div>
+          {% endif %}
+
+          {{ content }}
+
+        <article>
 
         <hr>
 

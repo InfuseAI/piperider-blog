@@ -1,12 +1,41 @@
 ---
-layout: page
-title: Posts
+layout: page-posts
+title: The PipeRider Blog
+description: Data Reliability Automated
 background: '/img/bg-post.jpg'
 ---
+
+<div class="post-grid">
 
 {% for post in paginator.posts %}
 
 <article class="post-preview">
+
+  {% if post.featured-image %}
+    <div class="featured-image">
+      <img src="{{ post.featured-image }}" />
+    </div>
+  {% else %}
+    <div class="featured-image">
+      <img src="/img/posts/06.jpg" />
+    </div>
+  {% endif %}
+  
+    <h2 class="post-title">{{ post.title }}</h2>
+  
+<!--             <p class="post-meta">Posted by
+    {% if post.author %}
+    {{ post.author }}
+    {% else %}
+    {{ site.author }}
+    {% endif %}
+    on
+    {{ post.date | date: '%B %d, %Y' }} &middot; {% include read_time.html content=post.content %}            
+  </p> -->
+  <a href="{{ post.url | prepend: site.baseurl | replace: '//', '/' }}"></a>
+</article>
+
+<!-- <article class="post-preview">
   <a href="{{ post.url | prepend: site.baseurl | replace: '//', '/' }}">
     <h2 class="post-title">{{ post.title }}</h2>
     {% if post.subtitle %}
@@ -23,11 +52,13 @@ background: '/img/bg-post.jpg'
     {% endif %}
     on {{ post.date | date: '%B %d, %Y' }} &middot; {% include read_time.html content=post.content %}
   </p>
-</article>
+</article> -->
 
-<hr>
+
 
 {% endfor %}
+<hr>
+</div>
 
 <!-- Pager -->
 {% if paginator.total_pages > 1 %}
