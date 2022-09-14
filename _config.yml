@@ -29,3 +29,11 @@ plugins:
   - jekyll-sitemap ## Uncomment this line to silently generate a sitemaps.org compliant sitemap for your Jekyll site
   - jekyll-youtube
   - jekyll-seo-tag
+
+exclude:
+  - bin
+  - jekyll-theme-clean-blog.gemspec
+  - Gemfile
+  - package-lock.json
+  - package.json
+  - README.md
