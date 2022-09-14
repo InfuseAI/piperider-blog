@@ -1,13 +1,13 @@
 destination:        ./docs
 title:              PipeRider
-email:              your-email@example.com
+email:              support@piperider.io
 description:        Data Reliability Automated
 author:             PipeRider
 company:            InfuseAI
 company_url:        http://infuseai.io
 baseurl:            ""
-url:                https://daveflynn.github.io
-domain:             daveflynn.github.io
+url:                https://blog.piperider.io
+domain:             blog.piperider.io
 
 # Social Profiles
 twitter_username:   infuseai
