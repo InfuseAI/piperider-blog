@@ -1,6 +1,6 @@
 #_site
 .sass-cache
 node_modules
-Gemfile.lock
+#Gemfile.lock
 package-lock.json
 *.gem
