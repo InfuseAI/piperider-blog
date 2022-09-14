@@ -2,4 +2,5 @@
 .sass-cache
 node_modules
 Gemfile.lock
+package-lock.json
 *.gem
