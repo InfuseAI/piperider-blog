@@ -23,6 +23,7 @@ google_analytics:   UA-XXXXXXXXX-X # out your google-analytics code
 markdown:           kramdown
 paginate:           9
 paginate_path:      "/posts/page:num/"
+permalink: /blog/:title:output_ext
 plugins:
   - jekyll-feed
   - jekyll-paginate
