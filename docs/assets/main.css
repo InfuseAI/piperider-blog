@@ -2572,6 +2572,8 @@ a:focus, a:hover { color: #FD683E; }
 
 .pager-button { text-align: center; }
 
+.post-heading h2.subheading { font-size: 1.2rem; font-weight: 400; }
+
 article.post-single .featured-image { margin-bottom: 2rem; }
 
 footer .social-icons li.list-inline-item { margin-right: 0; }

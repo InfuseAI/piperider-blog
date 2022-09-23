@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Guide to Data Observability - PipeRider
+    
+  </title>
+
+  <meta name="description" content="The number of data sources that data teams have to deal with is ever increasing. According to a recent survey by Matillion and IDG, the number of data source...">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Guide to Data Observability | PipeRider</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Guide to Data Observability" />
+<meta name="author" content="PipeRider" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The number of data sources that data teams have to deal with is ever increasing. According to a recent survey by Matillion and IDG, the number of data sources per organization is around 400, with over 20 percent of organizations having 1000 or more. The sheer amount of data makes managing and tracking it increasingly difficult, never mind understanding the bigger picture. That’s where data observability comes in." />
+<meta property="og:description" content="The number of data sources that data teams have to deal with is ever increasing. According to a recent survey by Matillion and IDG, the number of data sources per organization is around 400, with over 20 percent of organizations having 1000 or more. The sheer amount of data makes managing and tracking it increasingly difficult, never mind understanding the bigger picture. That’s where data observability comes in." />
+<link rel="canonical" href="https://blog.piperider.io/blog/guide-to-data-observability.html" />
+<meta property="og:url" content="https://blog.piperider.io/blog/guide-to-data-observability.html" />
+<meta property="og:site_name" content="PipeRider" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-09-23T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Guide to Data Observability" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"PipeRider"},"dateModified":"2022-09-23T00:00:00+08:00","datePublished":"2022-09-23T00:00:00+08:00","description":"The number of data sources that data teams have to deal with is ever increasing. According to a recent survey by Matillion and IDG, the number of data sources per organization is around 400, with over 20 percent of organizations having 1000 or more. The sheer amount of data makes managing and tracking it increasingly difficult, never mind understanding the bigger picture. That’s where data observability comes in.","headline":"Guide to Data Observability","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.piperider.io/blog/guide-to-data-observability.html"},"url":"https://blog.piperider.io/blog/guide-to-data-observability.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://blog.piperider.io/blog/guide-to-data-observability.html">
+  <link rel="alternate" type="application/rss+xml" title="PipeRider" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <img src="/img/piperider-logo.svg" alt="PipeRider Logo">
+      PipeRider
+    </a>    
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <!-- <a class="nav-link" href="/">Home</a> -->
+          <a class="nav-link" href="https://piperider.io">PipeRider Website</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://docs.piperider.io">Documentation</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/infuseai/piperider">GitHub</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="/contact">Contact</a>
+        </li> -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"  role="button" data-toggle="dropdown" aria-expanded="false">Community</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="https://discord.gg/328QcXnkKD">Discord</a>
+            <a class="dropdown-item" href="mailto:support@piperider.io">Support</a>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+
+  <header class="piperider-masthead">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Guide to Data Observability</h1>
+            
+            <h2 class="subheading">Data observability helps you to understand the state of your data and monitor your data throughout the entire organization</h2>
+            
+            <span class="meta">Posted by
+              <a href="#">PipeRider</a>
+              
+              &middot; <span class="reading-time" title="Estimated read time">
+  
+   8 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <article class="post-single">
+
+          
+          <div class="featured-image">
+            <img src="/img/posts/data-observability.png" />
+          </div>
+          
+
+          <p>The number of data sources that data teams have to deal with is ever increasing. According to a <a href="https://www.matillion.com/resources/blog/matillion-and-idg-survey-data-growth-is-real-and-3-other-key-findings">recent survey</a> by Matillion and IDG, the number of data sources per organization is around 400, with over 20 percent of organizations having 1000 or more. The sheer amount of data makes managing and tracking it increasingly difficult, never mind understanding the bigger picture. That’s where data observability comes in.</p>
+
+<h2 id="what-is-data-observability">What is Data Observability?</h2>
+
+<p>Data observability is the capability to comprehend, assess, and manage the state of data consumed by various technologies throughout the entire data lifecycle.</p>
+
+<p>With data observability, your team can have a better understanding of your data. So they can gather consistent, standardized data from APIs, support data lake observability, facilitate routine queries to data warehouses, and share high-quality data across the entire organization.</p>
+
+<h2 id="why-data-observability">Why Data Observability?</h2>
+
+<p>One of the benefits of data observability is that teams can monitor data pipelines and quickly identify data issues with end-to-end data visibility.</p>
+
+<p>Before data observability, teams might struggle with various data issues such as outdated data, broken data pipelines, or missing data. These issues might be caused by uncertainty in data standards or different data models from different data providers.</p>
+
+<p>With data observability, your team can</p>
+
+<ul>
+  <li>standardize data for monitoring;</li>
+  <li>debug and triage proactively;</li>
+  <li>understand how data interacts with different tools;</li>
+  <li>identify issues early;</li>
+  <li>minimize the negative impact of data issues.</li>
+</ul>
+
+<p>Data observability also makes it possible for your team to automate parts of your monitoring process to constantly improve data quality with less time spent.</p>
+
+<h2 id="what-does-data-observability-track">What Does Data Observability Track?</h2>
+
+<p>Data profiling is an essential part of data observability. Through the following data profiling techniques, you can further understand your data and apply checks that will alert you to issues with your data.</p>
+
+<p>Row-level validation and column-level profiling provide information about the system-wide performance of your data.
+Anomaly detection helps spot problems before they damage data quality.
+A statistics summary provides an in-depth understanding of the elements of your data observability framework.
+Execution metadata and delays analysis throughout data pipelines to prevent data downtime.</p>
+
+<p>These observability techniques should give you a comprehensive insight into the overall data health, potential data issues, and the quality of your data.</p>
+
+<p>Incorporate Data Observability into Work to Improve Data Quality (h2)
+According to research, one-third of data analysts spend more than 40 percent of their time on standardizing data to make it ready for analysis, and 57 percent of organizations still regard the “work of transforming their data to be very difficult.” It is obvious that ensuring consistent and accurate data can be a difficult and expensive task for organizations.</p>
+
+<p>Therefore, having proper and solid data observability set up not only saves time but also a lot of resources, including money - But how do you incorporate data observability into your data quality workflow? You should start by developing a framework, then a strategy, and based on these two, choose the right tool for data observability.</p>
+
+<h2 id="how-to-develop-a-data-observability-framework">How to Develop a Data Observability Framework</h2>
+
+<p>Start your data observability journey by creating an efficient data-driven framework focusing on data quality, consistency, and reliability.</p>
+
+<p>A data observability framework should answer the following questions:</p>
+
+<ul>
+  <li>How fresh and up-to-date is our data?</li>
+  <li>What expected data value should we verify to ensure credible data?</li>
+  <li>What data do we need to track and test to see when the data is broken?</li>
+  <li>What is the responsibility of each team to various data sets?</li>
+  <li>What other workflow, such as gathering metadata, or mapping upstream data sources and downstream users, do we need?</li>
+</ul>
+
+<p>The framework should give your team an overall view of standardized data across the organization, letting them quickly identify and fix problems.</p>
+
+<h2 id="how-to-develop-a-data-observability-strategy">How to Develop a Data Observability Strategy</h2>
+
+<p>Once you have a framework in place, many teams may jump right into integrating data observability into the entire data stack. But putting data observability into practice goes beyond the tools you employ.</p>
+
+<p>You should start with preparing your team to adopt a culture of data-driven collaboration. Think about how to integrate data across different teams and sources, and also consider if implementing a new observability tool will affect existing workflow and resources.</p>
+
+<p>Then incorporate the framework into your strategy to determine a standardized library/guidelines with the characteristics of quality data. Your team can use the guidelines to connect data from all sources.</p>
+
+<p>Finally, incorporate your data sources into the observability tool. To obtain the metrics, logs, and traces required to provide end-to-end visibility, you might need to create new observability pipelines. Correlate the metrics you are tracking in your tool with targeted organization goals after adding the governance and data management rules. By using your observability tool to identify and address problems, you can also find new ways to automate some of your data management processes.</p>
+
+<h2 id="how-to-choose-the-right-data-observability-tool">How to Choose the Right Data Observability Tool</h2>
+
+<p>While there’s no one tool to fit every organization’s needs, a good observability tool should be able to:</p>
+
+<ul>
+  <li>gather, examine, sample, and process telemetry data from various data sources;</li>
+  <li>detect and alert problems in datasets;</li>
+  <li>provide end-to-end visibility;</li>
+  <li>display data visualizations.</li>
+</ul>
+
+<p>In order to choose a suitable data observability tool, you’ll need to examine your current data stack and get a full picture of how data is gathered and distributed. Then you can look into a tool that is ready to integrate all of your data sources. Your chosen tool should be able to monitor your data in real-time throughout its lifecycle and monitor existing data without extraction. In addition, it should also be able to automate your data observability with minimum effort.</p>
+
+<p>Ultimately, your organization’s specific data stack and data engineering requirements will determine the right tool for you. For the best implementation experience, give top priority to finding a tool that requires less work to standardize your data, map your data, or monitor your data.</p>
+
+<h2 id="integrate-data-observability-with-piperider">Integrate Data Observability with PipeRider</h2>
+
+<p>PipeRider is an open-source, free, and easy-to-use data observability tool with data profiling and data quality checks through assertions. It executes no-code data profiling and test assertions against your dataset with simple commands. It recommends assertions to save you time and renders your test results into a visual report in minutes. Using the data profiling report you can verify that the data meets your requirements enabling you to trust your data and make better decisions. PipeRider embraces the modern data stack and connects anywhere on your data pipeline that uses a supported data source.</p>
+
+
+
+        <article>
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center social-icons">
+          
+          <li class="list-inline-item">
+            <a href="mailto:support@piperider.io">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/company/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; <a href="http://infuseai.io">InfuseAI</a> 2022</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/atom-one-dark-reasonable.min.css">
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXXXX-X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-XXXXXXXXX-X');
+</script>
+
+
+
+</body>
+
+</html>
