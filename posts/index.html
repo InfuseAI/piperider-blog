@@ -22,6 +22,9 @@ background: '/img/bg-post.jpg'
   {% endif %}
   
     <h2 class="post-title">{{ post.title }}</h2>
+    {% if post.subtitle %}
+      <h3 class="post-subtitle">{{ post.subtitle }}</h3>
+    {% endif %}
   
 <!--             <p class="post-meta">Posted by
     {% if post.author %}

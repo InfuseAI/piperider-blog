@@ -2556,7 +2556,7 @@ a:focus, a:hover { color: #FD683E; }
 
 .post-grid article { display: flex; flex-direction: column; width: 100%; margin-bottom: 2rem; position: relative; }
 
-.post-grid article:hover { color: #FD683E; }
+.post-grid article:hover h2.post-title { color: #FD683E; }
 
 @media (min-width: 768px) { .post-grid article { width: 47.5%; } .post-grid article:nth-of-type(odd) { margin-right: 5%; } }
 
@@ -2566,7 +2566,7 @@ a:focus, a:hover { color: #FD683E; }
 
 .post-grid article h2.post-title { font-size: 1.4rem; margin-top: 1rem; font-weight: 700; }
 
-.post-grid article h3.post-subtitle { font-size: 1.2rem; }
+.post-grid article h3.post-subtitle { font-size: 1.2rem; font-weight: 400; }
 
 .post-grid article a { position: absolute; top: 0; left: 0; bottom: 0; right: 0; }
 
