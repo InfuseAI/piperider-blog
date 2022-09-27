@@ -22,8 +22,8 @@ google_analytics:   G-1P3NVFS4NW # out your google-analytics code
 # Build settings
 markdown:           kramdown
 paginate:           9
-paginate_path:      "/blog/page:num/"
-permalink: /blog/:title:output_ext
+paginate_path:      "/page:num/"
+permalink: /:title:output_ext
 plugins:
   - jekyll-feed
   - jekyll-paginate
