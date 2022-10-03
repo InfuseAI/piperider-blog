@@ -2522,6 +2522,8 @@ a:focus, a:hover { color: #FD683E; }
 
 ::selection { color: #fff; background: #FD683E; }
 
+p, ul, ol { letter-spacing: 0.01rem; }
+
 .piperider-masthead { position: relative; }
 
 .piperider-masthead .page-heading, .piperider-masthead .post-heading { padding: 150px 0 50px 0; text-align: left; }
