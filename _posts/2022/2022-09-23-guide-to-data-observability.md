@@ -1,11 +1,12 @@
 ---
 layout: post
-title: "Guide to Data Observability"
+title: "Data Observability Explained and How to Integrate It into Your Workflow"
 subtitle: "Data observability helps you to understand the state of your data and monitor your data throughout the entire organization"
 author: PipeRider
 background: '/img/posts/06.jpg'
 hidedate: true
 featured-image: '/img/posts/data-observability.png'
+cta: cta_1.html
 ---
 
 The number of data sources that data teams have to deal with is ever increasing. According to a [recent survey](https://www.matillion.com/resources/blog/matillion-and-idg-survey-data-growth-is-real-and-3-other-key-findings) by Matillion and IDG, the number of data sources per organization is around 400, with over 20 percent of organizations having 1000 or more. The sheer amount of data makes managing and tracking it increasingly difficult, never mind understanding the bigger picture. That’s where data observability comes in.

@@ -41,7 +41,12 @@ layout: default
 
           {{ content }}
 
-        <article>
+          {% if page.cta %}
+            {% include {{ page.cta }} %}
+          {% endif %}
+            
+
+        </article>
 
         <hr>
 

@@ -2578,6 +2578,10 @@ p, ul, ol { letter-spacing: 0.01rem; }
 
 article.post-single .featured-image { margin-bottom: 2rem; }
 
+article.post-single a { color: #FD683E; text-decoration: underline; }
+
+article.post-single a:hover { color: #fff; background-color: #FD683E; }
+
 footer .social-icons li.list-inline-item { margin-right: 0; }
 
 @media (min-width: 768px) { footer .social-icons li.list-inline-item { margin-left: 0.5rem; margin-right: 0.5rem; } }
