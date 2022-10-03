@@ -6,6 +6,7 @@ author: PipeRider
 background: '/img/posts/06.jpg'
 hidedate: true
 featured-image: '/img/posts/data-reliability.png'
+cta: cta_1.html
 ---
 
 Modern organizations have gained unprecedented access to quantitative and qualitative data. With all this information available, it’s become best practice for every team to make data-driven decisions. But there’s a problem.
