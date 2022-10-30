@@ -1,0 +1,124 @@
+I"�*<p>tl;dr <em>PipeRider is an open-source data reliability toolkit for identifying data quality issues across pipelines. PipeRider was created after months of industry research and it’s </em><a href="https://github.com/InfuseAI/piperider"><em>available now</em></a><em>. Start learning more about the quality of your data by taking PipeRider for a </em><a href="https://docs.piperider.io/quick-start?utm_source=medium&amp;utm_medium=piperider_intro&amp;utm_id=blog"><em>test drive</em></a><em>.</em></p>
+
+<p>It’s been an interesting and fun time at <a href="https://www.infuseai.io/?utm_source=medium&amp;utm_medium=piperider_intro&amp;utm_id=blog">InfuseAI</a> during the latter half of 2021 and the beginning of 2022 as we’ve been working on our new open-source data reliability product, <a href="https://piperider.io/?utm_source=medium&amp;utm_medium=piperider_intro&amp;utm_id=blog">PipeRider</a>.</p>
+
+<hr />
+
+<p><strong>PipeRider — Data Reliability Automated</strong></p>
+
+<p>For a few months we were deep in research as we interviewed many data industry professionals about the tools they use in their daily workflow, and the common issues they run into when working with data. The result of our research was a plan for a new product that would fix these issues at the source — the data source.</p>
+
+<p>That’s where PipeRider comes in — our data reliability toolkit. But first, let’s rewind and look at some of the issues that were raised during our research and how these came to determine what exactly PipeRider would become.</p>
+
+<h2 id="trust-in-data">Trust in Data</h2>
+
+<p>In a data-centric world, trusting your data is essential to make informed business decisions. For organizations that rely heavily on data, blindly trusting the quality of that data is a big ask. Business decisions are so reliant on quality data and, in some cases, trust so lacking, that during our research we heard about instances of data scientists <em>manually</em> checking data to ensure its reliability. An unsustainable situation.</p>
+
+<p><img src="/img/posts/220622-2.png" alt="" /></p>
+
+<h3 id="gut-feeling-is-no-way-to-make-business-decisions">‘Gut feeling’ is no way to make business decisions</h3>
+
+<p>When the data sources were too abundant, making manual checking impossible, sometimes decisions were made on “gut feeling”, with data sources serving only as a reference. Exactly the opposite of what should be happening in data-centric environments.</p>
+
+<p>We found other situations in which BI had so much distrust in the data reports they were receiving that they sought out data engineers to ask questions face-to-face.</p>
+
+<p><img src="/img/posts/220622-3.png" alt="" /></p>
+
+<p>The main takeaway here is that a lack of robust data reliability testing leads to a distrust of data, which in turn leads to wasted time, second-guessing, and decisions led by gut-feeling. In other words — Lost revenue. In those cases when untested data was incorrectly trusted, errors were only noticed when some anomaly was discovered downstream, far too late to prevent any negative effects</p>
+
+<h3 id="learn-from-your-data-nightmares">Learn from your data-nightmares</h3>
+
+<p>We’re not recounting these data-nightmares for dramatic effect, we needed to learn from these mistakes, as the oft-used George Santayana quote says <em>“<strong>Those who cannot remember the past are condemned to repeat it</strong>“</em>… Maybe we should coin a new phrase? <em>“Those who do not test their data, are condemned to data decay”</em>. (Not as catchy? Oh well)</p>
+
+<p>The research gave us insight into some essential attributes of a data reliability tool:</p>
+
+<ul>
+  <li>It should help manage the complexity of data pipelines, providing data profiles to help you keep ahead of show-stopping data changes. The last thing you want is to be checking logs after something breaks.</li>
+  <li>It should fit into your existing tool ecosystem, and enable you to seamlessly insert it between stages in the pipeline. Users can’t be expected to completely rework their pipelines to fit in a data quality tool.</li>
+  <li>It should allow users to trust their data, and prove the data is trustworthy by providing useful and insightful reporting.</li>
+</ul>
+
+<h2 id="riding-the-data-pipeline">Riding the data pipeline</h2>
+
+<p>PipeRider is a data reliability tool which ensures the health of your data. It does this by profiling the data and schema and then applying data assertions to ensure that the integrity of the data is retained.</p>
+
+<h3 id="maintain-a-high-profile">Maintain a high-profile</h3>
+
+<p>Hands on, the idea behind PipeRider is simple -</p>
+
+<ol>
+  <li>Connect it to your data source at any point in your pipeline.</li>
+  <li>Run PipeRider to generate a data profile.</li>
+  <li>Test the profile against your data assertions.</li>
+</ol>
+
+<p>The data profile works on both the table and column level and provides information such as the number of rows, schema structure, distribution of column data, ranges etc.</p>
+
+<p><img src="/img/posts/220622-4.png" alt="PipeRider profiles a data source" title="PipeRider profiles a data source" /></p>
+
+<p>Assertions provide a way for you to define your expectations of the data, and then test your data source against these assertions. Each time you run PipeRider, your data is profiled and checked against these assertions. If any of the profiled data falls outside the bounds of your assertions then the test fails and an alert raised.</p>
+
+<h3 id="be-assertive">Be assertive</h3>
+
+<p>PipeRider comes bundled with a set of data assertions that you can implement by adding them to your data assertions file. These ready made assertions allow you to test factors of your data such as:</p>
+
+<ul>
+  <li>Ensuring that certain column exists.</li>
+  <li>Ensuring the uniqueness of a column.</li>
+  <li>Ensuring the data type of a column.</li>
+  <li>Testing for null values.</li>
+  <li>Applying acceptable ranges to minimum and maximum values of a column.</li>
+  <li>Monitoring for schema changes between runs.</li>
+</ul>
+
+<p><img src="/img/posts/220622-5.png" alt="PipeRider run with assertion results" title="PipeRider run with assertion results" /></p>
+
+<p>When your data source is profiled for the first time, PipeRider will output an assertion template for each table. Then you only need to apply your desired assertions to each column and the next time PipeRider runs, your data will be tested against the assertion files.</p>
+
+<h2 id="customized-assertions-for-your-needs">Customized assertions for your needs</h2>
+
+<p>In addition to the built-in assertions, PipeRider also has a plugin system that allows you to create your own custom assertions. So long as the information is contained in the PipeRider data profile, then you can test against it. All that is required is a little Python knowledge and you can create assertions to test all aspects of your data profile — a task that is well within reach of all data engineers.</p>
+
+<h2 id="data-quality-reports">Data quality reports</h2>
+
+<p>Running data checks on the command line isn’t for everyone, especially departments who need the visualize the data in a meaningful way. Each time PipeRider runs, it automatically creates a report on the current state of your data.</p>
+
+<p><img src="/img/posts/220622-6.png" alt="Data quality reports are generated each time PipeRider runs" title="Data quality reports are generated each time PipeRider runs" /></p>
+
+<p>If any data assertions have failed, or the schema has changed in any way, then the report will show this information, along with the profiling information for the data source. Reports provide a convenient way to share data profiling and assertion results to users who aren’t interested in running commands in the terminal.</p>
+
+<p>Comparison reports are also available to compare the results of two different PipeRider reports and see how data has changed between profiling and testing runs.</p>
+
+<h2 id="the-future-is-automated">The future is automated</h2>
+
+<p>PipeRider has only just seen its first public release, but we’re moving fast on our roadmap to implement even more features to ensure the reliability of your data.</p>
+
+<p>One feature we’re really excited about is automatically suggesting tests based on your data profile. Right now it’s up to you set decide on which assertions to use for which columns, but the new version of our profiler will intelligently analyze your data source and suggest recommended tests based on the structure of your data.</p>
+
+<p>For instance, PipeRider might suggest that a certain column should be within a numerical range, the content should belong to a set of values, or automatically detect that a column should adhere to some business logic format such as email address, date, IP etc. This could really speed up the time to implement data reliability checks and even shed light on previously overlooked data .</p>
+
+<p>In addition, we’ve got more data warehouse support coming, insight into data lineage, integration with dbt tests, and also enhanced notifications through popular communication platforms such as Slack.</p>
+
+<h2 id="join-us-on-the-data-reliability-journey">Join us on the data reliability journey</h2>
+
+<p>As the developer adage goes — release early, release often. We’ve released PipeRider with what we feel is a solid base of features that we are already building on, and we want you to come with us on the journey and help us make PipeRider meet your needs.</p>
+
+<p>PipeRider is an open source project, and with all our projects at InfuseAI, that means you are welcome to contribute to the project. A contribution could be anything — code if you’re a developer, a bug report or feature request if you’re a user, or simply your thoughts about the project after using it.</p>
+
+<p>It’s easy to take PipeRider for a test drive, just head over to the <a href="https://docs.piperider.io/quick-start?utm_source=medium&amp;utm_medium=piperider_intro&amp;utm_id=blog">Quick Start</a> guide in our documentation. We’ve got a sample dataset ready for you to use, so you won’t need to connect to an existing project to try it out.</p>
+
+<p>After using PipeRider we’d appreciate your feedback! Get in touch through whichever platform you prefer:</p>
+
+<ul>
+  <li>GitHub: <a href="https://github.com/InfuseAI/piperider">https://github.com/InfuseAI/piperider</a></li>
+  <li>Twitter: <a href="https://twitter.com/InfuseAI">@InfuseAI</a></li>
+  <li>Discord: <a href="https://discord.com/invite/328QcXnkKD">InfuseAI Community</a></li>
+</ul>
+
+<hr />
+<h4 id="learn-more-about">Learn more about</h4>
+<ul>
+  <li><a href="https://blog.piperider.io/guide-to-data-observability.html">Data Observability Explained and How to Integrate It into Your Workflow</a></li>
+  <li><a href="https://blog.piperider.io/guide-to-data-reliability.html">Guide to Data Reliability</a></li>
+</ul>
+:ET
