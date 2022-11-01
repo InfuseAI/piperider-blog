@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Add Data Profiling and Assertions to dbt with PipeRider - PipeRider
+    
+  </title>
+
+  <meta name="description" content="tl;dr">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Add Data Profiling and Assertions to dbt with PipeRider | PipeRider</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Add Data Profiling and Assertions to dbt with PipeRider" />
+<meta name="author" content="PipeRider" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="tl;dr" />
+<meta property="og:description" content="tl;dr" />
+<link rel="canonical" href="http://localhost:4000/add-data-profiling-and-assertions-to-dbt-with-piperider.html" />
+<meta property="og:url" content="http://localhost:4000/add-data-profiling-and-assertions-to-dbt-with-piperider.html" />
+<meta property="og:site_name" content="PipeRider" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-07-26T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Add Data Profiling and Assertions to dbt with PipeRider" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"PipeRider"},"dateModified":"2022-07-26T00:00:00+08:00","datePublished":"2022-07-26T00:00:00+08:00","description":"tl;dr","headline":"Add Data Profiling and Assertions to dbt with PipeRider","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/add-data-profiling-and-assertions-to-dbt-with-piperider.html"},"url":"http://localhost:4000/add-data-profiling-and-assertions-to-dbt-with-piperider.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="http://localhost:4000/add-data-profiling-and-assertions-to-dbt-with-piperider.html">
+  <link rel="alternate" type="application/rss+xml" title="PipeRider" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <img src="/img/piperider-logo.svg" alt="PipeRider Logo">
+      PipeRider
+    </a>    
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <!-- <a class="nav-link" href="/">Home</a> -->
+          <a class="nav-link" href="https://piperider.io">PipeRider Website</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://docs.piperider.io">Documentation</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/infuseai/piperider">GitHub</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="/contact">Contact</a>
+        </li> -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"  role="button" data-toggle="dropdown" aria-expanded="false">Community</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="https://discord.gg/328QcXnkKD">Discord</a>
+            <a class="dropdown-item" href="mailto:support@piperider.io">Support</a>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+
+  <header class="piperider-masthead">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Add Data Profiling and Assertions to dbt with PipeRider</h1>
+            
+            <h2 class="subheading">Data profiling helps you understand your data.</h2>
+            
+            <span class="meta">Posted by
+              PipeRider
+              
+              &middot; <span class="reading-time" title="Estimated read time">
+  
+   7 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <article class="post-single">
+
+          
+          <div class="featured-image">
+            <img src="/img/posts/220726-1.png" />
+          </div>
+          
+
+          <h3 id="tldr">tl;dr</h3>
+
+<p>Data profiling helps you understand your data. When used with data assertions, a data profile can be used to determine data reliability. PipeRider is a non-intrusive open-source platform for adding profiling and assertions to data sources (such as dbt, Postgres, Snowflake). Star PipeRider on <a href="https://github.com/InfuseAI/piperider">Github</a>.</p>
+
+<p><img src="/img/posts/220726-1.png" alt="PipeRider generates an HTML report with assertion results" title="PipeRider generates an HTML report with assertion results" /></p>
+
+<h3 id="data-profile">Data profile</h3>
+
+<p>Profiling is super important for understanding your data. A data profile is essentially data <em>about</em> your data. On its own a data profile can provide interesting insights about the data, but the real value comes from pairing the profile with data assertions. Together they form the basis of data reliability. Through data assertions you can define the acceptable norms for your data, and then test that your profile meets this specification.</p>
+
+<h3 id="datapipelinerider">[data]Pipe[line]Rider</h3>
+
+<p>With PipeRider you can easily add data profiling and assertions to your dbt project* and start profiling and testing your dbt models.</p>
+
+<p>PipeRider shows profiling results on the command line, and also in an HTML report. Plus, if you run your dbt tests as part of the PipeRider run, they’ll also be included in the report.</p>
+
+<p><em>PipeRider also works with other data sources, such as Snowflake, Postgres, SQLite, but for this tutorial I’ll focus on dbt.</em></p>
+
+<p>If you’d prefer to watch how this is done then check out the <a href="https://www.youtube.com/watch?v=dnUq35s8AoY">YouTube video</a>. Otherwise read on.</p>
+
+<h3 id="dbt-yeah-you-know-me">dbt, yeah you know me</h3>
+
+<p>This guide assumes that you already have a dbt project ready to go, and that your dbt project is using either Snowflake or Postgres as a data source. Let’s add data reliability to your dbt project:</p>
+
+<h3 id="install-piperider">Install PipeRider</h3>
+
+<p>Install PipeRider using pip and specifying the data source your dbt project uses. I recommend using a virtual environment such as <code class="language-plaintext highlighter-rouge">venv</code> or <code class="language-plaintext highlighter-rouge">Conda</code> .</p>
+
+<p><strong>Postgres</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">pip install 'piperider[postgres]'</code></p>
+
+<p><strong>Snowflake</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">pip install 'piperider[snowflake]'</code></p>
+
+<p>(don’t forget the quotes)</p>
+
+<h3 id="initialize-piperider">Initialize PipeRider</h3>
+
+<p>Inside your dbt project, run the following command to initialize PipeRider:</p>
+
+<p><code class="language-plaintext highlighter-rouge">piperider init</code></p>
+
+<p><img src="/img/posts/220726-2.png" alt="PipeRider init automatically detects your dbt project" title="PipeRider init automatically detects your dbt project" /></p>
+
+<p>PipeRider will then automatically detect your dbt data source settings from your <code class="language-plaintext highlighter-rouge">dbt_project.yml</code> and <code class="language-plaintext highlighter-rouge">profiles.yml</code>.</p>
+
+<h3 id="check-your-connection">Check your connection</h3>
+
+<p>To test the connection to your data source, run the diagnose command:</p>
+
+<p><code class="language-plaintext highlighter-rouge">piperider diagnose</code></p>
+
+<p>In the Check Connections section, you should see your dbt models listed.</p>
+
+<p><img src="/img/posts/220726-3.png" alt="Check that PipeRider can connect to your data source" title="Check that PipeRider can connect to your data source" /></p>
+
+<h3 id="run-piperider">Run PipeRider</h3>
+
+<p>Now all you need to do is run PipeRider!</p>
+
+<p><code class="language-plaintext highlighter-rouge">piperider run</code></p>
+
+<p>Since this is a dbt project, you likely already have some dbt tests configured. If you want your dbt tests to appear on your PipeRider report you can add the <code class="language-plaintext highlighter-rouge">--dbt-test</code> or <code class="language-plaintext highlighter-rouge">--dbt-build</code> option to the command. Check the <a href="https://docs.piperider.io/piperider-cli">PipeRider docs</a> for more info on available options.</p>
+
+<h3 id="profile-and-assertions">Profile and Assertions</h3>
+
+<p>PipeRider will profile the tables and columns from your data source and, as this is the first run, prompt to generate some recommended assertion files.</p>
+
+<p><img src="/img/posts/220726-4.png" alt="Data profiled, do you ant to generate recommended assertions?" title="Data profiled, do you ant to generate recommended assertions?" /></p>
+
+<p>If you choose ‘<strong>yes</strong>’, PipeRider will make assertion files with some sensible defaults based on the current structure of your data.</p>
+
+<p>If you choose ‘<strong>no</strong>’, then PipeRider will create skeleton assertion files.</p>
+
+<p>Choose ‘yes’ and you’ll see that PipeRider creates assertion files for your tables, and then tests them against the recommended assertions.</p>
+
+<p><img src="/img/posts/220726-5.png" alt="PipeRider tests the data source against the assertions" title="PipeRider tests the data source against the assertions" /></p>
+
+<p>As it’s the first run, and you’re using recommended assertions, all of the assertions pass. You’ll find out how to edit the assertions below.</p>
+
+<h3 id="html-report">HTML Report</h3>
+
+<p>At the end of the CLI output, you’ll also find a link to the PipeRider report.</p>
+
+<p><img src="/img/posts/220726-6.png" alt="PipeRider run summary and link to the generated HTML report" title="PipeRider run summary and link to the generated HTML report" /></p>
+
+<p>The report contains the data profile for each table, plus the PipeRider assertion and dbt test results (if you ran those as well).</p>
+
+<p><img src="/img/posts/220726-7.png" alt="A sample of PipeRider's data profile report" title="A sample of PipeRider's data profile report" /></p>
+
+<h3 id="assertions">Assertions</h3>
+
+<p>The recommended assertions provide some sensible defaults that you can use as a starting off point. If you’re confident your data is currently in good health, then you can leave them as-is.</p>
+
+<p>Most likely, you’ll want to review the data profile in your PipeRider report, and then adjust the recommended assertions as you see fit.</p>
+
+<p>The assertion files for your tables can be found in <code class="language-plaintext highlighter-rouge">.piperider/assertions</code></p>
+
+<p><img src="/img/posts/220726-8.png" alt="Assertions files can be found in .piperider/assertions" title="Assertions files can be found in .piperider/assertions" /></p>
+
+<p>Open one of the assertion files and you’ll see the defaults that PipeRider has set up for you.</p>
+
+<p><img src="/img/posts/220726-9.png" alt="An example of a PipeRider recommended assertions file" title="An example of a PipeRider recommended assertions file" /></p>
+
+<p>PipeRider comes with some <a href="https://docs.piperider.io/data-quality-assertions/assertion-configuration">built-in assertions</a> you can use to test your data profile. If you want to get your hands dirty then you can also make <a href="https://docs.piperider.io/data-quality-assertions/custom-assertions">custom assertions</a> — if it’s in your data profile, you can test it.</p>
+
+<p>After updating your assertion files, simply run PipeRider again to test your data profile against the new assertions. Failed assertion results can be viewed both on the CLI, and in the generated reports.</p>
+
+<p><img src="/img/posts/220726-10.png" alt="PipeRider CLI output with failed assertion" title="PipeRider CLI output with failed assertion" /></p>
+
+<h3 id="whats-next">What’s next?</h3>
+
+<p>There’s lots more to check out with PipeRider, such as <a href="https://docs.piperider.io/how-to/compare-reports">comparing reports</a>, regenerating assertions, and <a href="https://docs.piperider.io/how-to/github-action">GitHub actions</a>. Check out the <a href="https://docs.piperider.io/">PipeRider documentation</a> for full details of all features.</p>
+
+<h3 id="infuseai-is-making-data-reliability-tools">InfuseAI is making data reliability tools</h3>
+
+<p>We’re InfuseAI: lovers of open-source, data-quality aficionados.</p>
+
+<p>Tell us you want better data reliability by:</p>
+
+<ul>
+  <li>Staring PipeRider on <a href="https://github.com/InfuseAI/piperider">Github</a></li>
+  <li>Joining the InfuseAI <a href="https://discord.gg/328QcXnkKD">Discord community</a></li>
+  <li>Saying hi to <a href="https://twitter.com/InfuseAI">@infuseai</a> on Twitter</li>
+  <li>Clapping or giving us some feedback in the comments</li>
+</ul>
+
+<h3 id="if-you-read-here-you-might-want-to-learn-more-about-data-reliability">If you read here, you might want to learn more about data reliability:</h3>
+<ul>
+  <li><a href="https://blog.piperider.io/data-reliability-automated-with-piperider.html">Data Reliability Automated with PipeRider</a></li>
+  <li><a href="https://blog.piperider.io/guide-to-data-reliability.html">Guide to Data Reliability</a></li>
+</ul>
+
+
+          
+            
+
+        </article>
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/test-your-data-quality-in-minutes-with-piperider.html" data-toggle="tooltip" data-placement="top" title="Test your data quality in minutes with PipeRider">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/guide-to-data-observability.html" data-toggle="tooltip" data-placement="top" title="Data Observability Explained and How to Integrate It into Your Workflow">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center social-icons">
+          
+          <li class="list-inline-item">
+            <a href="mailto:support@piperider.io">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/company/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; <a href="http://infuseai.io">InfuseAI</a> 2022</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/atom-one-dark-reasonable.min.css">
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1P3NVFS4NW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1P3NVFS4NW');
+</script>
+
+
+
+  <script>
+  window.intercomSettings = {
+    api_base: "https://api-iam.intercom.io",
+    app_id: "ofl16ydc"
+  };
+</script>
+
+<script>
+// We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/ofl16ydc'
+(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/ofl16ydc';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+</script>  
+
+</body>
+
+</html>
