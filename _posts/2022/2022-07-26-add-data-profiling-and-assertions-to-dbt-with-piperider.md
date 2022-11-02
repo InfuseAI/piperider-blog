@@ -40,13 +40,13 @@ Install PipeRider using pip and specifying the data source your dbt project uses
 **Postgres**
 
 ```
-	pip install 'piperider[postgres]'
+pip install 'piperider[postgres]'
 ```
 
 **Snowflake**
 
 ```
-	pip install 'piperider[snowflake]'
+pip install 'piperider[snowflake]'
 ```
 
 (don't forget the quotes)
@@ -56,7 +56,7 @@ Install PipeRider using pip and specifying the data source your dbt project uses
 Inside your dbt project, run the following command to initialize PipeRider:
 
 ```
-	piperider init
+piperider init
 ```
 
 ![PipeRider init automatically detects your dbt project](/img/posts/220726-2.png "PipeRider init automatically detects your dbt project")
@@ -68,7 +68,7 @@ PipeRider will then automatically detect your dbt data source settings from your
 To test the connection to your data source, run the diagnose command:
 
 ```
-	piperider diagnose
+piperider diagnose
 ```
 
 In the Check Connections section, you should see your dbt models listed.
@@ -81,7 +81,7 @@ In the Check Connections section, you should see your dbt models listed.
 Now all you need to do is run PipeRider!
 
 ```
-	piperider run
+piperider run
 ```
 
 Since this is a dbt project, you likely already have some dbt tests configured. If you want your dbt tests to appear on your PipeRider report you can add the `--dbt-test` or `--dbt-build` option to the command. Check the [PipeRider docs](https://docs.piperider.io/piperider-cli) for more info on available options.

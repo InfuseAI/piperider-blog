@@ -1,4 +1,4 @@
-I"¬$<h3 id="tldr">tl;dr</h3>
+I"§$<h3 id="tldr">tl;dr</h3>
 
 <p>Data profiling helps you understand your data. When used with data assertions, a data profile can be used to determine data reliability. PipeRider is a non-intrusive open-source platform for adding profiling and assertions to data sources (such as dbt, Postgres, Snowflake). Star PipeRider on <a href="https://github.com/InfuseAI/piperider">Github</a>.</p>
 
@@ -26,12 +26,12 @@
 
 <p><strong>Postgres</strong></p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	pip install 'piperider[postgres]'
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install 'piperider[postgres]'
 </code></pre></div></div>
 
 <p><strong>Snowflake</strong></p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	pip install 'piperider[snowflake]'
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install 'piperider[snowflake]'
 </code></pre></div></div>
 
 <p>(donâ€™t forget the quotes)</p>
@@ -40,7 +40,7 @@
 
 <p>Inside your dbt project, run the following command to initialize PipeRider:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	piperider init
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider init
 </code></pre></div></div>
 
 <p><img src="/img/posts/220726-2.png" alt="PipeRider init automatically detects your dbt project" title="PipeRider init automatically detects your dbt project" /></p>
@@ -51,7 +51,7 @@
 
 <p>To test the connection to your data source, run the diagnose command:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	piperider diagnose
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider diagnose
 </code></pre></div></div>
 
 <p>In the Check Connections section, you should see your dbt models listed.</p>
@@ -62,7 +62,7 @@
 
 <p>Now all you need to do is run PipeRider!</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	piperider run
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider run
 </code></pre></div></div>
 
 <p>Since this is a dbt project, you likely already have some dbt tests configured. If you want your dbt tests to appear on your PipeRider report you can add the <code class="language-plaintext highlighter-rouge">--dbt-test</code> or <code class="language-plaintext highlighter-rouge">--dbt-build</code> option to the command. Check the <a href="https://docs.piperider.io/piperider-cli">PipeRider docs</a> for more info on available options.</p>

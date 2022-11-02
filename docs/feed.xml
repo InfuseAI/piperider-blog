@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://blog.piperider.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.piperider.io/" rel="alternate" type="text/html" /><updated>2022-11-02T11:33:22+08:00</updated><id>https://blog.piperider.io/feed.xml</id><title type="html">PipeRider</title><subtitle>Data Reliability Automated</subtitle><author><name>PipeRider</name></author><entry><title type="html">Guide to Data Reliability</title><link href="https://blog.piperider.io/guide-to-data-reliability.html" rel="alternate" type="text/html" title="Guide to Data Reliability" /><published>2022-09-27T00:00:00+08:00</published><updated>2022-09-27T00:00:00+08:00</updated><id>https://blog.piperider.io/guide-to-data-reliability</id><content type="html" xml:base="https://blog.piperider.io/guide-to-data-reliability.html"><![CDATA[<p>Modern organizations have gained unprecedented access to quantitative and qualitative data. With all this information available, it’s become best practice for every team to make data-driven decisions. But there’s a problem.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://blog.piperider.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.piperider.io/" rel="alternate" type="text/html" /><updated>2022-11-02T11:38:24+08:00</updated><id>https://blog.piperider.io/feed.xml</id><title type="html">PipeRider</title><subtitle>Data Reliability Automated</subtitle><author><name>PipeRider</name></author><entry><title type="html">Guide to Data Reliability</title><link href="https://blog.piperider.io/guide-to-data-reliability.html" rel="alternate" type="text/html" title="Guide to Data Reliability" /><published>2022-09-27T00:00:00+08:00</published><updated>2022-09-27T00:00:00+08:00</updated><id>https://blog.piperider.io/guide-to-data-reliability</id><content type="html" xml:base="https://blog.piperider.io/guide-to-data-reliability.html"><![CDATA[<p>Modern organizations have gained unprecedented access to quantitative and qualitative data. With all this information available, it’s become best practice for every team to make data-driven decisions. But there’s a problem.</p>
 
 <p>You may be collecting a large amount of information within your data stack, but are you certain that these data sets are complete, accurate, and up-to-date? If not, these data sets might cost you a lot.</p>
 
@@ -212,12 +212,12 @@ According to research, one-third of data analysts spend more than 40 percent of 
 
 <p><strong>Postgres</strong></p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	pip install 'piperider[postgres]'
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install 'piperider[postgres]'
 </code></pre></div></div>
 
 <p><strong>Snowflake</strong></p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	pip install 'piperider[snowflake]'
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install 'piperider[snowflake]'
 </code></pre></div></div>
 
 <p>(don’t forget the quotes)</p>
@@ -226,7 +226,7 @@ According to research, one-third of data analysts spend more than 40 percent of 
 
 <p>Inside your dbt project, run the following command to initialize PipeRider:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	piperider init
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider init
 </code></pre></div></div>
 
 <p><img src="/img/posts/220726-2.png" alt="PipeRider init automatically detects your dbt project" title="PipeRider init automatically detects your dbt project" /></p>
@@ -237,7 +237,7 @@ According to research, one-third of data analysts spend more than 40 percent of 
 
 <p>To test the connection to your data source, run the diagnose command:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	piperider diagnose
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider diagnose
 </code></pre></div></div>
 
 <p>In the Check Connections section, you should see your dbt models listed.</p>
@@ -248,7 +248,7 @@ According to research, one-third of data analysts spend more than 40 percent of 
 
 <p>Now all you need to do is run PipeRider!</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	piperider run
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider run
 </code></pre></div></div>
 
 <p>Since this is a dbt project, you likely already have some dbt tests configured. If you want your dbt tests to appear on your PipeRider report you can add the <code class="language-plaintext highlighter-rouge">--dbt-test</code> or <code class="language-plaintext highlighter-rouge">--dbt-build</code> option to the command. Check the <a href="https://docs.piperider.io/piperider-cli">PipeRider docs</a> for more info on available options.</p>
