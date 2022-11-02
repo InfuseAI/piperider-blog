@@ -1,38 +1,38 @@
-I"($<h3 id="tldr">tl;dr</h3>
+I"�$<h3 id="tldr">tl;dr</h3>
 
-<p>Data profiling helps you understand your data. When used with data assertions, a data profile can be used to determine data reliability. PipeRider is a non-intrusive open-source platform for adding profiling and assertions to data sources (such as dbt, Postgres, Snowflake). Star PipeRider on <a href="https://github.com/InfuseAI/piperider">Github</a>.</p>
+<p>Data profiling helps you understand your data. When used with data assertions, a data profile can be used to determine data reliability. PipeRider is a non-intrusive open-source platform for adding profiling and assertions to data sources (such as dbt, Postgres, Snowflake). Star PipeRider on <a href="https://github.com/InfuseAI/piperider">Github</a>.</p>
 
-<p><img src="/img/posts/220726-1.png" alt="PipeRider generates an HTML report with assertion results" title="PipeRider generates an HTML report with assertion results" /></p>
+<h3 id="why-data-profiling">Why Data profiling?</h3>
 
-<h3 id="data-profile">Data profile</h3>
-
-<p>Profiling is super important for understanding your data. A data profile is essentially data <em>about</em> your data. On its own a data profile can provide interesting insights about the data, but the real value comes from pairing the profile with data assertions. Together they form the basis of data reliability. Through data assertions you can define the acceptable norms for your data, and then test that your profile meets this specification.</p>
+<p>Profiling is super important for understanding your data. A data profile is essentially data <em>about</em> your data. On its own a data profile can provide interesting insights about the data, but the real value comes from pairing the profile with data assertions. Together they form the basis of data reliability. Through data assertions you can define the acceptable norms for your data, and then test that your profile meets this specification.</p>
 
 <h3 id="datapipelinerider">[data]Pipe[line]Rider</h3>
 
-<p>With PipeRider you can easily add data profiling and assertions to your dbt project* and start profiling and testing your dbt models.</p>
+<p>With PipeRider you can easily add data profiling and assertions to your dbt project* and start profiling and testing your dbt models.</p>
 
 <p>PipeRider shows profiling results on the command line, and also in an HTML report. Plus, if you run your dbt tests as part of the PipeRider run, they’ll also be included in the report.</p>
 
 <p><em>PipeRider also works with other data sources, such as Snowflake, Postgres, SQLite, but for this tutorial I’ll focus on dbt.</em></p>
 
-<p>If you’d prefer to watch how this is done then check out the <a href="https://www.youtube.com/watch?v=dnUq35s8AoY">YouTube video</a>. Otherwise read on.</p>
+<p>If you’d prefer to watch how this is done then check out the <a href="https://www.youtube.com/watch?v=dnUq35s8AoY">YouTube video</a>. Otherwise read on.</p>
 
-<h3 id="dbt-yeah-you-know-me">dbt, yeah you know me</h3>
+<h3 id="dbt-yeah-you-know-me">dbt, ‘yeah you know me’</h3>
 
 <p>This guide assumes that you already have a dbt project ready to go, and that your dbt project is using either Snowflake or Postgres as a data source. Let’s add data reliability to your dbt project:</p>
 
 <h3 id="install-piperider">Install PipeRider</h3>
 
-<p>Install PipeRider using pip and specifying the data source your dbt project uses. I recommend using a virtual environment such as <code class="language-plaintext highlighter-rouge">venv</code> or <code class="language-plaintext highlighter-rouge">Conda</code> .</p>
+<p>Install PipeRider using pip and specifying the data source your dbt project uses. I recommend using a virtual environment such as <code class="language-plaintext highlighter-rouge">venv</code> or <code class="language-plaintext highlighter-rouge">Conda</code> .</p>
 
 <p><strong>Postgres</strong></p>
 
-<p><code class="language-plaintext highlighter-rouge">pip install 'piperider[postgres]'</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	pip install 'piperider[postgres]'
+</code></pre></div></div>
 
 <p><strong>Snowflake</strong></p>
 
-<p><code class="language-plaintext highlighter-rouge">pip install 'piperider[snowflake]'</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	pip install 'piperider[snowflake]'
+</code></pre></div></div>
 
 <p>(don’t forget the quotes)</p>
 
@@ -40,17 +40,19 @@
 
 <p>Inside your dbt project, run the following command to initialize PipeRider:</p>
 
-<p><code class="language-plaintext highlighter-rouge">piperider init</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	piperider init
+</code></pre></div></div>
 
 <p><img src="/img/posts/220726-2.png" alt="PipeRider init automatically detects your dbt project" title="PipeRider init automatically detects your dbt project" /></p>
 
-<p>PipeRider will then automatically detect your dbt data source settings from your <code class="language-plaintext highlighter-rouge">dbt_project.yml</code> and <code class="language-plaintext highlighter-rouge">profiles.yml</code>.</p>
+<p>PipeRider will then automatically detect your dbt data source settings from your <code class="language-plaintext highlighter-rouge">dbt_project.yml</code> and <code class="language-plaintext highlighter-rouge">profiles.yml</code>.</p>
 
 <h3 id="check-your-connection">Check your connection</h3>
 
 <p>To test the connection to your data source, run the diagnose command:</p>
 
-<p><code class="language-plaintext highlighter-rouge">piperider diagnose</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	piperider diagnose
+</code></pre></div></div>
 
 <p>In the Check Connections section, you should see your dbt models listed.</p>
 
@@ -60,15 +62,16 @@
 
 <p>Now all you need to do is run PipeRider!</p>
 
-<p><code class="language-plaintext highlighter-rouge">piperider run</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	piperider run
+</code></pre></div></div>
 
-<p>Since this is a dbt project, you likely already have some dbt tests configured. If you want your dbt tests to appear on your PipeRider report you can add the <code class="language-plaintext highlighter-rouge">--dbt-test</code> or <code class="language-plaintext highlighter-rouge">--dbt-build</code> option to the command. Check the <a href="https://docs.piperider.io/piperider-cli">PipeRider docs</a> for more info on available options.</p>
+<p>Since this is a dbt project, you likely already have some dbt tests configured. If you want your dbt tests to appear on your PipeRider report you can add the <code class="language-plaintext highlighter-rouge">--dbt-test</code> or <code class="language-plaintext highlighter-rouge">--dbt-build</code> option to the command. Check the <a href="https://docs.piperider.io/piperider-cli">PipeRider docs</a> for more info on available options.</p>
 
 <h3 id="profile-and-assertions">Profile and Assertions</h3>
 
-<p>PipeRider will profile the tables and columns from your data source and, as this is the first run, prompt to generate some recommended assertion files.</p>
+<p>PipeRider will profile the tables and columns from your data source and, as this is the first run, prompt to generate some recommended assertion files.</p>
 
-<p><img src="/img/posts/220726-4.png" alt="Data profiled, do you ant to generate recommended assertions?" title="Data profiled, do you ant to generate recommended assertions?" /></p>
+<p><img src="/img/posts/220726-4.png" alt="Data profiled, do you want to generate recommended assertions?" title="Data profiled, do you want to generate recommended assertions?" /></p>
 
 <p>If you choose ‘<strong>yes</strong>’, PipeRider will make assertion files with some sensible defaults based on the current structure of your data.</p>
 
@@ -96,7 +99,7 @@
 
 <p>Most likely, you’ll want to review the data profile in your PipeRider report, and then adjust the recommended assertions as you see fit.</p>
 
-<p>The assertion files for your tables can be found in <code class="language-plaintext highlighter-rouge">.piperider/assertions</code></p>
+<p>The assertion files for your tables can be found in <code class="language-plaintext highlighter-rouge">.piperider/assertions</code></p>
 
 <p><img src="/img/posts/220726-8.png" alt="Assertions files can be found in .piperider/assertions" title="Assertions files can be found in .piperider/assertions" /></p>
 
@@ -104,7 +107,7 @@
 
 <p><img src="/img/posts/220726-9.png" alt="An example of a PipeRider recommended assertions file" title="An example of a PipeRider recommended assertions file" /></p>
 
-<p>PipeRider comes with some <a href="https://docs.piperider.io/data-quality-assertions/assertion-configuration">built-in assertions</a> you can use to test your data profile. If you want to get your hands dirty then you can also make <a href="https://docs.piperider.io/data-quality-assertions/custom-assertions">custom assertions</a> — if it’s in your data profile, you can test it.</p>
+<p>PipeRider comes with some <a href="https://docs.piperider.io/data-quality-assertions/assertion-configuration">built-in assertions</a> you can use to test your data profile. If you want to get your hands dirty then you can also make <a href="https://docs.piperider.io/data-quality-assertions/custom-assertions">custom assertions</a> — if it’s in your data profile, you can test it.</p>
 
 <p>After updating your assertion files, simply run PipeRider again to test your data profile against the new assertions. Failed assertion results can be viewed both on the CLI, and in the generated reports.</p>
 
@@ -112,7 +115,7 @@
 
 <h3 id="whats-next">What’s next?</h3>
 
-<p>There’s lots more to check out with PipeRider, such as <a href="https://docs.piperider.io/how-to/compare-reports">comparing reports</a>, regenerating assertions, and <a href="https://docs.piperider.io/how-to/github-action">GitHub actions</a>. Check out the <a href="https://docs.piperider.io/">PipeRider documentation</a> for full details of all features.</p>
+<p>There’s lots more to check out with PipeRider, such as <a href="https://docs.piperider.io/how-to/compare-reports">comparing reports</a>, regenerating assertions, and <a href="https://docs.piperider.io/how-to/github-action">GitHub actions</a>. Check out the <a href="https://docs.piperider.io/">PipeRider documentation</a> for full details of all features.</p>
 
 <h3 id="infuseai-is-making-data-reliability-tools">InfuseAI is making data reliability tools</h3>
 
@@ -121,9 +124,9 @@
 <p>Tell us you want better data reliability by:</p>
 
 <ul>
-  <li>Staring PipeRider on <a href="https://github.com/InfuseAI/piperider">Github</a></li>
-  <li>Joining the InfuseAI <a href="https://discord.gg/328QcXnkKD">Discord community</a></li>
-  <li>Saying hi to <a href="https://twitter.com/InfuseAI">@infuseai</a> on Twitter</li>
+  <li>Staring PipeRider on <a href="https://github.com/InfuseAI/piperider">Github</a></li>
+  <li>Joining the InfuseAI <a href="https://discord.gg/328QcXnkKD">Discord community</a></li>
+  <li>Saying hi to <a href="https://twitter.com/InfuseAI">@infuseai</a> on Twitter</li>
   <li>Clapping or giving us some feedback in the comments</li>
 </ul>
 
