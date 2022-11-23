@@ -4,8 +4,8 @@ email:              support@piperider.io
 description:        Data Reliability Automated
 author:             PipeRider
 company:            InfuseAI
-company_url:        http://infuseai.io
-baseurl:            ""
+company_url:        https://infuseai.io
+#baseurl:            /
 url:                https://blog.piperider.io
 domain:             blog.piperider.io
 

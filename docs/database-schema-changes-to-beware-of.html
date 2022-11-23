@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    5 Database Schema Changes Data Engineers Need to Beware Of - PipeRider
+    
+  </title>
+
+  <meta name="description" content="As a data or analytics engineer you need to anticipate the unexpected, especially when building pipelines from data sources that you have no control over. Wh...">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>5 Database Schema Changes Data Engineers Need to Beware Of | PipeRider</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="5 Database Schema Changes Data Engineers Need to Beware Of" />
+<meta name="author" content="PipeRider" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="As a data or analytics engineer you need to anticipate the unexpected, especially when building pipelines from data sources that you have no control over. While a data pipeline might be a house of cards, with data observability you’re able to keep an eye on any changes to the underlying structure, and be prepared for schema changes." />
+<meta property="og:description" content="As a data or analytics engineer you need to anticipate the unexpected, especially when building pipelines from data sources that you have no control over. While a data pipeline might be a house of cards, with data observability you’re able to keep an eye on any changes to the underlying structure, and be prepared for schema changes." />
+<link rel="canonical" href="https://blog.piperider.io/database-schema-changes-to-beware-of.html" />
+<meta property="og:url" content="https://blog.piperider.io/database-schema-changes-to-beware-of.html" />
+<meta property="og:site_name" content="PipeRider" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-11-21T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="5 Database Schema Changes Data Engineers Need to Beware Of" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"PipeRider"},"dateModified":"2022-11-21T00:00:00+08:00","datePublished":"2022-11-21T00:00:00+08:00","description":"As a data or analytics engineer you need to anticipate the unexpected, especially when building pipelines from data sources that you have no control over. While a data pipeline might be a house of cards, with data observability you’re able to keep an eye on any changes to the underlying structure, and be prepared for schema changes.","headline":"5 Database Schema Changes Data Engineers Need to Beware Of","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.piperider.io/database-schema-changes-to-beware-of.html"},"url":"https://blog.piperider.io/database-schema-changes-to-beware-of.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://blog.piperider.io/database-schema-changes-to-beware-of.html">
+  <link rel="alternate" type="application/rss+xml" title="PipeRider" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <img src="/img/piperider-logo.svg" alt="PipeRider Logo">
+      PipeRider
+    </a>    
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <!-- <a class="nav-link" href="/">Home</a> -->
+          <a class="nav-link" href="https://piperider.io">PipeRider Website</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://docs.piperider.io">Documentation</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/infuseai/piperider">GitHub</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="/contact">Contact</a>
+        </li> -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"  role="button" data-toggle="dropdown" aria-expanded="false">Community</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="https://discord.gg/328QcXnkKD">Discord</a>
+            <a class="dropdown-item" href="mailto:support@piperider.io">Support</a>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+
+  <header class="piperider-masthead">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>5 Database Schema Changes Data Engineers Need to Beware Of</h1>
+            
+            <h2 class="subheading">Stay ahead of schema changes and know about issues before they affect downstream</h2>
+            
+            <span class="meta">Posted by
+              PipeRider
+              
+              &middot; <span class="reading-time" title="Estimated read time">
+  
+   7 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <article class="post-single">
+
+          
+          <div class="featured-image">
+            <img src="/img/posts/database-schema-change.png" />
+          </div>
+          
+
+          <p>As a data or analytics engineer you need to anticipate the unexpected, especially when building pipelines from data sources that you have no control over. While a data pipeline might be a house of cards, with data observability you’re able to keep an eye on any changes to the underlying structure, and be prepared for schema changes.</p>
+
+<p>Structure is the key point here, as one of the main ways that a data source can change is the schema, or structure, of a database table. The schema is important because the pipelines you build may have specific downstream uses that are directly tied to the current structure of the data. By staying ahead of schema changes you’ll know about potential issues before they affect the data and downstream uses.</p>
+
+<p>As Angela, a data engineer at Sam’s Club, put it in a <a href="https://twitter.com/i/spaces/1OwGWwZAZDnGQ?s=20">recent interview</a>:</p>
+
+<blockquote>
+  <p>“you never want your end users to actually contact you, (and if they do) you want to be already in the know”</p>
+</blockquote>
+
+<p>Here are 5 schema changes to look out for, and why you should beware of them:</p>
+
+<h2 id="1-additional-columns">1. Additional columns</h2>
+
+<p>Additional columns might seem like one of the more benign changes at first. After all, how could adding some columns to a database affect your pipeline?</p>
+
+<h3 id="why-you-should-beware">Why you should beware</h3>
+
+<p>After a new column is added, there’s no easy way to know if the data was backfilled, without manually checking. That is, for each row, was the data retroactively added? If not, there may be null, zero, or empty values, and you won’t know if they represent valid data or not. This could be problematic if you start using the new column without first knowing the backfill status.</p>
+
+<h2 id="2-column-type-and-attribute-changes">2. Column type and attribute changes</h2>
+
+<p>Column types are important because they enforce the type of data contained in the column. The way you use the data of a column is based on the expectation that the data is of a certain type. Examples of column type changes include:</p>
+
+<ul>
+  <li>A numeric column changing to string, and vice-versa.</li>
+  <li>A numeric type change, such as a decimal changing to an integer.</li>
+  <li>Date is a tricky one — is it Date, Datetime, or Timestamp?</li>
+</ul>
+
+<h3 id="why-you-should-beware-1">Why you should beware</h3>
+
+<p>If you’re expecting a float and get an integer, this could affect the accuracy of any calculations based on the data, especially if you require a certain precision (see column attributes).</p>
+
+<p>Sometimes, column types might not even be enforced, so you might run into problems with mixing types, such as storing text and numbers in the same column. This means you need to be very careful about checking the format of the data.</p>
+
+<h2 id="3-column-attributes-and-constraints">3. Column attributes and constraints</h2>
+
+<p>Column attributes refer to the format of the stored data. Things like:</p>
+
+<ul>
+  <li>String length</li>
+  <li>Size of an integer</li>
+  <li>Decimal precision</li>
+  <li>Date format</li>
+  <li>Default values</li>
+  <li>If NULL values are allowed</li>
+</ul>
+
+<h3 id="why-you-should-beware-2">Why you should beware</h3>
+
+<p>Changes to numeric types such as integer size, or precision, could affect downstream calculations.</p>
+
+<p>The format of the date could also wreak havoc on your dashboard — is it DD-MM-YYYY, or MM-DD-YYYY? What time zone is this for? These are important questions to ask if you’re building a dashboard that relies on time-specific data.</p>
+
+<p>If the limit on the length of strings changes, it could result in truncated data. An issue that might go unnoticed if not manually checked for.</p>
+
+<h2 id="4-column-renaming">4. Column renaming</h2>
+
+<p>Renaming a column is a big change. If tables are being used in production you’d hope to be notified of a change such as this, but with third party data sources that might not happen. This one could really get you if you’re not paying attention.</p>
+
+<h3 id="why-you-should-beware-3">Why you should beware</h3>
+
+<p>Your transformations and data modeling queries rely heavily on column naming. One column name-change could result in a broken pipeline causing data to stop flowing downstream.</p>
+
+<h2 id="5-column-misuse">5. Column misuse</h2>
+
+<p>Column misuse is more of a data quality issue than a schema change but, like a schema change, could cause issues for you when using the data. When a column is repurposed, it’s used for a purpose it wasn’t originally intended for. If there’s no data dictionary, or documentation is not kept up-to-date, then you could easily be caught out by this one.</p>
+
+<h3 id="why-you-should-beware-4">Why you should beware</h3>
+
+<p>One example of column misuse is putting additional data into a column, instead of creating another column. For instance, a product sales table might start including product attributes, such as size and color, in the description column, instead of creating new columns for the attributes.</p>
+
+<p>The meaning of a column might also change over time and, instead of adjusting the database accordingly, an existing column is ‘repurposed’ for use. Without you knowing, the column now includes completely different data than what you expect.</p>
+
+<h2 id="how-to-avoid-being-caught-out">How to avoid being caught out</h2>
+
+<p>As mentioned in the introduction, it’s all a matter of having the knowledge that a change has taken place — As the saying goes “<a href="https://knowyourmeme.com/memes/france-is-bacon">knowledge is power, France is bacon</a>”. If you know a change has taken place, you can react and make sure that data pipeline continues to work, before downstream issues occur.</p>
+
+<p>For data teams, that knowledge comes from <a href="https://blog.infuseai.io/data-monitoring-be-the-master-of-your-pipeline-ba464b66888">data monitoring and observability</a>. With proper data observability in place you can know the current structure of the database, and how that compares to previous states.</p>
+
+<p>Highlighting that schema changes have taken place, along with other data changes, is one of the things <a href="https://blog.infuseai.io/how-to-be-more-confident-making-data-model-changes-76a2f65feffa">we’re working on</a> with <a href="https://github.com/infuseai/piperider">PipeRider</a>.</p>
+
+<h2 id="your-experiences">Your experiences</h2>
+
+<p>Have you been bitten by schema change? Let me know what happened and how you discovered the change.</p>
+
+<p>If I missed any important or obvious schema changes to look out for, please tell me and I’ll improve the list.</p>
+
+
+
+          
+            <h2>InfuseAI is solving data quality issues</h2>
+
+<p>InfuseAI makes PipeRider, the open-source data reliability CLI tool that adds data profiling and assertions to data warehouses such as BigQuery, Snowflake, Redshift and more. Data profile and data assertion results are provided in an HTML report each time you run PipeRider.</p>
+
+<ul>
+    <li><a href="https://piperider.io" target="_blank">PipeRider homepage</a></li>
+    <li><a href="https://github.com/infuseai/piperider" target="_blank">PipeRider GitHub repo</a></li>
+    <li>Twitter <a href="https://twitter.com/infuseai" target="_blank">@infuseai</a></li>
+    <li>Mastodon <a href="https://fosstodon.org/@piperider" target="_blank">@piperider@fosstondon.org</a></li>
+</ul>
+          
+            
+
+        </article>
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/guide-to-data-reliability.html" data-toggle="tooltip" data-placement="top" title="Guide to Data Reliability">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center social-icons">
+          
+          <li class="list-inline-item">
+            <a href="mailto:support@piperider.io">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/company/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; <a href="https://infuseai.io">InfuseAI</a> 2022</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/atom-one-dark-reasonable.min.css">
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1P3NVFS4NW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1P3NVFS4NW');
+</script>
+
+
+
+  <script>
+  window.intercomSettings = {
+    api_base: "https://api-iam.intercom.io",
+    app_id: "ofl16ydc"
+  };
+</script>
+
+<script>
+// We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/ofl16ydc'
+(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/ofl16ydc';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+</script>  
+
+</body>
+
+</html>
