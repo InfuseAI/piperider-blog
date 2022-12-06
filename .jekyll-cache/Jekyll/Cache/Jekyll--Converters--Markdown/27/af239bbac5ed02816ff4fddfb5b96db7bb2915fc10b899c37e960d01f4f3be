@@ -1,0 +1,2 @@
+I"<p><em>tl;dr PipeRider now supports <a href="https://docs.getdbt.com/reference/node-selection/methods#the-state-method">dbt state</a>! You can profile and run data reliability tests on only the tables that have been modified as part of your dbt state</em></p>
+:ET

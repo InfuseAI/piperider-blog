@@ -2582,6 +2582,10 @@ article.post-single a { color: #FD683E; text-decoration: underline; }
 
 article.post-single a:hover { color: #fff; background-color: #FD683E; }
 
+article.post-single .embed-container { margin-bottom: 2rem; }
+
+article.post-single .cta-hr { margin-top: 4rem; margin-bottom: 2rem; }
+
 footer .social-icons li.list-inline-item { margin-right: 0; }
 
 @media (min-width: 768px) { footer .social-icons li.list-inline-item { margin-left: 0.5rem; margin-right: 0.5rem; } }

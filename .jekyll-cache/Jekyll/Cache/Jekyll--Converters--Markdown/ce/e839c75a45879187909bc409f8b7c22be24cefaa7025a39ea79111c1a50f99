@@ -1,0 +1,55 @@
+I"�<p><em>tl;dr PipeRider now supports <a href="https://docs.getdbt.com/reference/node-selection/methods#the-state-method">dbt state</a>! You can profile and run data reliability tests on only the tables that have been modified as part of your dbt state</em></p>
+
+<hr />
+
+<p>One of the great features of dbt is <a href="https://docs.getdbt.com/reference/node-selection/syntax">node selection</a> and the <a href="https://docs.getdbt.com/reference/node-selection/methods#the-state-method">‘state’ method</a>. Using state, you are able to specify a subset of models (or other resources) to work on. For instance, you might use <code class="language-plaintext highlighter-rouge">state:modified</code> to only build your dbt models that have changed.</p>
+
+<p>The logic behind state is that <strong>there’s no point rebuilding everything if you’ve only changed part of your project</strong>. Likewise, if you’re using a data quality tool with your dbt project (and you should), then the same logic should apply - <strong>you only want to run your data quality and reliability tests against the modified models</strong>.</p>
+
+<p>The latest version of <a href="https://github.com/infuseai/piperider">PipeRider (0.14)</a>, the open-source data reliability tool, adds exactly this feature. If you’re a dbt user and you’re not using PipeRider, you really should check it out. PipeRider adds profiling and data assertions to a dbt project with zero config.</p>
+
+<p>Here’s a <a href="https://www.youtube.com/watch?v=2J2Cu84HonU">video</a> that shows it in action, or scroll down for the relevant commands.</p>
+
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style>
+<div class="embed-container">    <iframe title="YouTube video player" width="640" height="390" src="//www.youtube.com/embed/2J2Cu84HonU" frameborder="0" allowfullscreen=""></iframe></div>
+
+<h2 id="run-data-profiling-and-assertions-on-dbt-state">Run data profiling and assertions on dbt state</h2>
+
+<p>It’s really straightforward to use. Let’s say you’ve modified a dbt model and then built your project specifying only the affected models:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dbt build <span class="nt">--select</span> state:modified+ <span class="nt">--state</span> target
+</code></pre></div></div>
+
+<p>Now, when you run PipeRider, all you need to do is specify the dbt state using the <code class="language-plaintext highlighter-rouge">--dbt-state</code> option:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider run <span class="nt">--dbt-state</span> target
+</code></pre></div></div>
+
+<p>PipeRider will only profile and test models that are included in the specified dbt state, saving you time and computing resources.</p>
+
+<h2 id="compare-data-profiles">Compare data profiles</h2>
+
+<p>PipeRider also has a handy feature to quickly compare data profile reports:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">piperider</span> <span class="n">compare</span><span class="o">-</span><span class="n">reports</span> <span class="c1">--last</span>
+</code></pre></div></div>
+
+<p>You’ll be prompted to select the reports to compare or, if you specify the <code class="language-plaintext highlighter-rouge">--last</code> option, it’ll automatically compare the last two reports - great!</p>
+
+<p>Taking it a step further, you can specify to only compare tables that appear either in the base or target report. This ties in nicely to dbt state because you might not want to include all of the unmodified tables in the comparison report.</p>
+
+<p>To specify which report’s tables to limit the comparison to, use the <code class="language-plaintext highlighter-rouge">--tables-from</code> option.</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">piperider</span> <span class="nx">compare</span><span class="o">-</span><span class="nx">reports</span> <span class="o">--</span><span class="nx">last</span> <span class="o">--</span><span class="nx">tables</span><span class="o">-</span><span class="k">from</span> <span class="nx">target</span><span class="o">-</span><span class="nx">only</span>
+</code></pre></div></div>
+
+<p>This command auto compares the last two reports, and only compares tables that appeared in the <em>target</em> report. Which, in this case, would be the report that only includes tables modified as per the dbt state.  This is perfect if you want a report that only focuses on the comparison of modified models before-and-after your latest changes.</p>
+
+<h2 id="get-started-with-piperider">Get started with PipeRider</h2>
+
+<p>As I mentioned above, if you’re a dbt user then PipeRider should be your go-to data reliability tool.  If you already have a dbt project, all you need to do is <a href="https://docs.piperider.io/cli/dbt-integration">initialize PipeRider inside the project</a> and your data source settings will be automatically detected:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># inside your dbt project folder</span>
+piperider init
+</code></pre></div></div>
+:ET
