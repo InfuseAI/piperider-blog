@@ -126,7 +126,7 @@ Check out the [quick-start guide](https://docs.piperider.io/quick-start?utm_sou
 
 For help using PipeRider, or if you have ideas how we can make it better, get in touch via:
 
--   InfuseAI [Discord community](https://discord.gg/328QcXnkKD)
+-   InfuseAI [Discord community](https://discord.gg/xKxsdPx4d5)
 -   [@infuseai](https://twitter.com/InfuseAI) on Twitter
 -   ⭐️ Star us on [Github](https://github.com/InfuseAI/piperider)
 
