@@ -1,4 +1,4 @@
-I"�"<h1 id="test-your-data-quality-in-minutes-with-piperider">Test your data quality in minutes with PipeRider</h1>
+I"�"<h1 id="test-your-data-quality-in-minutes-with-piperider">Test your data quality in minutes with PipeRider</h1>
 
 <p><strong>tl;dr</strong> If you missed out on PipeRider’s initial release, then now is a great time to take it for a spin. <strong>Data reliability just got even more reliable with better dbt integration</strong>, data assertion recommendations, and reporting enhancements. PipeRider is <a href="https://github.com/InfuseAI/piperider">open-source</a> and easy to <a href="https://docs.piperider.io/quick-start?utm_source=blog&amp;utm_medium=20220706&amp;utm_id=medium">get started</a>.</p>
 
@@ -109,12 +109,12 @@
 <p>PipeRider is so easy to use there really is no excuse for not picking up on that data drift. All you need to do it:</p>
 
 <ol>
-  <li><a href="https://docs.piperider.io/install-piperider">Install PipeRider</a> (a quick install with pip)</li>
+  <li><a href="https://docs.piperider.io/cli/install-piperider">Install PipeRider</a> (a quick install with pip)</li>
   <li>Point it to your data warehouse — if you’re using dbt your settings will be auto-detected</li>
-  <li>With one <a href="https://docs.piperider.io/piperider-cli">command</a> you can generate a data profile, with suggested assertions, and output a report</li>
+  <li>With one <a href="https://docs.piperider.io/cli/quick-start#run-piperider-profile-data-and-generate-report">command</a> you can generate a data profile, with suggested assertions, and output a report</li>
 </ol>
 
-<p>Check out the <a href="https://docs.piperider.io/quick-start?utm_source=blog&amp;utm_medium=20220706&amp;utm_id=medium">quick-start guide</a>, which includes a sample dataset, for how to use the main features of PipeRider.</p>
+<p>Check out the <a href="https://docs.piperider.io/cli/quick-start?utm_source=blog&amp;utm_medium=20220706&amp;utm_id=medium">quick-start guide</a>, which includes a sample dataset, for how to use the main features of PipeRider.</p>
 
 <h2 id="more-info">More info</h2>
 

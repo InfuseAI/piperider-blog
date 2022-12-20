@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://blog.piperider.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.piperider.io/" rel="alternate" type="text/html" /><updated>2022-12-20T18:18:16+08:00</updated><id>https://blog.piperider.io/feed.xml</id><title type="html">PipeRider</title><subtitle>Data Reliability Automated</subtitle><author><name>PipeRider</name></author><entry><title type="html">Data reliability testing for dbt state with PipeRider</title><link href="https://blog.piperider.io/data-reliability-dbt-state-piperider.html" rel="alternate" type="text/html" title="Data reliability testing for dbt state with PipeRider" /><published>2022-12-06T00:00:00+08:00</published><updated>2022-12-06T00:00:00+08:00</updated><id>https://blog.piperider.io/data-reliability-dbt-state-piperider</id><content type="html" xml:base="https://blog.piperider.io/data-reliability-dbt-state-piperider.html"><![CDATA[<p><em>tl;dr PipeRider now supports <a href="https://docs.getdbt.com/reference/node-selection/methods#the-state-method">dbt state</a>! You can profile and run data reliability tests on only the tables that have been modified as part of your dbt state</em></p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://blog.piperider.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.piperider.io/" rel="alternate" type="text/html" /><updated>2022-12-20T19:52:17+08:00</updated><id>https://blog.piperider.io/feed.xml</id><title type="html">PipeRider</title><subtitle>Data Reliability Automated</subtitle><author><name>PipeRider</name></author><entry><title type="html">Data reliability testing for dbt state with PipeRider</title><link href="https://blog.piperider.io/data-reliability-dbt-state-piperider.html" rel="alternate" type="text/html" title="Data reliability testing for dbt state with PipeRider" /><published>2022-12-06T00:00:00+08:00</published><updated>2022-12-06T00:00:00+08:00</updated><id>https://blog.piperider.io/data-reliability-dbt-state-piperider</id><content type="html" xml:base="https://blog.piperider.io/data-reliability-dbt-state-piperider.html"><![CDATA[<p><em>tl;dr PipeRider now supports <a href="https://docs.getdbt.com/reference/node-selection/methods#the-state-method">dbt state</a>! You can profile and run data reliability tests on only the tables that have been modified as part of your dbt state</em></p>
 
 <hr />
 
@@ -324,7 +324,56 @@ According to research, one-third of data analysts spend more than 40 percent of 
 
 <h2 id="integrate-data-observability-with-piperider">Integrate Data Observability with PipeRider</h2>
 
-<p>PipeRider is an open-source, free, and easy-to-use data observability tool with data profiling and data quality checks through assertions. It executes no-code data profiling and test assertions against your dataset with simple commands. It recommends assertions to save you time and renders your test results into a visual report in minutes. Using the data profiling report you can verify that the data meets your requirements enabling you to trust your data and make better decisions. PipeRider embraces the modern data stack and connects anywhere on your data pipeline that uses a supported data source.</p>]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[The number of data sources that data teams have to deal with is ever increasing. According to a recent survey by Matillion and IDG, the number of data sources per organization is around 400, with over 20 percent of organizations having 1000 or more. The sheer amount of data makes managing and tracking it increasingly difficult, never mind understanding the bigger picture. That’s where data observability comes in.]]></summary></entry><entry><title type="html">How to Use PipeRider’s Built-in Assertion and Custom Assertion to Test the Water Quality Kaggle Dataset</title><link href="https://blog.piperider.io/how-to-use-piperider-s-built-in-assertion-and-custom-assertion-to-test-the-water-quality-kaggle-dataset.html" rel="alternate" type="text/html" title="How to Use PipeRider’s Built-in Assertion and Custom Assertion to Test the Water Quality Kaggle Dataset" /><published>2022-07-27T00:00:00+08:00</published><updated>2022-07-27T00:00:00+08:00</updated><id>https://blog.piperider.io/how-to-use-piperider%E2%80%99s-built-in-assertion-and-custom-assertion-to-test-the-water-quality-kaggle-dataset</id><content type="html" xml:base="https://blog.piperider.io/how-to-use-piperider-s-built-in-assertion-and-custom-assertion-to-test-the-water-quality-kaggle-dataset.html"><![CDATA[<p><em>tl;dr PipeRider can help detect data issues in a water quality dataset through data profiling and custom assertions, which can be useful for determining the drinkability of water and solving problems immediately if alerts are raised.</em></p>
+<p>PipeRider is an open-source, free, and easy-to-use data observability tool with data profiling and data quality checks through assertions. It executes no-code data profiling and test assertions against your dataset with simple commands. It recommends assertions to save you time and renders your test results into a visual report in minutes. Using the data profiling report you can verify that the data meets your requirements enabling you to trust your data and make better decisions. PipeRider embraces the modern data stack and connects anywhere on your data pipeline that uses a supported data source.</p>]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[The number of data sources that data teams have to deal with is ever increasing. According to a recent survey by Matillion and IDG, the number of data sources per organization is around 400, with over 20 percent of organizations having 1000 or more. The sheer amount of data makes managing and tracking it increasingly difficult, never mind understanding the bigger picture. That’s where data observability comes in.]]></summary></entry><entry><title type="html">PipeRider data profiling just got more colorful (and useful)</title><link href="https://blog.piperider.io/piperider-data-profiling-just-got-more-colorful-and-useful.html" rel="alternate" type="text/html" title="PipeRider data profiling just got more colorful (and useful)" /><published>2022-08-02T00:00:00+08:00</published><updated>2022-08-02T00:00:00+08:00</updated><id>https://blog.piperider.io/piperider-data-profiling-just-got-more-colorful-and%20useful</id><content type="html" xml:base="https://blog.piperider.io/piperider-data-profiling-just-got-more-colorful-and-useful.html"><![CDATA[<p><a href="https://github.com/InfuseAI/piperider/releases/tag/v0.5.0">PipeRider 0.5.0</a> was released last week and introduces some CLI updates that improve visual feedback during profiling, and the reporting feature adds some options to make it more suitable for use in your CI pipeline.</p>
+
+<p><em>In case you missed it — <a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a> is a new open-source <a href="https://blog.piperider.io/test-your-data-quality-in-minutes-with-piperider.html">data reliability</a> tool with data profiling, data assertions, and support for <a href="https://blog.piperider.io/add-data-profiling-and-assertions-to-dbt-with-piperider.html">popular data sources</a>.</em></p>
+
+<hr />
+
+<h2 id="cli-now-with-extra-prettiness">CLI now with extra prettiness</h2>
+<p>The PipeRider CLI is now includes extra visual feedback when profiling in the form of per-table progress bars.</p>
+
+<h3 id="progress-bars--so-satisfying">Progress bars — so satisfying</h3>
+<p>The progress bars show how many tables are left to profile, the number of columns that are being profiled, and a timer.</p>
+
+<p><img src="/img/posts/220802-1.gif" alt="Progress bars — satisfying :)" /></p>
+
+<p>This enables you to see where you are in the profiling progress — no more thinking that the profiler hung when profiling your beefy dbt models.</p>
+
+<h3 id="tabular-summary">Tabular Summary</h3>
+<p>The profiling and data assertions summary is now displayed in a table so you can see test results at a glance.</p>
+
+<p><img src="/img/posts/220802-2.webp" alt="Profiling and data assertion test results are now tabular — awesome!
+" /></p>
+
+<p>Extra color has also been sprinkled around to make the CLI output generally easier to read. So now it’ll fit better with your colorful terminal theme (<a href="https://draculatheme.com/terminal">Dracula</a>, anyone?).</p>
+
+<p>If you’re working on the command line all day, then these should be some welcome additions.</p>
+
+<h2 id="reports-where-you-want-them-when-you-want-them">Reports where you want them, when you want them</h2>
+<p>For reporting, we’ve got a some great features to make generating and exporting reports more convenient.</p>
+
+<h3 id="output-location">Output Location</h3>
+<p>The default location for reports is <code class="language-plaintext highlighter-rouge">.piperider/outputs</code>, but this isn’t always the best location, especially if you want to share the reports with BI or other users who don’t want to dig around in a hidden folder.</p>
+
+<p>In PipeRider v0.5.0 you can choose the output location for a report by using the <code class="language-plaintext highlighter-rouge">-o</code> option and specifying a location, e.g.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider generate-report -o ~/piperider-reports
+</code></pre></div></div>
+
+<p>This works for <code class="language-plaintext highlighter-rouge">piperider run</code> and <code class="language-plaintext highlighter-rouge">piperider compare-reports</code>, too!</p>
+
+<h2 id="compare-the-last-two-reports-automatically">Compare the last two reports automatically</h2>
+<p>On the subject of comparing reports, now you can compare the last two reports without having to select them manually — Just use the <code class="language-plaintext highlighter-rouge">--last</code> option:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider compare-reports --last
+</code></pre></div></div>
+
+<p>Pair this with a custom output location and you can easily automate PipeRider reports as part of your CI pipeline — we’ll have a tutorial/show-case on how to do this very soon. Make sure to follow us to be notified.</p>
+
+<p>Check out the documentation <a href="https://docs.piperider.io/cli/piperider-cli">command reference</a> for more info, there are also a couple of how-to docs for <a href="https://docs.piperider.io/cli/quick-start#run-piperider-profile-data-and-generate-report">generating</a> and <a href="https://docs.piperider.io/cli/quick-start#run-piperider-profile-data-test-assertions-generate-report">comparing</a> reports.</p>
+
+<hr />]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[PipeRider 0.5.0 was released last week and introduces some CLI updates that improve visual feedback during profiling, and the reporting feature adds some options to make it more suitable for use in your CI pipeline.]]></summary></entry><entry><title type="html">How to Use PipeRider’s Built-in Assertion and Custom Assertion to Test the Water Quality Kaggle Dataset</title><link href="https://blog.piperider.io/how-to-use-piperider-s-built-in-assertion-and-custom-assertion-to-test-the-water-quality-kaggle-dataset.html" rel="alternate" type="text/html" title="How to Use PipeRider’s Built-in Assertion and Custom Assertion to Test the Water Quality Kaggle Dataset" /><published>2022-07-27T00:00:00+08:00</published><updated>2022-07-27T00:00:00+08:00</updated><id>https://blog.piperider.io/how-to-use-piperider%E2%80%99s-built-in-assertion-and-custom-assertion-to-test-the-water-quality-kaggle-dataset</id><content type="html" xml:base="https://blog.piperider.io/how-to-use-piperider-s-built-in-assertion-and-custom-assertion-to-test-the-water-quality-kaggle-dataset.html"><![CDATA[<p><em>tl;dr PipeRider can help detect data issues in a water quality dataset through data profiling and custom assertions, which can be useful for determining the drinkability of water and solving problems immediately if alerts are raised.</em></p>
 
 <hr />
 
@@ -659,12 +708,12 @@ Linkedin: <a href="https://www.linkedin.com/in/simonliuyuwei/">https://www.linke
 <p>PipeRider is so easy to use there really is no excuse for not picking up on that data drift. All you need to do it:</p>
 
 <ol>
-  <li><a href="https://docs.piperider.io/install-piperider">Install PipeRider</a> (a quick install with pip)</li>
+  <li><a href="https://docs.piperider.io/cli/install-piperider">Install PipeRider</a> (a quick install with pip)</li>
   <li>Point it to your data warehouse — if you’re using dbt your settings will be auto-detected</li>
-  <li>With one <a href="https://docs.piperider.io/piperider-cli">command</a> you can generate a data profile, with suggested assertions, and output a report</li>
+  <li>With one <a href="https://docs.piperider.io/cli/quick-start#run-piperider-profile-data-and-generate-report">command</a> you can generate a data profile, with suggested assertions, and output a report</li>
 </ol>
 
-<p>Check out the <a href="https://docs.piperider.io/quick-start?utm_source=blog&amp;utm_medium=20220706&amp;utm_id=medium">quick-start guide</a>, which includes a sample dataset, for how to use the main features of PipeRider.</p>
+<p>Check out the <a href="https://docs.piperider.io/cli/quick-start?utm_source=blog&amp;utm_medium=20220706&amp;utm_id=medium">quick-start guide</a>, which includes a sample dataset, for how to use the main features of PipeRider.</p>
 
 <h2 id="more-info">More info</h2>
 
