@@ -8,29 +8,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <title>
-    PipeRider data profiling just got more colorful (and useful) - PipeRider
+    Transfer the CSV Files into an SQLite Database - PipeRider
     
   </title>
 
-  <meta name="description" content="PipeRider 0.5.0 was released last week and introduces some CLI updates that improve visual feedback during profiling, and the reporting feature adds some opt...">
+  <meta name="description" content="Datasets are readily available as CSV files on websites such as Kaggle and other real-world datasets. However, CSV isn’t really suitable for querying and tra...">
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>PipeRider data profiling just got more colorful (and useful) | PipeRider</title>
+<title>Transfer the CSV Files into an SQLite Database | PipeRider</title>
 <meta name="generator" content="Jekyll v4.2.2" />
-<meta property="og:title" content="PipeRider data profiling just got more colorful (and useful)" />
+<meta property="og:title" content="Transfer the CSV Files into an SQLite Database" />
 <meta name="author" content="PipeRider" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="PipeRider 0.5.0 was released last week and introduces some CLI updates that improve visual feedback during profiling, and the reporting feature adds some options to make it more suitable for use in your CI pipeline." />
-<meta property="og:description" content="PipeRider 0.5.0 was released last week and introduces some CLI updates that improve visual feedback during profiling, and the reporting feature adds some options to make it more suitable for use in your CI pipeline." />
-<link rel="canonical" href="https://blog.piperider.io/piperider-data-profiling-just-got-more-colorful-and-useful.html" />
-<meta property="og:url" content="https://blog.piperider.io/piperider-data-profiling-just-got-more-colorful-and-useful.html" />
+<meta name="description" content="Datasets are readily available as CSV files on websites such as Kaggle and other real-world datasets. However, CSV isn’t really suitable for querying and transforming easily. Therefore, it’s better to store the data in a database." />
+<meta property="og:description" content="Datasets are readily available as CSV files on websites such as Kaggle and other real-world datasets. However, CSV isn’t really suitable for querying and transforming easily. Therefore, it’s better to store the data in a database." />
+<link rel="canonical" href="https://blog.piperider.io/transfer-the-csv-files-into-an-sqlite-database.html" />
+<meta property="og:url" content="https://blog.piperider.io/transfer-the-csv-files-into-an-sqlite-database.html" />
 <meta property="og:site_name" content="PipeRider" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2022-08-02T00:00:00+08:00" />
+<meta property="article:published_time" content="2022-08-04T00:00:00+08:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="PipeRider data profiling just got more colorful (and useful)" />
+<meta property="twitter:title" content="Transfer the CSV Files into an SQLite Database" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"PipeRider"},"dateModified":"2022-08-02T00:00:00+08:00","datePublished":"2022-08-02T00:00:00+08:00","description":"PipeRider 0.5.0 was released last week and introduces some CLI updates that improve visual feedback during profiling, and the reporting feature adds some options to make it more suitable for use in your CI pipeline.","headline":"PipeRider data profiling just got more colorful (and useful)","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.piperider.io/piperider-data-profiling-just-got-more-colorful-and-useful.html"},"url":"https://blog.piperider.io/piperider-data-profiling-just-got-more-colorful-and-useful.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"PipeRider"},"dateModified":"2022-08-04T00:00:00+08:00","datePublished":"2022-08-04T00:00:00+08:00","description":"Datasets are readily available as CSV files on websites such as Kaggle and other real-world datasets. However, CSV isn’t really suitable for querying and transforming easily. Therefore, it’s better to store the data in a database.","headline":"Transfer the CSV Files into an SQLite Database","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.piperider.io/transfer-the-csv-files-into-an-sqlite-database.html"},"url":"https://blog.piperider.io/transfer-the-csv-files-into-an-sqlite-database.html"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -45,7 +45,7 @@
   <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
 
   <link rel="stylesheet" href="/assets/main.css">
-  <link rel="canonical" href="https://blog.piperider.io/piperider-data-profiling-just-got-more-colorful-and-useful.html">
+  <link rel="canonical" href="https://blog.piperider.io/transfer-the-csv-files-into-an-sqlite-database.html">
   <link rel="alternate" type="application/rss+xml" title="PipeRider" href="/feed.xml">
 
 </head>
@@ -100,16 +100,16 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="post-heading">
-            <h1>PipeRider data profiling just got more colorful (and useful)</h1>
+            <h1>Transfer the CSV Files into an SQLite Database</h1>
             
-            <h2 class="subheading">PipeRider 0.5.0 was released last week and introduces some CLI updates</h2>
+            <h2 class="subheading">Use open-source tool csvs-to-sqlite to convert CSV files into SQLite databases</h2>
             
             <span class="meta">Posted by
               PipeRider
               
               &middot; <span class="reading-time" title="Estimated read time">
   
-   3 mins  read </span>
+   2 mins  read </span>
 
             </span>
           </div>
@@ -126,60 +126,50 @@
 
           
           <div class="featured-image">
-            <img src="/img/posts/220802-0.png" />
+            <img src="/img/posts/220804-0.png" />
           </div>
           
 
-          <p><a href="https://github.com/InfuseAI/piperider/releases/tag/v0.5.0">PipeRider 0.5.0</a> was released last week and introduces some CLI updates that improve visual feedback during profiling, and the reporting feature adds some options to make it more suitable for use in your CI pipeline.</p>
+          <p>Datasets are readily available as CSV files on websites such as Kaggle and other real-world datasets. However, CSV isn’t really suitable for querying and transforming easily. Therefore, it’s better to store the data in a database.</p>
 
-<p><em>In case you missed it — <a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a> is a new open-source <a href="https://blog.piperider.io/test-your-data-quality-in-minutes-with-piperider.html">data reliability</a> tool with data profiling, data assertions, and support for <a href="https://blog.piperider.io/add-data-profiling-and-assertions-to-dbt-with-piperider.html">popular data sources</a>.</em></p>
+<p>In this article, you will use csvs-to-sqlite to convert CSV files into SQLite databases. Once the data is in a database, it’s easier for users to query with SQL and add to their ETL service.</p>
 
-<hr />
-
-<h2 id="cli-now-with-extra-prettiness">CLI now with extra prettiness</h2>
-<p>The PipeRider CLI is now includes extra visual feedback when profiling in the form of per-table progress bars.</p>
-
-<h3 id="progress-bars--so-satisfying">Progress bars — so satisfying</h3>
-<p>The progress bars show how many tables are left to profile, the number of columns that are being profiled, and a timer.</p>
-
-<p><img src="/img/posts/220802-1.gif" alt="Progress bars — satisfying :)" /></p>
-
-<p>This enables you to see where you are in the profiling progress — no more thinking that the profiler hung when profiling your beefy dbt models.</p>
-
-<h3 id="tabular-summary">Tabular Summary</h3>
-<p>The profiling and data assertions summary is now displayed in a table so you can see test results at a glance.</p>
-
-<p><img src="/img/posts/220802-2.webp" alt="Profiling and data assertion test results are now tabular — awesome!
-" /></p>
-
-<p>Extra color has also been sprinkled around to make the CLI output generally easier to read. So now it’ll fit better with your colorful terminal theme (<a href="https://draculatheme.com/terminal">Dracula</a>, anyone?).</p>
-
-<p>If you’re working on the command line all day, then these should be some welcome additions.</p>
-
-<h2 id="reports-where-you-want-them-when-you-want-them">Reports where you want them, when you want them</h2>
-<p>For reporting, we’ve got a some great features to make generating and exporting reports more convenient.</p>
-
-<h3 id="output-location">Output Location</h3>
-<p>The default location for reports is <code class="language-plaintext highlighter-rouge">.piperider/outputs</code>, but this isn’t always the best location, especially if you want to share the reports with BI or other users who don’t want to dig around in a hidden folder.</p>
-
-<p>In PipeRider v0.5.0 you can choose the output location for a report by using the <code class="language-plaintext highlighter-rouge">-o</code> option and specifying a location, e.g.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider generate-report -o ~/piperider-reports
-</code></pre></div></div>
-
-<p>This works for <code class="language-plaintext highlighter-rouge">piperider run</code> and <code class="language-plaintext highlighter-rouge">piperider compare-reports</code>, too!</p>
-
-<h2 id="compare-the-last-two-reports-automatically">Compare the last two reports automatically</h2>
-<p>On the subject of comparing reports, now you can compare the last two reports without having to select them manually — Just use the <code class="language-plaintext highlighter-rouge">--last</code> option:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider compare-reports --last
-</code></pre></div></div>
-
-<p>Pair this with a custom output location and you can easily automate PipeRider reports as part of your CI pipeline — we’ll have a tutorial/show-case on how to do this very soon. Make sure to follow us to be notified.</p>
-
-<p>Check out the documentation <a href="https://docs.piperider.io/cli/piperider-cli">command reference</a> for more info, there are also a couple of how-to docs for <a href="https://docs.piperider.io/cli/quick-start#run-piperider-profile-data-and-generate-report">generating</a> and <a href="https://docs.piperider.io/cli/quick-start#run-piperider-profile-data-test-assertions-generate-report">comparing</a> reports.</p>
+<p>We have to get the dataset first, here is an example of the <a href="https://github.com/ldkrsi/cpbl-opendata">CPBL dataset</a>.</p>
 
 <hr />
+
+<h2 id="convert-csv-to-sqlite">Convert CSV to SQLite</h2>
+
+<p>“<a href="https://github.com/simonw/csvs-to-sqlite">csvs-to-sqlite</a>” tool is an open-source project and put it in the Github. We can easily use the pip install method to install the tools.</p>
+
+<p>You can use the following commands to download the data and install the <a href="https://pypi.org/project/csvs-to-sqlite/">python package</a>.</p>
+
+<script src="https://gist.github.com/LiuYuWei/a9ec256303f6c63b5958a4b12d03e625.js"></script>
+
+<p>After configuring the environment, we can convert the CSV files into several SQLite databases.</p>
+
+<p>The format of the csvs-to-sqlite command is:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>csvs-to-sqlite /path/to/your.csv sqlite-db-name.db
+</code></pre></div></div>
+<script src="https://gist.github.com/LiuYuWei/e4cad03c0bee591b6105bc1056a22f0b.js"></script>
+
+<p>The result after we convert the CSV files into a database:
+<img src="/img/posts/220804-1.webp" alt="The result after we convert the CSV files into a database" /></p>
+
+<h2 id="verify-the-csv-was-imported-correctly">Verify the CSV was imported correctly</h2>
+<p>We can now check if the data was successfully inserted into the SQLite database using the “sqlite3” command line tool to open the database and query the data.</p>
+
+<script src="https://gist.github.com/LiuYuWei/29cd132ca02351bb3f66a1680c521d39.js"></script>
+
+<p>We have successfully queried the SQLite data, which is the same as the CSV data. Now, If a data engineer wanted to query the historical data of an individual baseball player, they could use SQL to query the data faster.</p>
+
+<p>The result of querying data from the SQLite database:
+<img src="/img/posts/220804-2.webp" alt="The result of querying data from the SQLite database" /></p>
+
+<hr />
+<h3 id="i-am-simon">I am Simon</h3>
+<p>Hi, I am Simon, Customer Success Engineer in InfuseAI. If you think the article is helpful to you, please give me applause. Welcome to provide some suggestions and discuss with me in InfuseAI <a href="https://discord.gg/xKxsdPx4d5">Discord</a>.
+Linkedin: <a href="https://www.linkedin.com/in/simonliuyuwei/">https://www.linkedin.com/in/simonliuyuwei/</a></p>
 
 
 
@@ -206,11 +196,11 @@
         <div class="clearfix">
 
           
-          <a class="btn btn-primary float-left" href="/how-to-use-piperider-s-built-in-assertion-and-custom-assertion-to-test-the-water-quality-kaggle-dataset.html" data-toggle="tooltip" data-placement="top" title="How to Use PipeRider's Built-in Assertion and Custom Assertion to Test the Water Quality Kaggle Dataset">&larr; Previous<span class="d-none d-md-inline">
+          <a class="btn btn-primary float-left" href="/piperider-data-profiling-just-got-more-colorful-and-useful.html" data-toggle="tooltip" data-placement="top" title="PipeRider data profiling just got more colorful (and useful)">&larr; Previous<span class="d-none d-md-inline">
               Post</span></a>
           
           
-          <a class="btn btn-primary float-right" href="/transfer-the-csv-files-into-an-sqlite-database.html" data-toggle="tooltip" data-placement="top" title="Transfer the CSV Files into an SQLite Database">Next<span class="d-none d-md-inline">
+          <a class="btn btn-primary float-right" href="/guide-to-data-observability.html" data-toggle="tooltip" data-placement="top" title="Data Observability Explained and How to Integrate It into Your Workflow">Next<span class="d-none d-md-inline">
               Post</span> &rarr;</a>
           
 

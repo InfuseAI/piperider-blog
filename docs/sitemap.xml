@@ -21,6 +21,10 @@
 <lastmod>2022-08-02T00:00:00+08:00</lastmod>
 </url>
 <url>
+<loc>https://blog.piperider.io/transfer-the-csv-files-into-an-sqlite-database.html</loc>
+<lastmod>2022-08-04T00:00:00+08:00</lastmod>
+</url>
+<url>
 <loc>https://blog.piperider.io/guide-to-data-observability.html</loc>
 <lastmod>2022-09-23T00:00:00+08:00</lastmod>
 </url>
@@ -38,5 +42,8 @@
 </url>
 <url>
 <loc>https://blog.piperider.io/</loc>
+</url>
+<url>
+<loc>https://blog.piperider.io/page2/</loc>
 </url>
 </urlset>
