@@ -1,0 +1,2 @@
+I"l<p><strong>tl;dr</strong> <a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a> comes with a built-in suite of data quality assertions, but you can also define your own assertions to meet your needs. This guide will show you how to implement a custom assertion to allow a specific number of nulls without raising an alert.</p>
+:ET

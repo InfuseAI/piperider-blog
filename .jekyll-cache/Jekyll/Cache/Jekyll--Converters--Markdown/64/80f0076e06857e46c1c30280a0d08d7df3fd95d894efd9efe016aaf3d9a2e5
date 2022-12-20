@@ -1,0 +1,139 @@
+I" '<p><strong>tl;dr</strong> <a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a> comes with a built-in suite of data quality assertions, but you can also define your own assertions to meet your needs. This guide will show you how to implement a custom assertion to allow a specific number of nulls without raising an alert.</p>
+
+<hr />
+
+<p>You don’t always have the luxury of a complete dataset, and that’s not always a bad thing — there are some cases in which a certain amount of missing data, or null values, can be acceptable in a data source.</p>
+
+<p>Sometimes a certain amount of NULL values is OK</p>
+
+<h2 id="missing-data-no-problem">Missing data? No problem</h2>
+<p>Let’s say you have some incomplete data in a sales database and, even so, you still need to perform some calculations based on the data. You might be willing to allow a certain percentage of missing values before worrying about it affecting your results.</p>
+
+<p><a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a> has <a href="https://docs.piperider.io/cli/data-quality-assertions/assertion-configuration">built-in assertions</a> for testing if a column does not contain nulls, or that a it must be null, but there is no middle-ground for allowing for a certain quantity of nulls — custom assertions to the rescue!</p>
+
+<p><img src="/img/posts/220902-1.webp" alt="" /></p>
+
+<p><em>For the rest of this article, I’ll assume you already have a PipeRider project set up — If not, it’s really easy to do, the <a href="https://docs.piperider.io/cli/quick-start">Quick Start</a> guide will have you up and running in minutes.</em></p>
+
+<h2 id="from-data-profile-to-data-assertions">From data profile to data assertions</h2>
+<p>Each time you run PipeRider it creates a <a href="https://docs.piperider.io/data-profile-and-metrics/data-profile">profile of your data</a>, and then by applying data assertions you can test the contents of the profile to ensure the data meets your structural requirements.</p>
+
+<p>Using the missing data example from above, we’ll create a custom assertion that checks the number of nulls in a column, and raises an alert if there are more than our specified amount.</p>
+
+<h2 id="custom-column-assertion-template">Custom Column-Assertion Template</h2>
+<p>Here’s the template we’ll be using to create our custom column-assertion, Steps 1 to 5 in the code-comments are what we’ll be working on:</p>
+
+<script src="https://gist.github.com/DaveFlynn/7f26ee7cdecedef332d4b5601dec721f.js"></script>
+
+<h2 id="create-your-custom-column-assertion">Create your custom column-assertion</h2>
+<p>In your PipeRider project, open <code class="language-plaintext highlighter-rouge">.piperider/plugins/customized_assertions.py</code> in your favorite text editor and paste the above template at the bottom, above where it says <code class="language-plaintext highlighter-rouge"># register new assertions</code></p>
+
+<p>Give the assertion a name. Here, I’ve named the class <code class="language-plaintext highlighter-rouge">AssertNullCount</code> and the name of <code class="language-plaintext highlighter-rouge">assert_null_count</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class AssertNullCount<span class="o">(</span>BaseAssertionType<span class="o">)</span>:
+  def name<span class="o">(</span>self<span class="o">)</span>:
+    <span class="k">return</span> <span class="s2">"assert_null_count"</span>
+</code></pre></div></div>
+
+<p>Now, I’ll run you through the commented steps 1 - 5 in the assertion template.</p>
+
+<h3 id="1-get-the-desired-metric">1: Get the desired metric</h3>
+<p>The first thing we need to do is get the value of the desired metric we want to test. For this assertion, we’ll be testing the number of <strong>nulls</strong>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 1. Get the metric for the desired column, e.g. num of nulls in column
+nulls = column_metrics.get('nulls')
+</code></pre></div></div>
+
+<p>For a full list of available metrics, check the <a href="https://docs.piperider.io/data-profile-and-metrics/data-profile">Data Profile</a> page in the PipeRider documentation.</p>
+
+<h3 id="2-get-the-expected-value-from-the-assertion-file">2: Get the expected value from the assertion file</h3>
+<p>You could hard-code the the number of allowed nulls, but then we couldn’t re-use the assertion. Luckily, it’s possible to pass a value from the assertion YAML file into the custom assertion.</p>
+
+<p>Here we grab the value of <code class="language-plaintext highlighter-rouge">allowed_null</code>s`. I’ll show you how to define the value of this variable in your assertion YAML later on.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 2. Get expectation from assertion file
+allowed_nulls = context.asserts.get('allowed_nulls', [])
+</code></pre></div></div>
+
+<h3 id="34-implement-logic-to-test-the-metric-and-either-pass-or-fail">3,4: Implement logic to test the metric and either pass or fail</h3>
+<p>After comparing the value of nulls with the value of allowed_nulls, we return a pass result if nulls is less than or equal to our threshold, and a fail otherwise.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 3. Implement logic to compare expected and actual metric value
+if (nulls &lt;= allowed_nulls):
+	# 4. return pass (acceptable number of nulls)
+	return context.result.success('There are {} null values'.format(nulls))
+else:
+	# 4. or return fail (more nulls than we expected)
+	return context.result.fail(nulls)
+</code></pre></div></div>
+
+<h3 id="5-register-the-new-assertion">5: Register the new assertion</h3>
+<p>Now that you’ve created the assertion, register it with PipeRider. <strong>This goes outside of your new class</strong>, at the bottom of the <code class="language-plaintext highlighter-rouge">customized_assertions.py</code> file.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#register new assertion
+register_assertion_function(AssertNullCount)
+</code></pre></div></div>
+
+<h2 id="completed-assertion-class">Completed assertion class</h2>
+<p>The completed custom assertion class should now look like this:</p>
+
+<script src="https://gist.github.com/DaveFlynn/37b9f92e2784187566a6b4f8d3101250.js"></script>
+
+<h2 id="put-your-custom-assertion-into-action">Put your custom assertion into action</h2>
+<p>Open the assertions file for the table you want to run the new assertion on. You can find the assertion YAML files in <code class="language-plaintext highlighter-rouge">.piperider/assertions/&lt;table&gt;.yml</code>. If you generated <a href="https://docs.piperider.io/cli/quick-start#generate-data-assertions">recommended assertions</a> then your table assertions file should already be populated.</p>
+
+<p>Find the desired column and apply your custom assertion. In example below, I have applied the new assertion to the Global Sales column:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Global_sales: # Column Name
+  description: 'Combined global sales figures'
+  # Test Cases for Column
+  tests:
+  - name: assert_allowed_nulls
+    assert:
+        allowed_nulls: 5
+</code></pre></div></div>
+
+<p>The last line, <code class="language-plaintext highlighter-rouge">allowed_nulls</code>, is the value we pass through to the custom assertion and check the actual number of nulls against.</p>
+
+<h2 id="run-piperider-to-check-that-it-works">Run PipeRider to check that it works</h2>
+<p>The next time you run PipeRider your custom assertion will be tested.</p>
+
+<p><strong>Passed assertion</strong>
+If it passes, you’ll see the test with the status <code class="language-plaintext highlighter-rouge">[OK]</code>.</p>
+
+<p>all.Global_sales assertion passed with 5 nulls out of 10 allowed
+<img src="/img/posts/220902-2.webp" alt="all.Global_sales assertion passed with 5 nulls out of 10 allowed" /></p>
+
+<p><strong>Failed assertion</strong>
+If it fails you’ll see it in the list of <strong>failed assertions</strong>.</p>
+
+<p>all.Global_sales failed with 15 nulls — 5 more than the 10 allowed
+<img src="/img/posts/220902-3.webp" alt="all.Global_sales failed with 15 nulls — 5 more than the 10 allowed" /></p>
+
+<h2 id="take-it-a-step-further">Take it a step further</h2>
+<p>Specifying an exact number of allowed nulls might not be an ideal solution for all datasets. For instance, when dealing with large datasets, you might prefer to allow a certain percentage of nulls. In that case, the code we wrote only needs a small adjustment.</p>
+
+<p>All you need to do is get the total number of rows for the table; the number of nulls; then work out the percentage of nulls and test if the percentage exceeds your threshold of allowed nulls.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># get total number of rows
+total = column_metrics.get('total')
+
+# get the number of nulls
+nulls = column_metrics.get('nulls')
+
+#work out the percentage of nulls
+percent_nulls = round(((100 / total) * nulls), 2)
+
+# get the number of allowed nulls from your assertion definition
+allowed_nulls = context.asserts.get('allowed_nulls')
+if (nulls &gt; percent_nulls * allowed_nulls): 
+    # too many nulls
+    return context.result.fail('{}%'.format(percent_nulls))
+else: 
+    # acceptable percentage of nulls
+    return context.result.success('There are {}% nulls'.format(percent_nulls))
+</code></pre></div></div>
+
+<p>You’re only limited by the metrics available in the data profile, and your ability to write Python, so check the <a href="https://docs.piperider.io/">PipeRider documentation</a> and <strong>start making your data more reliable today</strong>!</p>
+
+:ET

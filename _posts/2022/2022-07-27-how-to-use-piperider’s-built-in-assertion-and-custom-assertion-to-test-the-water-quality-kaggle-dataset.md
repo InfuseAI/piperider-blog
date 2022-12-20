@@ -48,7 +48,7 @@ PipeRider supports four data sources: dbt integration, Postgres Connector, Snowf
 
 However, we need to transfer the CSV file into the SQLite database for PipeRider’s suitable database. Here, We can use the open source tool [csv-to-sqlite](https://github.com/simonw/csvs-to-sqlite) to transfer the CSV files to the SQLite database.
 
-[csv-to-sqlite](https://github.com/simonw/csvs-to-sqlite)
+You might also want to check the article of [Transfer the CSV Files into an SQLite Database](https://blog.piperider.io/transfer-the-csv-files-into-an-sqlite-database)
 
 Follow the command line to transfer the CSV files to the SQLite database.
 

@@ -1,4 +1,4 @@
-I"Ã<p><em>tl;dr PipeRider can help detect data issues in a water quality dataset through data profiling and custom assertions, which can be useful for determining the drinkability of water and solving problems immediately if alerts are raised.</em></p>
+I"0<p><em>tl;dr PipeRider can help detect data issues in a water quality dataset through data profiling and custom assertions, which can be useful for determining the drinkability of water and solving problems immediately if alerts are raised.</em></p>
 
 <hr />
 
@@ -35,7 +35,7 @@ unzip water-potability.zip
 
 <p>However, we need to transfer the CSV file into the SQLite database for PipeRiderâ€™s suitable database. Here, We can use the open source tool <a href="https://github.com/simonw/csvs-to-sqlite">csv-to-sqlite</a> to transfer the CSV files to the SQLite database.</p>
 
-<p><a href="https://github.com/simonw/csvs-to-sqlite">csv-to-sqlite</a></p>
+<p>You might also want to check the article of <a href="https://blog.piperider.io/transfer-the-csv-files-into-an-sqlite-database">Transfer the CSV Files into an SQLite Database</a></p>
 
 <p>Follow the command line to transfer the CSV files to the SQLite database.</p>
 
