@@ -5,7 +5,7 @@ subtitle: "Use PipeRider's assertion method to test the water quality kaggle dat
 author: PipeRider
 background: '/img/posts/06.jpg'
 hidedate: true
-featured-image: '/img/posts/dbt-state-piperider.jpg'
+featured-image: '/img/posts/220727-0.png'
 cta: cta_2.html
 ---
 
@@ -23,7 +23,6 @@ In this article, I will use a Kaggle water quality dataset and show how PipeRide
 
 First, the Kaggle website stores the [water quality](https://www.kaggle.com/datasets/adityakadiwal/water-potability) dataset. We need to download it and put it into the environment. 
 
-{% Water Quality "https://www.kaggle.com/datasets/adityakadiwal/water-potability" %} 
 
 If you want to use the Kaggle CLI tool, you need to download the Kaggle key JSON file from the Kaggle website. The Proceed as follows:
 
@@ -32,7 +31,7 @@ Click the "Create New API Token" button.
 We will download the "kaggle.json" file.
 Put the file into `~/.kaggle/` folder.
 
-[Download the API token JSON file on the Kaggle Account page.](https://blog.piperider.io/img/posts/220727-1.webp)
+![Download the API token JSON file on the Kaggle Account page.](/img/posts/220727-1.webp)
 
 Then, we can download the datasets through the Kaggle CLI tool.
 
@@ -49,7 +48,7 @@ PipeRider supports four data sources: dbt integration, Postgres Connector, Snowf
 
 However, we need to transfer the CSV file into the SQLite database for PipeRider’s suitable database. Here, We can use the open source tool [csv-to-sqlite](https://github.com/simonw/csvs-to-sqlite) to transfer the CSV files to the SQLite database.
 
-{% csv-to-sqlite "https://github.com/simonw/csvs-to-sqlite" %} 
+[csv-to-sqlite](https://github.com/simonw/csvs-to-sqlite)
 
 Follow the command line to transfer the CSV files to the SQLite database.
 
@@ -61,11 +60,11 @@ csvs-to-sqlite water-potability.csv water-potability.db
 ## Add build-in assertion 
 Now, we can start to use PipeRider. We provide a Quick Start tutorial on the documentation page to show how to use PipeRider. You can follow the method to initialize, configure, diagnose and run PipeRider. After you run the `piperider run` command, you will get the “.piperider” folder in your project folder.
 
-[The structure of the .piperider folder](https://blog.piperider.io/img/posts/220727-2.webp)
+![The structure of the .piperider folder](/img/posts/220727-2.webp)
 
 Although PipeRider provides an automatic assertion generation method, we want to configure our logic assertion. For example, the range of PH values is 0 to 14. If the value is over the content of values, then the data detection has some problem, and the users need to collect the data again. PipeRider provides two types of built-in assertions, one takes no parameter, and the other takes parameters.
 
-{% Built-In Assertions "https://docs.piperider.io/cli/data-quality-assertions/assertion-configuration" %}
+[Built-In Assertions Guide](https://docs.piperider.io/cli/data-quality-assertions/assertion-configuratio)
 
 You can go to `.piperider/assertions/` to add assertions in `<table>.yml`. Here is an example of the built-in assertion yaml file.
 
@@ -73,7 +72,7 @@ You can go to `.piperider/assertions/` to add assertions in `<table>.yml`. Here 
 
 After modifying the YAML file, rerun the `piperider run` and see the assertion result.
 
-[The result of piperider run (We configure the built-in assertion YAML file.)](https://blog.piperider.io/img/posts/220727-3.webp)
+![The result of piperider run (We configure the built-in assertion YAML file.)](/img/posts/220727-3.webp)
 
 ## Add custom assertion
 
@@ -85,29 +84,21 @@ PipeRider provides a few built-in assertions and supports custom assertions as *
 
 PipeRider, by default, will load python files under `.piperider/plugins` custom assertion functions automatically. `.piperider/plugins` is created `piperider init` with a scaffolding of a custom assertion function, `customized_assertions.py`. You can rename the file or generate assertion functions in other python files.
 
-<script src="https://gist.github.com/LiuYuWei/f5714ff50031e717b2328574ffaf63ee.js"></script>
+<script src="https://gist.github.com/LiuYuWei/d7168d5cda4b6296997cc489be3d5687.js"></script>
 
 After modifying the YAML file, rerun the `piperider run` and see the assertion result.
 
-[The result of piperider run (We add the custom assertion method.)](https://blog.piperider.io/img/posts/220727-4.webp)
+![The result of piperider run (We add the custom assertion method.)](/img/posts/220727-4.webp)
 
 The result shows that the new assertion method is successfully tested. You can follow the python class structure to try the specific assertion method.
 
 Also, You can check the history assertion result in Pipeider UI.
 
-[Assertion testing in PipeRider UI](https://blog.piperider.io/img/posts/220727-5.webp)
+![Assertion testing in PipeRider UI](/img/posts/220727-5.webp)
 
 ---
 
 ### I am Simon
-Hi, I am Simon, Customer Success Engineer in InfuseAI. Please give me applause and also welcome to provide me with some suggestions if you think the article is helpful for you. Welcome to discuss with me in InfuseAI [Discord](https://discord.gg/xKxsdPx4d5).
-Linkedin: https://www.linkedin.com/in/simonliuyuwei/
+Hi, I am Simon, Customer Success Engineer in InfuseAI. Please give me applause and also welcome to provide me with some suggestions if you think the article is helpful for you. Welcome to discuss with me in InfuseAI [Discord](https://discord.gg/xKxsdPx4d5).  
+Linkedin: [https://www.linkedin.com/in/simonliuyuwei/](https://www.linkedin.com/in/simonliuyuwei/)
 
-### We are InfuseAI
-
-For help using PipeRider, or if you have ideas how we can make it better, get in touch via:
-
-InfuseAI [Discord community](https://discord.gg/xKxsdPx4d5)
-[@infuseai](https://twitter.com/InfuseAI) on Twitter
-[@piperider](@piperider@fosstodon.org) on Mastpdon
-⭐️ Star us on [Github](https://github.com/InfuseAI/piperider)
