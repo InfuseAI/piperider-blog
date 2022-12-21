@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Adding Data Observability and Alerts to your Data Pipeline is easier than you think - PipeRider
+    
+  </title>
+
+  <meta name="description" content="After you’ve transformed the data in your data warehouse and sent it on its way, you might think that your job is done. That is, until you get a call that th...">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Adding Data Observability and Alerts to your Data Pipeline is easier than you think | PipeRider</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Adding Data Observability and Alerts to your Data Pipeline is easier than you think" />
+<meta name="author" content="PipeRider" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="After you’ve transformed the data in your data warehouse and sent it on its way, you might think that your job is done. That is, until you get a call that there’s missing data, an unexpected schema change, or some unexpected data or outlier has been introduced. To understand when these issues might have occurred, you need some form of data observability for your pipeline." />
+<meta property="og:description" content="After you’ve transformed the data in your data warehouse and sent it on its way, you might think that your job is done. That is, until you get a call that there’s missing data, an unexpected schema change, or some unexpected data or outlier has been introduced. To understand when these issues might have occurred, you need some form of data observability for your pipeline." />
+<link rel="canonical" href="https://blog.piperider.io/adding-data-observability-and-alerts-to-your-data-pipeline-is-easier-than-you-think.html" />
+<meta property="og:url" content="https://blog.piperider.io/adding-data-observability-and-alerts-to-your-data-pipeline-is-easier-than-you-think.html" />
+<meta property="og:site_name" content="PipeRider" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-09-05T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Adding Data Observability and Alerts to your Data Pipeline is easier than you think" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"PipeRider"},"dateModified":"2022-09-05T00:00:00+08:00","datePublished":"2022-09-05T00:00:00+08:00","description":"After you’ve transformed the data in your data warehouse and sent it on its way, you might think that your job is done. That is, until you get a call that there’s missing data, an unexpected schema change, or some unexpected data or outlier has been introduced. To understand when these issues might have occurred, you need some form of data observability for your pipeline.","headline":"Adding Data Observability and Alerts to your Data Pipeline is easier than you think","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.piperider.io/adding-data-observability-and-alerts-to-your-data-pipeline-is-easier-than-you-think.html"},"url":"https://blog.piperider.io/adding-data-observability-and-alerts-to-your-data-pipeline-is-easier-than-you-think.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://blog.piperider.io/adding-data-observability-and-alerts-to-your-data-pipeline-is-easier-than-you-think.html">
+  <link rel="alternate" type="application/rss+xml" title="PipeRider" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <img src="/img/piperider-logo.svg" alt="PipeRider Logo">
+      PipeRider
+    </a>    
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <!-- <a class="nav-link" href="/">Home</a> -->
+          <a class="nav-link" href="https://piperider.io">PipeRider Website</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://docs.piperider.io">Documentation</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/infuseai/piperider">GitHub</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="/contact">Contact</a>
+        </li> -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"  role="button" data-toggle="dropdown" aria-expanded="false">Community</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="https://discord.gg/328QcXnkKD">Discord</a>
+            <a class="dropdown-item" href="mailto:support@piperider.io">Support</a>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+
+  <header class="piperider-masthead">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Adding Data Observability and Alerts to your Data Pipeline is easier than you think</h1>
+            
+            <h2 class="subheading">Ensuring Data Quality with Data Observability</h2>
+            
+            <span class="meta">Posted by
+              PipeRider
+              
+              &middot; <span class="reading-time" title="Estimated read time">
+  
+   5 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <article class="post-single">
+
+          
+          <div class="featured-image">
+            <img src="/img/posts/data-reliability-toolkit.webp" />
+          </div>
+          
+
+          <p>After you’ve transformed the data in your data warehouse and sent it on its way, you might think that your job is done. That is, until you get a call that there’s missing data, an unexpected schema change, or some unexpected data or outlier has been introduced. To understand when these issues might have occurred, you need some form of data observability for your pipeline.</p>
+
+<p>Data observability means that you can monitor the data moving through the pipeline, be alerted to any changes or issues with the data structure, and compare data to help visualize change and aid in tracking down issues.</p>
+
+<hr />
+
+<p>With the open-source data observability toolkit, <a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a>, you can add data observability to your data source and start understanding more about your data in minutes with:</p>
+
+<p>Non-intrusive implementation — Focus on understanding your data without changing it
+Data profiling — In-depth analysis of the structure of your data source
+Data assertions — Ensure your data stays within acceptable ranges through testing
+Reporting — The data profile and testing results are exported to an HTML report
+Following are the steps you need to get starting adding data observability and data assertions to your existing data pipeline.</p>
+
+<h2 id="1-install-piperider">1. Install PipeRider</h2>
+<p>PipeRider is installed via pip:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install -U piperider
+</code></pre></div></div>
+
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style>
+<div class="embed-container">    <iframe title="YouTube video player" width="640" height="390" src="//www.youtube.com/embed/vZVHo09fD-c" frameborder="0" allowfullscreen=""></iframe></div>
+
+<p>By default it comes with SQLite, but the following connectors are also available:</p>
+
+<ul>
+  <li>Postgres</li>
+  <li>Snowflake</li>
+  <li>BigQuery</li>
+  <li>Redshift</li>
+  <li>dbt (with one of the supported connectors)</li>
+  <li>duckdb</li>
+  <li>CSV</li>
+  <li>Parquet</li>
+</ul>
+
+<p>Install PipeRider with a connector like this:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install -U 'piperider[postgres,snowflake]'
+</code></pre></div></div>
+<h2>　</h2>
+<h2 id="2-initialize-a-piperider-project">2. Initialize a PipeRider project</h2>
+<p>Once installed, initialize a new project with the following command.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider init
+</code></pre></div></div>
+
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style>
+<div class="embed-container">    <iframe title="YouTube video player" width="640" height="390" src="//www.youtube.com/embed/jRxZQJoMQGc" frameborder="0" allowfullscreen=""></iframe></div>
+
+<p>Just select your data source, enter the relevant details and you’re ready to go. dbt project settings will be auto-detected, so dbt projects really are zero config!</p>
+
+<p>Verify your connection settings with the diagnose command.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider diagnose
+</code></pre></div></div>
+<h2 id="-1">　</h2>
+<h2 id="3-run-piperider">3. Run PipeRider</h2>
+<p>With a data source connected you’re ready to run PipeRider.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider run
+</code></pre></div></div>
+
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style>
+<div class="embed-container">    <iframe title="YouTube video player" width="640" height="390" src="//www.youtube.com/embed/Y9KIqu2DOsg" frameborder="0" allowfullscreen=""></iframe></div>
+
+<p>This one command will do the following:</p>
+
+<ul>
+  <li>Profile your data source</li>
+  <li>Generate recommended data assertions (on first run)</li>
+  <li>Test the data profile against the data assertions</li>
+  <li>Display the data assertion test results on the CLI</li>
+  <li>Generate an HTML report with the data profile and test results</li>
+</ul>
+
+<h2 id="-2">　</h2>
+<h2 id="4-test-your-piperider-data-profile-with-data-assertions">4. Test your PipeRider data profile with data assertions</h2>
+<p>PipeRider creates a set of recommended assertions based on the current state of your data. You can add to or edit these using the available suite of <a href="https://docs.piperider.io/cli/data-quality-assertions/assertion-configuration">built-in assertions</a>, and through custom assertions you can <a href="https://blog.piperider.io/define-your-own-data-quality-tests-in-piperider.html">create your own data reliability tests</a>.</p>
+
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style>
+<div class="embed-container">    <iframe title="YouTube video player" width="640" height="390" src="//www.youtube.com/embed/t4YHkynRIpI" frameborder="0" allowfullscreen=""></iframe></div>
+
+<h2 id="-3">　</h2>
+<h2 id="5-compare-data-profile-reports">5. Compare data profile reports</h2>
+<p>When your data changes and you have multiple PipeRider runs, compare reports easily with the following command.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider compare-reports
+</code></pre></div></div>
+
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style>
+<div class="embed-container">    <iframe title="YouTube video player" width="640" height="390" src="//www.youtube.com/embed/COohk2TAiPA" frameborder="0" allowfullscreen=""></iframe></div>
+
+<p>You can also compare the last two reports automatically (without needing to manually select them) by using the <code class="language-plaintext highlighter-rouge">--last</code> flag.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider compare-reports —last
+</code></pre></div></div>
+
+<h2 id="-4">　</h2>
+<h2 id="sample-reports">Sample Reports</h2>
+<p>Links to example reports will always be available in the PipeRider documentation. Here are samples created with PipeRider 0.7:</p>
+
+<p><a href="https://piperider-github-readme.s3.ap-northeast-1.amazonaws.com/run-0.7.0/index.html#/">Sample PipeRider data profile report</a>
+<a href="https://piperider-github-readme.s3.ap-northeast-1.amazonaws.com/comparison-0.7.0/index.html">Sample PipeRider report comparison</a></p>
+
+<h2 id="-5">　</h2>
+<hr />
+<h2 id="who-makes-piperider">Who makes PipeRider?</h2>
+<p><a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a> is developed by <a href="https://infuseai.io/">InfuseAI</a>, the company behind the end-to-end machine learning platform <a href="https://www.infuseai.io/primehub-ai-platform">PrimeHub</a>.</p>
+
+<p>InfuseAI has an impressive <a href="https://github.com/InfuseAI/">portfolio of open-source projects</a> so you know you’re in good hands!</p>
+
+
+
+          
+            <hr class="cta-hr" />
+
+<h2>InfuseAI is solving data quality issues</h2>
+
+<p><a href="https://infuseai.io" target="_blank">InfuseAI</a> makes PipeRider, the open-source data reliability CLI tool that adds data profiling and assertions to data warehouses such as BigQuery, Snowflake, Redshift and more. Data profile and data assertion results are provided in an HTML report each time you run PipeRider.</p>
+
+<ul>
+    <li><a href="https://piperider.io" target="_blank">PipeRider homepage</a></li>
+    <li><a href="https://github.com/infuseai/piperider" target="_blank">PipeRider GitHub repo</a></li>
+    <li>Twitter <a href="https://twitter.com/infuseai" target="_blank">@infuseai</a></li>
+    <li>Mastodon <a href="https://fosstodon.org/@piperider" target="_blank">@piperider@fosstondon.org</a></li>
+</ul>
+          
+            
+
+        </article>
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/define-your-own-data-quality-tests-in-piperider.html" data-toggle="tooltip" data-placement="top" title="Define your own Data Quality Tests in PipeRider">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/guide-to-data-observability.html" data-toggle="tooltip" data-placement="top" title="Data Observability Explained and How to Integrate It into Your Workflow">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center social-icons">
+          
+          <li class="list-inline-item">
+            <a href="mailto:support@piperider.io">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/company/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; <a href="https://infuseai.io">InfuseAI</a> 2022</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/atom-one-dark-reasonable.min.css">
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1P3NVFS4NW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1P3NVFS4NW');
+</script>
+
+
+
+  <script>
+  window.intercomSettings = {
+    api_base: "https://api-iam.intercom.io",
+    app_id: "ofl16ydc"
+  };
+</script>
+
+<script>
+// We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/ofl16ydc'
+(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/ofl16ydc';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+</script>  
+
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+I"v<p>After you’ve transformed the data in your data warehouse and sent it on its way, you might think that your job is done. That is, until you get a call that there’s missing data, an unexpected schema change, or some unexpected data or outlier has been introduced. To understand when these issues might have occurred, you need some form of data observability for your pipeline.</p>
+
+<p>Data observability means that you can monitor the data moving through the pipeline, be alerted to any changes or issues with the data structure, and compare data to help visualize change and aid in tracking down issues.</p>
+
+<hr />
+
+<p>With the open-source data observability toolkit, <a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a>, you can add data observability to your data source and start understanding more about your data in minutes with:</p>
+
+<p>Non-intrusive implementation — Focus on understanding your data without changing it
+Data profiling — In-depth analysis of the structure of your data source
+Data assertions — Ensure your data stays within acceptable ranges through testing
+Reporting — The data profile and testing results are exported to an HTML report
+Following are the steps you need to get starting adding data observability and data assertions to your existing data pipeline.</p>
+
+<h2 id="1-install-piperider">1. Install PipeRider</h2>
+<p>PipeRider is installed via pip:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install -U piperider
+</code></pre></div></div>
+
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style>
+<div class="embed-container">    <iframe title="YouTube video player" width="640" height="390" src="//www.youtube.com/embed/vZVHo09fD-c" frameborder="0" allowfullscreen=""></iframe></div>
+
+<p>By default it comes with SQLite, but the following connectors are also available:</p>
+
+<ul>
+  <li>Postgres</li>
+  <li>Snowflake</li>
+  <li>BigQuery</li>
+  <li>Redshift</li>
+  <li>dbt (with one of the supported connectors)</li>
+  <li>duckdb</li>
+  <li>CSV</li>
+  <li>Parquet</li>
+</ul>
+
+<p>Install PipeRider with a connector like this:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install -U 'piperider[postgres,snowflake]'
+</code></pre></div></div>
+<h2>　</h2>
+<h2 id="2-initialize-a-piperider-project">2. Initialize a PipeRider project</h2>
+<p>Once installed, initialize a new project with the following command.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider init
+</code></pre></div></div>
+
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style>
+<div class="embed-container">    <iframe title="YouTube video player" width="640" height="390" src="//www.youtube.com/embed/jRxZQJoMQGc" frameborder="0" allowfullscreen=""></iframe></div>
+
+<p>Just select your data source, enter the relevant details and you’re ready to go. dbt project settings will be auto-detected, so dbt projects really are zero config!</p>
+
+<p>Verify your connection settings with the diagnose command.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider diagnose
+</code></pre></div></div>
+<h2 id="-1">　</h2>
+<h2 id="3-run-piperider">3. Run PipeRider</h2>
+<p>With a data source connected you’re ready to run PipeRider.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider run
+</code></pre></div></div>
+
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style>
+<div class="embed-container">    <iframe title="YouTube video player" width="640" height="390" src="//www.youtube.com/embed/Y9KIqu2DOsg" frameborder="0" allowfullscreen=""></iframe></div>
+
+<p>This one command will do the following:</p>
+
+<ul>
+  <li>Profile your data source</li>
+  <li>Generate recommended data assertions (on first run)</li>
+  <li>Test the data profile against the data assertions</li>
+  <li>Display the data assertion test results on the CLI</li>
+  <li>Generate an HTML report with the data profile and test results</li>
+</ul>
+
+<h2 id="-2">　</h2>
+<h2 id="4-test-your-piperider-data-profile-with-data-assertions">4. Test your PipeRider data profile with data assertions</h2>
+<p>PipeRider creates a set of recommended assertions based on the current state of your data. You can add to or edit these using the available suite of <a href="https://docs.piperider.io/cli/data-quality-assertions/assertion-configuration">built-in assertions</a>, and through custom assertions you can <a href="https://blog.piperider.io/define-your-own-data-quality-tests-in-piperider.html">create your own data reliability tests</a>.</p>
+
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style>
+<div class="embed-container">    <iframe title="YouTube video player" width="640" height="390" src="//www.youtube.com/embed/t4YHkynRIpI" frameborder="0" allowfullscreen=""></iframe></div>
+
+<h2 id="-3">　</h2>
+<h2 id="5-compare-data-profile-reports">5. Compare data profile reports</h2>
+<p>When your data changes and you have multiple PipeRider runs, compare reports easily with the following command.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider compare-reports
+</code></pre></div></div>
+
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style>
+<div class="embed-container">    <iframe title="YouTube video player" width="640" height="390" src="//www.youtube.com/embed/COohk2TAiPA" frameborder="0" allowfullscreen=""></iframe></div>
+
+<p>You can also compare the last two reports automatically (without needing to manually select them) by using the <code class="language-plaintext highlighter-rouge">--last</code> flag.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider compare-reports —last
+</code></pre></div></div>
+
+<h2 id="-4">　</h2>
+<h2 id="sample-reports">Sample Reports</h2>
+<p>Links to example reports will always be available in the PipeRider documentation. Here are samples created with PipeRider 0.7:</p>
+
+<p><a href="https://piperider-github-readme.s3.ap-northeast-1.amazonaws.com/run-0.7.0/index.html#/">Sample PipeRider data profile report</a>
+<a href="https://piperider-github-readme.s3.ap-northeast-1.amazonaws.com/comparison-0.7.0/index.html">Sample PipeRider report comparison</a></p>
+
+<h2 id="-5">　</h2>
+<hr />
+<h2 id="who-makes-piperider">Who makes PipeRider?</h2>
+<p><a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a> is developed by <a href="https://infuseai.io/">InfuseAI</a>, the company behind the end-to-end machine learning platform <a href="https://www.infuseai.io/primehub-ai-platform">PrimeHub</a>.</p>
+
+<p>InfuseAI has an impressive <a href="https://github.com/InfuseAI/">portfolio of open-source projects</a> so you know you’re in good hands!</p>
+
+:ET
