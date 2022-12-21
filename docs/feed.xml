@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://blog.piperider.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.piperider.io/" rel="alternate" type="text/html" /><updated>2022-12-21T20:26:53+08:00</updated><id>https://blog.piperider.io/feed.xml</id><title type="html">PipeRider</title><subtitle>Data Reliability Automated</subtitle><author><name>PipeRider</name></author><entry><title type="html">Data reliability testing for dbt state with PipeRider</title><link href="https://blog.piperider.io/data-reliability-dbt-state-piperider.html" rel="alternate" type="text/html" title="Data reliability testing for dbt state with PipeRider" /><published>2022-12-06T00:00:00+08:00</published><updated>2022-12-06T00:00:00+08:00</updated><id>https://blog.piperider.io/data-reliability-dbt-state-piperider</id><content type="html" xml:base="https://blog.piperider.io/data-reliability-dbt-state-piperider.html"><![CDATA[<p><em>tl;dr PipeRider now supports <a href="https://docs.getdbt.com/reference/node-selection/methods#the-state-method">dbt state</a>! You can profile and run data reliability tests on only the tables that have been modified as part of your dbt state</em></p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://blog.piperider.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.piperider.io/" rel="alternate" type="text/html" /><updated>2022-12-21T20:49:30+08:00</updated><id>https://blog.piperider.io/feed.xml</id><title type="html">PipeRider</title><subtitle>Data Reliability Automated</subtitle><author><name>PipeRider</name></author><entry><title type="html">Data reliability testing for dbt state with PipeRider</title><link href="https://blog.piperider.io/data-reliability-dbt-state-piperider.html" rel="alternate" type="text/html" title="Data reliability testing for dbt state with PipeRider" /><published>2022-12-06T00:00:00+08:00</published><updated>2022-12-06T00:00:00+08:00</updated><id>https://blog.piperider.io/data-reliability-dbt-state-piperider</id><content type="html" xml:base="https://blog.piperider.io/data-reliability-dbt-state-piperider.html"><![CDATA[<p><em>tl;dr PipeRider now supports <a href="https://docs.getdbt.com/reference/node-selection/methods#the-state-method">dbt state</a>! You can profile and run data reliability tests on only the tables that have been modified as part of your dbt state</em></p>
 
 <hr />
 
@@ -138,7 +138,62 @@ piperider init
 
 <p>Have you been bitten by schema change? Let me know what happened and how you discovered the change.</p>
 
-<p>If I missed any important or obvious schema changes to look out for, please tell me and I’ll improve the list.</p>]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[As a data or analytics engineer you need to anticipate the unexpected, especially when building pipelines from data sources that you have no control over. While a data pipeline might be a house of cards, with data observability you’re able to keep an eye on any changes to the underlying structure, and be prepared for schema changes.]]></summary></entry><entry><title type="html">5 Metrics Elon Musk Should Check In Twitter’s Data</title><link href="https://blog.piperider.io/5-metrics-elon-musk-should-check-in-twitter-data.html" rel="alternate" type="text/html" title="5 Metrics Elon Musk Should Check In Twitter’s Data" /><published>2022-10-13T00:00:00+08:00</published><updated>2022-10-13T00:00:00+08:00</updated><id>https://blog.piperider.io/5-metrics-elon-musk-should-check-in-twitter-data</id><content type="html" xml:base="https://blog.piperider.io/5-metrics-elon-musk-should-check-in-twitter-data.html"><![CDATA[<p>The value of Twitter has been <a href="https://www.theverge.com/2022/10/4/23387592/elon-musk-twitter-deal-lawsuit-faq">in the news</a> a lot recently. Antics related to Elon Musk’s possible Twitter buyout has led to a legal battle that may result in Twitter releasing a snapshot of data on its users and tweets. If Musk actually gets his hands on this data, what kind of things might he be looking for?</p>
+<p>If I missed any important or obvious schema changes to look out for, please tell me and I’ll improve the list.</p>]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[As a data or analytics engineer you need to anticipate the unexpected, especially when building pipelines from data sources that you have no control over. While a data pipeline might be a house of cards, with data observability you’re able to keep an eye on any changes to the underlying structure, and be prepared for schema changes.]]></summary></entry><entry><title type="html">Data Monitoring — Be the Master of Your Pipeline</title><link href="https://blog.piperider.io/data-monitoring-be-the-master-of-your-pipeline.html" rel="alternate" type="text/html" title="Data Monitoring — Be the Master of Your Pipeline" /><published>2022-10-18T00:00:00+08:00</published><updated>2022-10-18T00:00:00+08:00</updated><id>https://blog.piperider.io/data-monitoring-be-the-master-of-your-pipeline</id><content type="html" xml:base="https://blog.piperider.io/data-monitoring-be-the-master-of-your-pipeline.html"><![CDATA[<p>Data pipelines have evolved from a single series of workloads (or DAG within a system), to more abstract semantics with a mix of orchestrated workflows, internal tools, in-warehouse transformations and 3rd party tools exports or ingestion.</p>
+
+<p>The increasing complexity of data pipelines makes monitoring difficult, to implement an effective data monitoring strategy you need to understand the pipeline completely. This could range from tracking the status of pipeline tasks and setting up alerts, right up to being the ultimate “master of your pipeline” by setting up a dedicated monitoring pipeline with metrics.</p>
+
+<hr />
+
+<h2 id="data-monitoring-is-essential">Data monitoring is essential</h2>
+<p>Once your data pipeline reaches a certain complexity, the requirement for some kind of monitoring is unavoidable. When you get the call (hopefully monitoring can help you avoid the call) that a dashboard is broken because data isn’t being updated, if you’ve got the pipeline metrics available you’ll know where to look first.</p>
+
+<h3 id="understand-whats-happening">Understand what’s happening</h3>
+<p>In its basic form, data monitoring means that you understand what’s happening in the pipeline. Start with understanding the normal execution time for tasks in your data pipelines, then set up SLAs that will raise alerts when they fail.</p>
+
+<p>If you find that individual tasks are hanging, you might set up monitoring for each task separately, and then trigger an alert once a certain time threshold has been exceeded.</p>
+
+<h3 id="how-long-is-too-long">How long is too long?</h3>
+<p>How you determine what is a “normal” amount of time for tasks in your pipeline to execute will differ for each case. This is where some sleuthing on your part is required. You’ll need to track the execution time and then work out what is acceptable</p>
+
+<p>Some data warehouses offer execution statistics and, if you use a data monitoring service, check if event logs are available that will contain lots of metadata about your task executions.</p>
+
+<p>Writing tests for each pipeline can be an extensive task, and it requires a lot of effort to maintain. At some point you might consider a more structured approach.</p>
+
+<h2>　</h2>
+<h2 id="take-it-to-the-next-level">Take it to the next level</h2>
+<p>To get serious about your data monitoring, you can set up a dedicated pipeline for monitoring metrics. In these more complex data monitoring efforts, you can monitor many metrics and set up alerts for each kind of metric.</p>
+
+<h3 id="what-should-you-monitor">What should you monitor?</h3>
+<p>Examples of metrics to monitor could include things like -</p>
+
+<ul>
+  <li>Data freshness</li>
+  <li>Schema types</li>
+  <li>The number of rows in a table</li>
+  <li>The number of inserted rows</li>
+  <li>The percentage of null values</li>
+  <li>The acceptable range of values</li>
+  <li>The distribution of data</li>
+</ul>
+
+<p>The type of metrics you monitor will depend on a mix of what is important to the stakeholder, what issues you are running into on a regular basis and, of course, metrics that you need to monitor to ensure that the pipeline is functioning.</p>
+
+<h3 id="what-are-the-acceptable-thresholds">What are the acceptable thresholds?</h3>
+<p>Once you know the metrics that need to be monitored, you need to figure out acceptable thresholds for these metrics. This will either involve asking the stakeholder, or employing some form of data profiling so you can track the metric over time and determine acceptable values and/or ranges.</p>
+
+<h2 id="-1">　</h2>
+<h2 id="conclusion">Conclusion</h2>
+<p>The complexity of the data monitoring solution you employ will be based on the complexity of your pipeline. I’ve mentioned a few methods that you might use to monitor your data pipelines, but there are many more things to monitor — I’ve not even touched on business logic as that introduced a whole other set of complexity.</p>
+
+<p>What methods are you using for monitoring your data pipelines?</p>
+
+<p>How do you determine what are the important things to monitor and track the metrics over time?</p>
+
+<h2 id="-2">　</h2>
+<h3 id="add-data-profiling-to-your-data-reliability-strategy">Add data profiling to your data reliability strategy</h3>
+<p><a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a> is an open-source data reliability CLI tool that adds data profiling and assertions to data warehouses such as BigQuery, Snowflake, Redshift and more. Data profile and assertions results are provided in an HTML report each time you run PipeRider.</p>
+
+<p>If you found this article useful please consider <a href="https://twitter.com/InfuseAI/status/1582554616092184576?s=20&amp;t=U8_JhQpFZRqjShVTA98vTg">retweeting</a>❤.</p>]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[Data pipelines have evolved from a single series of workloads (or DAG within a system), to more abstract semantics with a mix of orchestrated workflows, internal tools, in-warehouse transformations and 3rd party tools exports or ingestion.]]></summary></entry><entry><title type="html">5 Metrics Elon Musk Should Check In Twitter’s Data</title><link href="https://blog.piperider.io/5-metrics-elon-musk-should-check-in-twitter-data.html" rel="alternate" type="text/html" title="5 Metrics Elon Musk Should Check In Twitter’s Data" /><published>2022-10-13T00:00:00+08:00</published><updated>2022-10-13T00:00:00+08:00</updated><id>https://blog.piperider.io/5-metrics-elon-musk-should-check-in-twitter-data</id><content type="html" xml:base="https://blog.piperider.io/5-metrics-elon-musk-should-check-in-twitter-data.html"><![CDATA[<p>The value of Twitter has been <a href="https://www.theverge.com/2022/10/4/23387592/elon-musk-twitter-deal-lawsuit-faq">in the news</a> a lot recently. Antics related to Elon Musk’s possible Twitter buyout has led to a legal battle that may result in Twitter releasing a snapshot of data on its users and tweets. If Musk actually gets his hands on this data, what kind of things might he be looking for?</p>
 
 <hr />
 
@@ -754,53 +809,4 @@ else:
 <hr />
 <h3 id="i-am-simon">I am Simon</h3>
 <p>Hi, I am Simon, Customer Success Engineer in InfuseAI. If you think the article is helpful to you, please give me applause. Welcome to provide some suggestions and discuss with me in InfuseAI <a href="https://discord.gg/xKxsdPx4d5">Discord</a>.
-Linkedin: <a href="https://www.linkedin.com/in/simonliuyuwei/">https://www.linkedin.com/in/simonliuyuwei/</a></p>]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[Datasets are readily available as CSV files on websites such as Kaggle and other real-world datasets. However, CSV isn’t really suitable for querying and transforming easily. Therefore, it’s better to store the data in a database.]]></summary></entry><entry><title type="html">PipeRider data profiling just got more colorful (and useful)</title><link href="https://blog.piperider.io/piperider-data-profiling-just-got-more-colorful-and-useful.html" rel="alternate" type="text/html" title="PipeRider data profiling just got more colorful (and useful)" /><published>2022-08-02T00:00:00+08:00</published><updated>2022-08-02T00:00:00+08:00</updated><id>https://blog.piperider.io/piperider-data-profiling-just-got-more-colorful-and%20useful</id><content type="html" xml:base="https://blog.piperider.io/piperider-data-profiling-just-got-more-colorful-and-useful.html"><![CDATA[<p><a href="https://github.com/InfuseAI/piperider/releases/tag/v0.5.0">PipeRider 0.5.0</a> was released last week and introduces some CLI updates that improve visual feedback during profiling, and the reporting feature adds some options to make it more suitable for use in your CI pipeline.</p>
-
-<p><em>In case you missed it — <a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a> is a new open-source <a href="https://blog.piperider.io/test-your-data-quality-in-minutes-with-piperider.html">data reliability</a> tool with data profiling, data assertions, and support for <a href="https://blog.piperider.io/add-data-profiling-and-assertions-to-dbt-with-piperider.html">popular data sources</a>.</em></p>
-
-<hr />
-
-<h2 id="cli-now-with-extra-prettiness">CLI now with extra prettiness</h2>
-<p>The PipeRider CLI is now includes extra visual feedback when profiling in the form of per-table progress bars.</p>
-
-<h3 id="progress-bars--so-satisfying">Progress bars — so satisfying</h3>
-<p>The progress bars show how many tables are left to profile, the number of columns that are being profiled, and a timer.</p>
-
-<p><img src="/img/posts/220802-1.gif" alt="Progress bars — satisfying :)" /></p>
-
-<p>This enables you to see where you are in the profiling progress — no more thinking that the profiler hung when profiling your beefy dbt models.</p>
-
-<h3 id="tabular-summary">Tabular Summary</h3>
-<p>The profiling and data assertions summary is now displayed in a table so you can see test results at a glance.</p>
-
-<p><img src="/img/posts/220802-2.webp" alt="Profiling and data assertion test results are now tabular — awesome!
-" /></p>
-
-<p>Extra color has also been sprinkled around to make the CLI output generally easier to read. So now it’ll fit better with your colorful terminal theme (<a href="https://draculatheme.com/terminal">Dracula</a>, anyone?).</p>
-
-<p>If you’re working on the command line all day, then these should be some welcome additions.</p>
-
-<h2 id="reports-where-you-want-them-when-you-want-them">Reports where you want them, when you want them</h2>
-<p>For reporting, we’ve got a some great features to make generating and exporting reports more convenient.</p>
-
-<h3 id="output-location">Output Location</h3>
-<p>The default location for reports is <code class="language-plaintext highlighter-rouge">.piperider/outputs</code>, but this isn’t always the best location, especially if you want to share the reports with BI or other users who don’t want to dig around in a hidden folder.</p>
-
-<p>In PipeRider v0.5.0 you can choose the output location for a report by using the <code class="language-plaintext highlighter-rouge">-o</code> option and specifying a location, e.g.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider generate-report -o ~/piperider-reports
-</code></pre></div></div>
-
-<p>This works for <code class="language-plaintext highlighter-rouge">piperider run</code> and <code class="language-plaintext highlighter-rouge">piperider compare-reports</code>, too!</p>
-
-<h2 id="compare-the-last-two-reports-automatically">Compare the last two reports automatically</h2>
-<p>On the subject of comparing reports, now you can compare the last two reports without having to select them manually — Just use the <code class="language-plaintext highlighter-rouge">--last</code> option:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider compare-reports --last
-</code></pre></div></div>
-
-<p>Pair this with a custom output location and you can easily automate PipeRider reports as part of your CI pipeline — we’ll have a tutorial/show-case on how to do this very soon. Make sure to follow us to be notified.</p>
-
-<p>Check out the documentation <a href="https://docs.piperider.io/cli/piperider-cli">command reference</a> for more info, there are also a couple of how-to docs for <a href="https://docs.piperider.io/cli/quick-start#run-piperider-profile-data-and-generate-report">generating</a> and <a href="https://docs.piperider.io/cli/quick-start#run-piperider-profile-data-test-assertions-generate-report">comparing</a> reports.</p>
-
-<hr />]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[PipeRider 0.5.0 was released last week and introduces some CLI updates that improve visual feedback during profiling, and the reporting feature adds some options to make it more suitable for use in your CI pipeline.]]></summary></entry></feed>
+Linkedin: <a href="https://www.linkedin.com/in/simonliuyuwei/">https://www.linkedin.com/in/simonliuyuwei/</a></p>]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[Datasets are readily available as CSV files on websites such as Kaggle and other real-world datasets. However, CSV isn’t really suitable for querying and transforming easily. Therefore, it’s better to store the data in a database.]]></summary></entry></feed>
