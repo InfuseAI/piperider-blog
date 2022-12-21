@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://blog.piperider.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.piperider.io/" rel="alternate" type="text/html" /><updated>2022-12-21T18:36:07+08:00</updated><id>https://blog.piperider.io/feed.xml</id><title type="html">PipeRider</title><subtitle>Data Reliability Automated</subtitle><author><name>PipeRider</name></author><entry><title type="html">Data reliability testing for dbt state with PipeRider</title><link href="https://blog.piperider.io/data-reliability-dbt-state-piperider.html" rel="alternate" type="text/html" title="Data reliability testing for dbt state with PipeRider" /><published>2022-12-06T00:00:00+08:00</published><updated>2022-12-06T00:00:00+08:00</updated><id>https://blog.piperider.io/data-reliability-dbt-state-piperider</id><content type="html" xml:base="https://blog.piperider.io/data-reliability-dbt-state-piperider.html"><![CDATA[<p><em>tl;dr PipeRider now supports <a href="https://docs.getdbt.com/reference/node-selection/methods#the-state-method">dbt state</a>! You can profile and run data reliability tests on only the tables that have been modified as part of your dbt state</em></p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://blog.piperider.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.piperider.io/" rel="alternate" type="text/html" /><updated>2022-12-21T20:26:53+08:00</updated><id>https://blog.piperider.io/feed.xml</id><title type="html">PipeRider</title><subtitle>Data Reliability Automated</subtitle><author><name>PipeRider</name></author><entry><title type="html">Data reliability testing for dbt state with PipeRider</title><link href="https://blog.piperider.io/data-reliability-dbt-state-piperider.html" rel="alternate" type="text/html" title="Data reliability testing for dbt state with PipeRider" /><published>2022-12-06T00:00:00+08:00</published><updated>2022-12-06T00:00:00+08:00</updated><id>https://blog.piperider.io/data-reliability-dbt-state-piperider</id><content type="html" xml:base="https://blog.piperider.io/data-reliability-dbt-state-piperider.html"><![CDATA[<p><em>tl;dr PipeRider now supports <a href="https://docs.getdbt.com/reference/node-selection/methods#the-state-method">dbt state</a>! You can profile and run data reliability tests on only the tables that have been modified as part of your dbt state</em></p>
 
 <hr />
 
@@ -138,7 +138,108 @@ piperider init
 
 <p>Have you been bitten by schema change? Let me know what happened and how you discovered the change.</p>
 
-<p>If I missed any important or obvious schema changes to look out for, please tell me and I’ll improve the list.</p>]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[As a data or analytics engineer you need to anticipate the unexpected, especially when building pipelines from data sources that you have no control over. While a data pipeline might be a house of cards, with data observability you’re able to keep an eye on any changes to the underlying structure, and be prepared for schema changes.]]></summary></entry><entry><title type="html">Guide to Data Reliability</title><link href="https://blog.piperider.io/guide-to-data-reliability.html" rel="alternate" type="text/html" title="Guide to Data Reliability" /><published>2022-09-27T00:00:00+08:00</published><updated>2022-09-27T00:00:00+08:00</updated><id>https://blog.piperider.io/guide-to-data-reliability</id><content type="html" xml:base="https://blog.piperider.io/guide-to-data-reliability.html"><![CDATA[<p>Modern organizations have gained unprecedented access to quantitative and qualitative data. With all this information available, it’s become best practice for every team to make data-driven decisions. But there’s a problem.</p>
+<p>If I missed any important or obvious schema changes to look out for, please tell me and I’ll improve the list.</p>]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[As a data or analytics engineer you need to anticipate the unexpected, especially when building pipelines from data sources that you have no control over. While a data pipeline might be a house of cards, with data observability you’re able to keep an eye on any changes to the underlying structure, and be prepared for schema changes.]]></summary></entry><entry><title type="html">5 Metrics Elon Musk Should Check In Twitter’s Data</title><link href="https://blog.piperider.io/5-metrics-elon-musk-should-check-in-twitter-data.html" rel="alternate" type="text/html" title="5 Metrics Elon Musk Should Check In Twitter’s Data" /><published>2022-10-13T00:00:00+08:00</published><updated>2022-10-13T00:00:00+08:00</updated><id>https://blog.piperider.io/5-metrics-elon-musk-should-check-in-twitter-data</id><content type="html" xml:base="https://blog.piperider.io/5-metrics-elon-musk-should-check-in-twitter-data.html"><![CDATA[<p>The value of Twitter has been <a href="https://www.theverge.com/2022/10/4/23387592/elon-musk-twitter-deal-lawsuit-faq">in the news</a> a lot recently. Antics related to Elon Musk’s possible Twitter buyout has led to a legal battle that may result in Twitter releasing a snapshot of data on its users and tweets. If Musk actually gets his hands on this data, what kind of things might he be looking for?</p>
+
+<hr />
+
+<p>Data profiling is a great way to analyze and explore a dataset. A data profile not only helps you to understand the structure of a dataset, but the statistical metrics are also great for exploratory analysis.</p>
+
+<p>In this article, I take some publicly available Twitter datasets and run them through a <a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">data profiler</a> to see what interesting metrics I can find.</p>
+
+<h2>　</h2>
+<h2 id="the-datasets">The datasets</h2>
+<p>I used two datasets for this analysis:</p>
+
+<ul>
+  <li>A portion of the <a href="https://archive.org/details/archiveteam-twitter-stream-2021-06">Archive Team Twitter Stream</a> dataset from June 2021. This dataset comes in JSON form, so you’ll need to use a tool such as <a href="https://github.com/cantino/twitter_to_csv">twitter_to_csv</a> to convert the raw Twitter API JSON to CSV.</li>
+  <li>A pre-prepared dataset from Kaggle. I found the Gender classification set, with data from 2015, was the most useful as it retained much of the user data, such as profile image URL, retweet count, and profile description.</li>
+</ul>
+
+<p>For both methods I used <a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a>, an open-source CLI tool for profiling datasets. It outputs an HTML report which makes it easy to see the metrics. There are also data assertions if you need to add testing to your dataset.</p>
+
+<h2 id="-1">　</h2>
+<h2 id="the-metrics">The metrics</h2>
+<p>So, what things might Elon Musk, or anyone analyzing the value of a social network data need to look out for? What interesting metrics can be found, and what are the implications in regard to determining the ‘value’ of Twitter users and Tweets.</p>
+
+<h2 id="-2">　</h2>
+<h3 id="1-account-creation-date">1. Account creation date</h3>
+<p>Looking at the account created date in the gender dataset, there are active accounts that date back all the way to 2006.</p>
+
+<p><strong>Implication</strong></p>
+
+<p>Twitter has good user retention, as these are users that have been coming back for years.</p>
+
+<p>Twitter account creation date metric via PipeRider: 
+<img src="/img/posts/221013-1.webp" alt="" /></p>
+
+<h2 id="-3">　</h2>
+<h3 id="2-profile-image">2. Profile image</h3>
+<p>You might not think that a profile image could indicate much, but the notorious <a href="https://www.vox.com/2017/3/31/15139192/twitter-egg-profile-default-change">Twitter egg</a> fiasco proves otherwise. 18.3% of profile images in the Kaggle dataset are duplicates, and it looks like this is because they are using the default image.</p>
+
+<p>The Archive Team dataset was around the same, at 17.1% for my sampling.</p>
+
+<p>Twitter profile image metrics via PipeRider:
+<img src="/img/posts/221013-2.webp" alt="" /></p>
+
+<p><strong>Implication</strong></p>
+
+<p>This could be an indication of throw-away accounts, bots, trolls, or generally users who aren’t invested enough to update their profile image.</p>
+
+<h2 id="-4">　</h2>
+<h3 id="3-duplicated-tweet-content">3. Duplicated Tweet content</h3>
+<p>This doesn’t refer to retweets, or quote tweets, but to tweets with identical content. Why would a tweet contain the same content? There was 8.7% of tweets with duplicated content in the Kaggle dataset.</p>
+
+<p><strong>Implication</strong></p>
+
+<p>This could be an indication of a bot farm spreading propaganda, or users could simply be clicking the “share this article” button on news websites.</p>
+
+<p>Twitter metrics indicate possible bot messages via PipeRider: 
+<img src="/img/posts/221013-3.webp" alt="" /></p>
+
+<p>The Kaggle dataset shows a lot bizarre of Weather Chanel tweets.</p>
+
+<p>Interestingly, these tweets cannot be found by searching Twitter now. All I can find is <a href="https://twitter.com/ArdentCrayon/status/722136691809525764?s=20&amp;t=9IY8SlHv4k813B-xxwjGxw">someone asking</a> why there are so many bots spamming the weather channel.</p>
+
+<p>The Archive Team dataset shows many retweets of an account for a Korean band (I think). The <a href="https://twitter.com/WeareoneEXO">account</a> has 13million followers, so I suppose a few thousand fans retweeting isn’t out of the ordinary.</p>
+
+<p>Tweet content metrics via PipeRider:
+<img src="/img/posts/221013-4.webp" alt="" /></p>
+
+<h2 id="-5">　</h2>
+<h3 id="4-retweet-count">4. Retweet count</h3>
+<p>Retweet count was extremely low in both datasets — 99.9% of the tweets in the Kaggle set were not retweeted.</p>
+
+<p><strong>Implication</strong></p>
+
+<p>It could mean low interaction rates on Twitter, but is probably just an indication that the dataset time frame is too narrow — only an hour, and that it takes a while for a tweet to gain momentum. This could be one to analyze over a period of a few hours or days.</p>
+
+<p>Retweet metrics via PipeRider:
+<img src="/img/posts/221013-5.webp" alt="" /></p>
+
+<h2 id="-6">　</h2>
+<h3 id="5-follower-count">5. Follower count</h3>
+<p>Follower count not only indicates how popular you are, but also if users are interacting and ‘listening’ to each other on Twitter. Are most users shouting into the wind? According to the Archive Team dataset, 4800 users were talking to themselves during that time frame.</p>
+
+<p><strong>Implication</strong></p>
+
+<p>It’s difficult to gauge this one without more analysis of the accounts with zero followers. They could be the bots we mentioned earlier, or just angry loners shouting in the wind.</p>
+
+<p>Follower count metrics via PipeRider: 
+<img src="/img/posts/221013-6.webp" alt="" /></p>
+
+<h2 id="-7">　</h2>
+<h2 id="conclusion">Conclusion</h2>
+<p>Data exploration is fun, even if you’re not a billionaire mulling over the potential purchase of a $44 billion social network.</p>
+
+<p>Data profiling can provide interesting insights into a dataset that you may not have previously thought of. Even the process of cleaning and transforming data in preparation for analysis can yield interesting results. For instance, while importing the Archive Team dataset, I found that there were many ‘deleted’ entries listed. I presume these are deleted tweets, a figure that could also offer some valuable insight.</p>
+
+<h2 id="-8">　</h2>
+<h2 id="add-data-profiling-to-your-data-reliability-strategy">Add data profiling to your data reliability strategy</h2>
+<p>If you’re interested in the tool I used here, check out PipeRider — it’s a CLI tool that profiles all the popular data warehouses and provides an HTML data profile report.</p>
+
+<p>Also, before you finish the reading the contracts for your Twitter purchase, please follow us on Twitter — we’re <a href="https://twitter.com/infuseai">@infuseai</a> ❤</p>
+
+<p>If you found this article interesting please <a href="https://twitter.com/InfuseAI/status/1580574430442377217?s=20&amp;t=GwuHVBwmjPMAU8nWlXetBw">retweet</a> to support more content like this.</p>]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[The value of Twitter has been in the news a lot recently. Antics related to Elon Musk’s possible Twitter buyout has led to a legal battle that may result in Twitter releasing a snapshot of data on its users and tweets. If Musk actually gets his hands on this data, what kind of things might he be looking for?]]></summary></entry><entry><title type="html">Guide to Data Reliability</title><link href="https://blog.piperider.io/guide-to-data-reliability.html" rel="alternate" type="text/html" title="Guide to Data Reliability" /><published>2022-09-27T00:00:00+08:00</published><updated>2022-09-27T00:00:00+08:00</updated><id>https://blog.piperider.io/guide-to-data-reliability</id><content type="html" xml:base="https://blog.piperider.io/guide-to-data-reliability.html"><![CDATA[<p>Modern organizations have gained unprecedented access to quantitative and qualitative data. With all this information available, it’s become best practice for every team to make data-driven decisions. But there’s a problem.</p>
 
 <p>You may be collecting a large amount of information within your data stack, but are you certain that these data sets are complete, accurate, and up-to-date? If not, these data sets might cost you a lot.</p>
 
@@ -702,92 +803,4 @@ Linkedin: <a href="https://www.linkedin.com/in/simonliuyuwei/">https://www.linke
 
 <p>Check out the documentation <a href="https://docs.piperider.io/cli/piperider-cli">command reference</a> for more info, there are also a couple of how-to docs for <a href="https://docs.piperider.io/cli/quick-start#run-piperider-profile-data-and-generate-report">generating</a> and <a href="https://docs.piperider.io/cli/quick-start#run-piperider-profile-data-test-assertions-generate-report">comparing</a> reports.</p>
 
-<hr />]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[PipeRider 0.5.0 was released last week and introduces some CLI updates that improve visual feedback during profiling, and the reporting feature adds some options to make it more suitable for use in your CI pipeline.]]></summary></entry><entry><title type="html">How to Use PipeRider’s Built-in Assertion and Custom Assertion to Test the Water Quality Kaggle Dataset</title><link href="https://blog.piperider.io/how-to-use-piperider-s-built-in-assertion-and-custom-assertion-to-test-the-water-quality-kaggle-dataset.html" rel="alternate" type="text/html" title="How to Use PipeRider’s Built-in Assertion and Custom Assertion to Test the Water Quality Kaggle Dataset" /><published>2022-07-27T00:00:00+08:00</published><updated>2022-07-27T00:00:00+08:00</updated><id>https://blog.piperider.io/how-to-use-piperider%E2%80%99s-built-in-assertion-and-custom-assertion-to-test-the-water-quality-kaggle-dataset</id><content type="html" xml:base="https://blog.piperider.io/how-to-use-piperider-s-built-in-assertion-and-custom-assertion-to-test-the-water-quality-kaggle-dataset.html"><![CDATA[<p><em>tl;dr PipeRider can help detect data issues in a water quality dataset through data profiling and custom assertions, which can be useful for determining the drinkability of water and solving problems immediately if alerts are raised.</em></p>
-
-<hr />
-
-<p>Determining the drinkability of water is the perfect case for a data reliability tool. Not only can we detect if there is missing data, but also when values fall outside of safe ranges. If the water resources management center has a good data assertion tool to detect the water quality, they can solve the problem immediately. Also, the manager and the employee can see a daily report to know the data distribution and water status. If PipeRider’s data assertions raise an alert, they can make a decision and better manage it.”</p>
-
-<p>In this article, I will use a Kaggle water quality dataset and show how PipeRider can help detect data issues through data profiling and custom assertions.</p>
-
-<p><a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a> is a data quality toolkit for data professionals. With PipeRider, you can profile your data sources, create highly customizable data quality assertions, and generate insightful reports.</p>
-
-<h2 id="get-the-dataset-from-kaggle">Get the dataset from Kaggle</h2>
-
-<p>First, the Kaggle website stores the <a href="https://www.kaggle.com/datasets/adityakadiwal/water-potability">water quality</a> dataset. We need to download it and put it into the environment.</p>
-
-<p>If you want to use the Kaggle CLI tool, you need to download the Kaggle key JSON file from the Kaggle website. The Proceed as follows:</p>
-
-<p>Go to “Account”, go down the page, and find the “API” section.
-Click the “Create New API Token” button.
-We will download the “kaggle.json” file.
-Put the file into <code class="language-plaintext highlighter-rouge">~/.kaggle/</code> folder.</p>
-
-<p><img src="/img/posts/220727-1.webp" alt="Download the API token JSON file on the Kaggle Account page." /></p>
-
-<p>Then, we can download the datasets through the Kaggle CLI tool.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>kaggle
-
-kaggle datasets download <span class="nt">-d</span> adityakadiwal/water-potability
-
-unzip water-potability.zip
-</code></pre></div></div>
-
-<h2 id="transfer-csv-to-sqlite">Transfer CSV to SQLite</h2>
-<p>PipeRider supports four data sources: dbt integration, Postgres Connector, Snowflake Connector, and SQLite database. Here we use SQLite as our database example.</p>
-
-<p>However, we need to transfer the CSV file into the SQLite database for PipeRider’s suitable database. Here, We can use the open source tool <a href="https://github.com/simonw/csvs-to-sqlite">csv-to-sqlite</a> to transfer the CSV files to the SQLite database.</p>
-
-<p>You might also want to check the article of <a href="https://blog.piperider.io/transfer-the-csv-files-into-an-sqlite-database">Transfer the CSV Files into an SQLite Database</a></p>
-
-<p>Follow the command line to transfer the CSV files to the SQLite database.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>csvs-to-sqlite
-csvs-to-sqlite water-potability.csv water-potability.db
-</code></pre></div></div>
-
-<h2 id="add-build-in-assertion">Add build-in assertion</h2>
-<p>Now, we can start to use PipeRider. We provide a Quick Start tutorial on the documentation page to show how to use PipeRider. You can follow the method to initialize, configure, diagnose and run PipeRider. After you run the <code class="language-plaintext highlighter-rouge">piperider run</code> command, you will get the “.piperider” folder in your project folder.</p>
-
-<p><img src="/img/posts/220727-2.webp" alt="The structure of the .piperider folder" /></p>
-
-<p>Although PipeRider provides an automatic assertion generation method, we want to configure our logic assertion. For example, the range of PH values is 0 to 14. If the value is over the content of values, then the data detection has some problem, and the users need to collect the data again. PipeRider provides two types of built-in assertions, one takes no parameter, and the other takes parameters.</p>
-
-<p><a href="https://docs.piperider.io/cli/data-quality-assertions/assertion-configuratio">Built-In Assertions Guide</a></p>
-
-<p>You can go to <code class="language-plaintext highlighter-rouge">.piperider/assertions/</code> to add assertions in <code class="language-plaintext highlighter-rouge">&lt;table&gt;.yml</code>. Here is an example of the built-in assertion yaml file.</p>
-
-<script src="https://gist.github.com/LiuYuWei/27dd7c6ec5685f13de9810accb9a3f6a.js"></script>
-
-<p>After modifying the YAML file, rerun the <code class="language-plaintext highlighter-rouge">piperider run</code> and see the assertion result.</p>
-
-<p><img src="/img/posts/220727-3.webp" alt="The result of piperider run (We configure the built-in assertion YAML file.)" /></p>
-
-<h2 id="add-custom-assertion">Add custom assertion</h2>
-
-<p>We can see that some assertions failed because the maximum value range exceeded the WHO recommended value. If the user views the assertion error. The user needs to find the root cause of the datasets and improve the water quality.</p>
-
-<p>In the description in the Kaggle datasets, we can see the content that tells us, “WHO has recommended maximum permissible limit of pH from 6.5 to 8.5.” Therefore, I want to test that the average value is in the range of 6.5 and 8.5. However, the built-in assertion method does not have this method. We need to write our own logic assertion to do the testing.</p>
-
-<p>PipeRider provides a few built-in assertions and supports custom assertions as <em>plugins</em> that can satisfy your data quality check requirements. In this showcase, we add the new <em>assert_column_avg_in_range</em> assertion method and use the assertion to test the data profiling values.</p>
-
-<p>PipeRider, by default, will load python files under <code class="language-plaintext highlighter-rouge">.piperider/plugins</code> custom assertion functions automatically. <code class="language-plaintext highlighter-rouge">.piperider/plugins</code> is created <code class="language-plaintext highlighter-rouge">piperider init</code> with a scaffolding of a custom assertion function, <code class="language-plaintext highlighter-rouge">customized_assertions.py</code>. You can rename the file or generate assertion functions in other python files.</p>
-
-<script src="https://gist.github.com/LiuYuWei/d7168d5cda4b6296997cc489be3d5687.js"></script>
-
-<p>After modifying the YAML file, rerun the <code class="language-plaintext highlighter-rouge">piperider run</code> and see the assertion result.</p>
-
-<p><img src="/img/posts/220727-4.webp" alt="The result of piperider run (We add the custom assertion method.)" /></p>
-
-<p>The result shows that the new assertion method is successfully tested. You can follow the python class structure to try the specific assertion method.</p>
-
-<p>Also, You can check the history assertion result in Pipeider UI.</p>
-
-<p><img src="/img/posts/220727-5.webp" alt="Assertion testing in PipeRider UI" /></p>
-
-<hr />
-
-<h3 id="i-am-simon">I am Simon</h3>
-<p>Hi, I am Simon, Customer Success Engineer in InfuseAI. Please give me applause and also welcome to provide me with some suggestions if you think the article is helpful for you. Welcome to discuss with me in InfuseAI <a href="https://discord.gg/xKxsdPx4d5">Discord</a>.<br />
-Linkedin: <a href="https://www.linkedin.com/in/simonliuyuwei/">https://www.linkedin.com/in/simonliuyuwei/</a></p>]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[tl;dr PipeRider can help detect data issues in a water quality dataset through data profiling and custom assertions, which can be useful for determining the drinkability of water and solving problems immediately if alerts are raised.]]></summary></entry></feed>
+<hr />]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[PipeRider 0.5.0 was released last week and introduces some CLI updates that improve visual feedback during profiling, and the reporting feature adds some options to make it more suitable for use in your CI pipeline.]]></summary></entry></feed>
