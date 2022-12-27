@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Data Monitoring — Be the Master of Your Pipeline - PipeRider
+    
+  </title>
+
+  <meta name="description" content="Data pipelines have evolved from a single series of workloads (or DAG within a system), to more abstract semantics with a mix of orchestrated workflows, inte...">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Data Monitoring — Be the Master of Your Pipeline | PipeRider</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Data Monitoring — Be the Master of Your Pipeline" />
+<meta name="author" content="PipeRider" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Data pipelines have evolved from a single series of workloads (or DAG within a system), to more abstract semantics with a mix of orchestrated workflows, internal tools, in-warehouse transformations and 3rd party tools exports or ingestion." />
+<meta property="og:description" content="Data pipelines have evolved from a single series of workloads (or DAG within a system), to more abstract semantics with a mix of orchestrated workflows, internal tools, in-warehouse transformations and 3rd party tools exports or ingestion." />
+<link rel="canonical" href="https://blog.piperider.io/data-monitoring-be-the-master-of-your-pipeline.html" />
+<meta property="og:url" content="https://blog.piperider.io/data-monitoring-be-the-master-of-your-pipeline.html" />
+<meta property="og:site_name" content="PipeRider" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-10-18T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Data Monitoring — Be the Master of Your Pipeline" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"PipeRider"},"dateModified":"2022-10-18T00:00:00+08:00","datePublished":"2022-10-18T00:00:00+08:00","description":"Data pipelines have evolved from a single series of workloads (or DAG within a system), to more abstract semantics with a mix of orchestrated workflows, internal tools, in-warehouse transformations and 3rd party tools exports or ingestion.","headline":"Data Monitoring — Be the Master of Your Pipeline","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.piperider.io/data-monitoring-be-the-master-of-your-pipeline.html"},"url":"https://blog.piperider.io/data-monitoring-be-the-master-of-your-pipeline.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://blog.piperider.io/data-monitoring-be-the-master-of-your-pipeline.html">
+  <link rel="alternate" type="application/rss+xml" title="PipeRider" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <img src="/img/piperider-logo.svg" alt="PipeRider Logo">
+      PipeRider
+    </a>    
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <!-- <a class="nav-link" href="/">Home</a> -->
+          <a class="nav-link" href="https://piperider.io">PipeRider Website</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://docs.piperider.io">Documentation</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/infuseai/piperider">GitHub</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="/contact">Contact</a>
+        </li> -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"  role="button" data-toggle="dropdown" aria-expanded="false">Community</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="https://discord.gg/328QcXnkKD">Discord</a>
+            <a class="dropdown-item" href="mailto:support@piperider.io">Support</a>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+
+  <header class="piperider-masthead">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Data Monitoring — Be the Master of Your Pipeline</h1>
+            
+            <h2 class="subheading">Setting up a dedicated monitoring Pipeline</h2>
+            
+            <span class="meta">Posted by
+              PipeRider
+              
+              &middot; <span class="reading-time" title="Estimated read time">
+  
+   5 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <article class="post-single">
+
+          
+          <div class="featured-image">
+            <img src="/img/posts/221018-0.webp" />
+          </div>
+          
+
+          <p>Data pipelines have evolved from a single series of workloads (or DAG within a system), to more abstract semantics with a mix of orchestrated workflows, internal tools, in-warehouse transformations and 3rd party tools exports or ingestion.</p>
+
+<p>The increasing complexity of data pipelines makes monitoring difficult, to implement an effective data monitoring strategy you need to understand the pipeline completely. This could range from tracking the status of pipeline tasks and setting up alerts, right up to being the ultimate “master of your pipeline” by setting up a dedicated monitoring pipeline with metrics.</p>
+
+<hr />
+
+<h2 id="data-monitoring-is-essential">Data monitoring is essential</h2>
+<p>Once your data pipeline reaches a certain complexity, the requirement for some kind of monitoring is unavoidable. When you get the call (hopefully monitoring can help you avoid the call) that a dashboard is broken because data isn’t being updated, if you’ve got the pipeline metrics available you’ll know where to look first.</p>
+
+<h3 id="understand-whats-happening">Understand what’s happening</h3>
+<p>In its basic form, data monitoring means that you understand what’s happening in the pipeline. Start with understanding the normal execution time for tasks in your data pipelines, then set up SLAs that will raise alerts when they fail.</p>
+
+<p>If you find that individual tasks are hanging, you might set up monitoring for each task separately, and then trigger an alert once a certain time threshold has been exceeded.</p>
+
+<h3 id="how-long-is-too-long">How long is too long?</h3>
+<p>How you determine what is a “normal” amount of time for tasks in your pipeline to execute will differ for each case. This is where some sleuthing on your part is required. You’ll need to track the execution time and then work out what is acceptable</p>
+
+<p>Some data warehouses offer execution statistics and, if you use a data monitoring service, check if event logs are available that will contain lots of metadata about your task executions.</p>
+
+<p>Writing tests for each pipeline can be an extensive task, and it requires a lot of effort to maintain. At some point you might consider a more structured approach.</p>
+
+<h2>　</h2>
+<h2 id="take-it-to-the-next-level">Take it to the next level</h2>
+<p>To get serious about your data monitoring, you can set up a dedicated pipeline for monitoring metrics. In these more complex data monitoring efforts, you can monitor many metrics and set up alerts for each kind of metric.</p>
+
+<h3 id="what-should-you-monitor">What should you monitor?</h3>
+<p>Examples of metrics to monitor could include things like -</p>
+
+<ul>
+  <li>Data freshness</li>
+  <li>Schema types</li>
+  <li>The number of rows in a table</li>
+  <li>The number of inserted rows</li>
+  <li>The percentage of null values</li>
+  <li>The acceptable range of values</li>
+  <li>The distribution of data</li>
+</ul>
+
+<p>The type of metrics you monitor will depend on a mix of what is important to the stakeholder, what issues you are running into on a regular basis and, of course, metrics that you need to monitor to ensure that the pipeline is functioning.</p>
+
+<h3 id="what-are-the-acceptable-thresholds">What are the acceptable thresholds?</h3>
+<p>Once you know the metrics that need to be monitored, you need to figure out acceptable thresholds for these metrics. This will either involve asking the stakeholder, or employing some form of data profiling so you can track the metric over time and determine acceptable values and/or ranges.</p>
+
+<h2 id="-1">　</h2>
+<h2 id="conclusion">Conclusion</h2>
+<p>The complexity of the data monitoring solution you employ will be based on the complexity of your pipeline. I’ve mentioned a few methods that you might use to monitor your data pipelines, but there are many more things to monitor — I’ve not even touched on business logic as that introduced a whole other set of complexity.</p>
+
+<p>What methods are you using for monitoring your data pipelines?</p>
+
+<p>How do you determine what are the important things to monitor and track the metrics over time?</p>
+
+<h2 id="-2">　</h2>
+<h3 id="add-data-profiling-to-your-data-reliability-strategy">Add data profiling to your data reliability strategy</h3>
+<p><a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a> is an open-source data reliability CLI tool that adds data profiling and assertions to data warehouses such as BigQuery, Snowflake, Redshift and more. Data profile and assertions results are provided in an HTML report each time you run PipeRider.</p>
+
+<p>If you found this article useful please consider liking and <a href="https://twitter.com/InfuseAI/status/1582554616092184576?s=20&amp;t=U8_JhQpFZRqjShVTA98vTg">retweeting</a>❤.</p>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Are you master of your domain, er... pipeline?<br /><br />Data pipelines aren&#39;t getting any simpler!<br /><br />What kind of monitoring are you running and which metrics are important to you?<a href="https://t.co/EevD4la0bo">https://t.co/EevD4la0bo</a><a href="https://twitter.com/hashtag/dataobservability?src=hash&amp;ref_src=twsrc%5Etfw">#dataobservability</a> <a href="https://twitter.com/hashtag/datamonitoring?src=hash&amp;ref_src=twsrc%5Etfw">#datamonitoring</a></p>&mdash; InfuseAI (@InfuseAI) <a href="https://twitter.com/InfuseAI/status/1582554616092184576?ref_src=twsrc%5Etfw">October 19, 2022</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+
+          
+            <hr class="cta-hr" />
+
+<h2>InfuseAI is solving data quality issues</h2>
+
+<p><a href="https://infuseai.io" target="_blank">InfuseAI</a> makes PipeRider, the open-source data reliability CLI tool that adds data profiling and assertions to data warehouses such as BigQuery, Snowflake, Redshift and more. Data profile and data assertion results are provided in an HTML report each time you run PipeRider.</p>
+
+<ul>
+    <li><a href="https://piperider.io" target="_blank">PipeRider homepage</a></li>
+    <li><a href="https://github.com/infuseai/piperider" target="_blank">PipeRider GitHub repo</a></li>
+    <li>Twitter <a href="https://twitter.com/infuseai" target="_blank">@infuseai</a></li>
+    <li>Mastodon <a href="https://fosstodon.org/@piperider" target="_blank">@piperider@fosstondon.org</a></li>
+</ul>
+          
+            
+
+        </article>
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/5-metrics-elon-musk-should-check-in-twitter-data.html" data-toggle="tooltip" data-placement="top" title="5 Metrics Elon Musk Should Check In Twitter’s Data">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/building-reliable-data-pipelines-with-profiling-and-assertions.html" data-toggle="tooltip" data-placement="top" title="Building Reliable Data Pipelines With Profiling and Assertions">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center social-icons">
+          
+          <li class="list-inline-item">
+            <a href="mailto:support@piperider.io">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/company/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; <a href="https://infuseai.io">InfuseAI</a> 2022</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/atom-one-dark-reasonable.min.css">
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1P3NVFS4NW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1P3NVFS4NW');
+</script>
+
+
+
+  <script>
+  window.intercomSettings = {
+    api_base: "https://api-iam.intercom.io",
+    app_id: "ofl16ydc"
+  };
+</script>
+
+<script>
+// We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/ofl16ydc'
+(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/ofl16ydc';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+</script>  
+
+</body>
+
+</html>

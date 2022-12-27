@@ -1,0 +1,93 @@
+I"<p>As a data or analytics engineer you need to anticipate the unexpected, especially when building pipelines from data sources that you have no control over. While a data pipeline might be a house of cards, with data observability you’re able to keep an eye on any changes to the underlying structure, and be prepared for schema changes.</p>
+
+<p>Structure is the key point here, as one of the main ways that a data source can change is the schema, or structure, of a database table. The schema is important because the pipelines you build may have specific downstream uses that are directly tied to the current structure of the data. By staying ahead of schema changes you’ll know about potential issues before they affect the data and downstream uses.</p>
+
+<p>As Angela, a data engineer at Sam’s Club, put it in a <a href="https://twitter.com/i/spaces/1OwGWwZAZDnGQ?s=20">recent interview</a>:</p>
+
+<blockquote>
+  <p>“you never want your end users to actually contact you, (and if they do) you want to be already in the know”</p>
+</blockquote>
+
+<p>Here are 5 schema changes to look out for, and why you should beware of them:</p>
+
+<h2 id="1-additional-columns">1. Additional columns</h2>
+
+<p>Additional columns might seem like one of the more benign changes at first. After all, how could adding some columns to a database affect your pipeline?</p>
+
+<h3 id="why-you-should-beware">Why you should beware</h3>
+
+<p>After a new column is added, there’s no easy way to know if the data was backfilled, without manually checking. That is, for each row, was the data retroactively added? If not, there may be null, zero, or empty values, and you won’t know if they represent valid data or not. This could be problematic if you start using the new column without first knowing the backfill status.</p>
+
+<h2 id="2-column-type-and-attribute-changes">2. Column type and attribute changes</h2>
+
+<p>Column types are important because they enforce the type of data contained in the column. The way you use the data of a column is based on the expectation that the data is of a certain type. Examples of column type changes include:</p>
+
+<ul>
+  <li>A numeric column changing to string, and vice-versa.</li>
+  <li>A numeric type change, such as a decimal changing to an integer.</li>
+  <li>Date is a tricky one — is it Date, Datetime, or Timestamp?</li>
+</ul>
+
+<h3 id="why-you-should-beware-1">Why you should beware</h3>
+
+<p>If you’re expecting a float and get an integer, this could affect the accuracy of any calculations based on the data, especially if you require a certain precision (see column attributes).</p>
+
+<p>Sometimes, column types might not even be enforced, so you might run into problems with mixing types, such as storing text and numbers in the same column. This means you need to be very careful about checking the format of the data.</p>
+
+<h2 id="3-column-attributes-and-constraints">3. Column attributes and constraints</h2>
+
+<p>Column attributes refer to the format of the stored data. Things like:</p>
+
+<ul>
+  <li>String length</li>
+  <li>Size of an integer</li>
+  <li>Decimal precision</li>
+  <li>Date format</li>
+  <li>Default values</li>
+  <li>If NULL values are allowed</li>
+</ul>
+
+<h3 id="why-you-should-beware-2">Why you should beware</h3>
+
+<p>Changes to numeric types such as integer size, or precision, could affect downstream calculations.</p>
+
+<p>The format of the date could also wreak havoc on your dashboard — is it DD-MM-YYYY, or MM-DD-YYYY? What time zone is this for? These are important questions to ask if you’re building a dashboard that relies on time-specific data.</p>
+
+<p>If the limit on the length of strings changes, it could result in truncated data. An issue that might go unnoticed if not manually checked for.</p>
+
+<h2 id="4-column-renaming">4. Column renaming</h2>
+
+<p>Renaming a column is a big change. If tables are being used in production you’d hope to be notified of a change such as this, but with third party data sources that might not happen. This one could really get you if you’re not paying attention.</p>
+
+<h3 id="why-you-should-beware-3">Why you should beware</h3>
+
+<p>Your transformations and data modeling queries rely heavily on column naming. One column name-change could result in a broken pipeline causing data to stop flowing downstream.</p>
+
+<h2 id="5-column-misuse">5. Column misuse</h2>
+
+<p>Column misuse is more of a data quality issue than a schema change but, like a schema change, could cause issues for you when using the data. When a column is repurposed, it’s used for a purpose it wasn’t originally intended for. If there’s no data dictionary, or documentation is not kept up-to-date, then you could easily be caught out by this one.</p>
+
+<h3 id="why-you-should-beware-4">Why you should beware</h3>
+
+<p>One example of column misuse is putting additional data into a column, instead of creating another column. For instance, a product sales table might start including product attributes, such as size and color, in the description column, instead of creating new columns for the attributes.</p>
+
+<p>The meaning of a column might also change over time and, instead of adjusting the database accordingly, an existing column is ‘repurposed’ for use. Without you knowing, the column now includes completely different data than what you expect.</p>
+
+<h2 id="how-to-avoid-being-caught-out">How to avoid being caught out</h2>
+
+<p>As mentioned in the introduction, it’s all a matter of having the knowledge that a change has taken place — As the saying goes “<a href="https://knowyourmeme.com/memes/france-is-bacon">knowledge is power, France is bacon</a>”. If you know a change has taken place, you can react and make sure that data pipeline continues to work, before downstream issues occur.</p>
+
+<p>For data teams, that knowledge comes from <a href="https://blog.infuseai.io/data-monitoring-be-the-master-of-your-pipeline-ba464b66888">data monitoring and observability</a>. With proper data observability in place you can know the current structure of the database, and how that compares to previous states.</p>
+
+<p>Highlighting that schema changes have taken place, along with other data changes, is one of the things <a href="https://blog.infuseai.io/how-to-be-more-confident-making-data-model-changes-76a2f65feffa">we’re working on</a> with <a href="https://github.com/infuseai/piperider">PipeRider</a>.</p>
+
+<h2 id="your-experiences">Your experiences</h2>
+
+<p>Have you been bitten by schema change? Let me know what happened and how you discovered the change.</p>
+
+<p>If I missed any important or obvious schema changes to look out for, please tell me and I’ll improve the list.</p>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Watch out for that schema change! It&#39;s a doozy!<br /><br />As a data engineer, you&#39;re always alerted to upstream table changes, right? (yes that&#39;s sarcasm😛)<br /><br />Use PipeRider to make sure you don&#39;t get caught off guard:<a href="https://t.co/2sFy2ikXYA">https://t.co/2sFy2ikXYA</a><a href="https://twitter.com/hashtag/snowflake?src=hash&amp;ref_src=twsrc%5Etfw">#snowflake</a> <a href="https://twitter.com/hashtag/dataengineering?src=hash&amp;ref_src=twsrc%5Etfw">#dataengineering</a> <a href="https://twitter.com/hashtag/datareliability?src=hash&amp;ref_src=twsrc%5Etfw">#datareliability</a> <a href="https://t.co/m9zpuUP1jY">pic.twitter.com/m9zpuUP1jY</a></p>&mdash; InfuseAI (@InfuseAI) <a href="https://twitter.com/InfuseAI/status/1599780636826472449?ref_src=twsrc%5Etfw">December 5, 2022</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+:ET

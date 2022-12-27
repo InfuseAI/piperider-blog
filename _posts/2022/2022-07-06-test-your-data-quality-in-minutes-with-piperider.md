@@ -116,17 +116,17 @@ Two reports can also be compared showing the differences between the data profil
 
 PipeRider is so easy to use there really is no excuse for not picking up on that data drift. All you need to do it:
 
-1.  [Install PipeRider](https://docs.piperider.io/install-piperider) (a quick install with pip)
+1.  [Install PipeRider](https://docs.piperider.io/cli/install-piperider) (a quick install with pip)
 2.  Point it to your data warehouse --- if you're using dbt your settings will be auto-detected
-3.  With one [command](https://docs.piperider.io/piperider-cli) you can generate a data profile, with suggested assertions, and output a report
+3.  With one [command](https://docs.piperider.io/cli/quick-start#run-piperider-profile-data-and-generate-report) you can generate a data profile, with suggested assertions, and output a report
 
-Check out the [quick-start guide](https://docs.piperider.io/quick-start?utm_source=blog&utm_medium=20220706&utm_id=medium), which includes a sample dataset, for how to use the main features of PipeRider.
+Check out the [quick-start guide](https://docs.piperider.io/cli/quick-start?utm_source=blog&utm_medium=20220706&utm_id=medium), which includes a sample dataset, for how to use the main features of PipeRider.
 
 ## More info
 
 For help using PipeRider, or if you have ideas how we can make it better, get in touch via:
 
--   InfuseAI [Discord community](https://discord.gg/328QcXnkKD)
+-   InfuseAI [Discord community](https://discord.gg/xKxsdPx4d5)
 -   [@infuseai](https://twitter.com/InfuseAI) on Twitter
 -   ⭐️ Star us on [Github](https://github.com/InfuseAI/piperider)
 

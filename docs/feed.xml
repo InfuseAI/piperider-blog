@@ -1,4 +1,85 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://blog.piperider.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.piperider.io/" rel="alternate" type="text/html" /><updated>2022-12-06T16:21:00+08:00</updated><id>https://blog.piperider.io/feed.xml</id><title type="html">PipeRider</title><subtitle>Data Reliability Automated</subtitle><author><name>PipeRider</name></author><entry><title type="html">Data reliability testing for dbt state with PipeRider</title><link href="https://blog.piperider.io/data-reliability-dbt-state-piperider.html" rel="alternate" type="text/html" title="Data reliability testing for dbt state with PipeRider" /><published>2022-12-06T00:00:00+08:00</published><updated>2022-12-06T00:00:00+08:00</updated><id>https://blog.piperider.io/data-reliability-dbt-state-piperider</id><content type="html" xml:base="https://blog.piperider.io/data-reliability-dbt-state-piperider.html"><![CDATA[<p><em>tl;dr PipeRider now supports <a href="https://docs.getdbt.com/reference/node-selection/methods#the-state-method">dbt state</a>! You can profile and run data reliability tests on only the tables that have been modified as part of your dbt state</em></p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://blog.piperider.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.piperider.io/" rel="alternate" type="text/html" /><updated>2022-12-27T10:58:34+08:00</updated><id>https://blog.piperider.io/feed.xml</id><title type="html">PipeRider</title><subtitle>Data Reliability Automated</subtitle><author><name>PipeRider</name></author><entry><title type="html">Share the Spectacular World Cup construction with ChatGPT</title><link href="https://blog.piperider.io/share-the-spectacular-world-cup-construction-with-chatgpt.html" rel="alternate" type="text/html" title="Share the Spectacular World Cup construction with ChatGPT" /><published>2022-12-15T00:00:00+08:00</published><updated>2022-12-15T00:00:00+08:00</updated><id>https://blog.piperider.io/share-the-spectacular-world-cup-construction-with-chatgpt</id><content type="html" xml:base="https://blog.piperider.io/share-the-spectacular-world-cup-construction-with-chatgpt.html"><![CDATA[<p>The <a href="https://www.fifa.com/fifaplus/en/tournaments/mens/worldcup/qatar2022">World Cup</a> ⚽️ and <a href="https://chat.openai.com/chat">ChatGPT</a> have recently been the most popular subjects all across the world. The World Cup is the largest football event conducted every four years, and it is being held in Qatar this year, and ChatGPT is the natural language model for dialogue built by <a href="https://openai.com/">OpenAI</a>.</p>
+
+<p>On 18 December 2022, the World Cup Final will be held in the <a href="https://www.qatar2022.qa/en/tournament/stadiums/lusail-stadium">Lusail Stadium</a> of Lusail city. Lusail city was still desert in 2010 but the new municipality now includes an urban center and an artificial archipelago.</p>
+
+<p>Left: Satellite image of Lusail city in 2010; Right: Satellite image of Lusail city in 2022 (Source: <a href="https://www.bloomberg.com/graphics/2022-what-qatar-built-for-the-world-cup">https://www.bloomberg.com/graphics/2022-what-qatar-built-for-the-world-cup</a>): 
+<img src="221215-chatgpt-1.webp" alt="" /></p>
+
+<p>As ChatGPT would have limited knowledge of the world after 2021, so I’m curious about how ChatGPT will introduce Lusail city. 🤔</p>
+
+<p><img src="/img/posts/221215-chatgpt-2.webp" alt="" /></p>
+
+<p>Anyway, let’s try!</p>
+
+<p><img src="/img/posts/221215-chatgpt-3.webp" alt="" /></p>
+
+<p>It looks great! However, several World Cup aspects are currently missing.</p>
+
+<p>Feed the contents of the answers to the Text-to-Image generator <a href="https://huggingface.co/spaces/stabilityai/stable-diffusion">Stable Diffusion</a>. 🎨</p>
+
+<p>The World Cup element is still missing from the created visualization, as we can see.</p>
+
+<p><img src="/img/posts/221215-chatgpt-4.webp" alt="" /></p>
+
+<p>Okay! I would like to collect some latest information about Lusail city toward World Cup and share it with ChatGPT to see if it can gather more exciting news!</p>
+
+<p>I created the scripts to parse the web contents from the following websites:</p>
+
+<ul>
+  <li><a href="https://www.qatar2022.qa/en/tournament/stadiums/lusail-stadium">https://www.qatar2022.qa/en/tournament/stadiums/lusail-stadium</a></li>
+  <li><a href="https://www.bloomberg.com/graphics/2022-what-qatar-built-for-the-world-cup">https://www.bloomberg.com/graphics/2022-what-qatar-built-for-the-world-cup</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/Lusail">https://en.wikipedia.org/wiki/Lusail</a></li>
+</ul>
+
+<p>Stored in a qatar-worldcup.csv file with described contents and parsed sources.</p>
+
+<p><img src="/img/posts/221215-chatgpt-5.webp" alt="" /></p>
+
+<p>Before we share the raw data with ChatGPT, let’s run the <strong>qatar-worldcup.csv</strong> file through <a href="https://infusesai.pse.is/4ntk57">PipeRider</a>, a data reliability tool that can ensure data quality.</p>
+
+<p>We can examine the data characteristics in PipeRider’s data report and discover that there are some <strong>missing</strong> and <strong>duplicate</strong> contents.</p>
+
+<p><img src="/img/posts/221215-chatgpt-6.webp" alt="" /></p>
+
+<p><img src="/img/posts/221215-chatgpt-7.webp" alt="" /></p>
+
+<p>In <strong>qatar-worldcup.csv</strong>, there are numerous missing values as a result of the script’s attempt to parse text from the image.</p>
+
+<p><img src="/img/posts/221215-chatgpt-8.webp" alt="" /></p>
+
+<p>As for the duplicates, they mainly resulted from the bug of retry logic in our parsing script.</p>
+
+<p><img src="/img/posts/221215-chatgpt-9.webp" alt="" /></p>
+
+<p>After fixing the known issues, the new data report now looks promising!</p>
+
+<p><img src="/img/posts/221215-chatgpt-10.webp" alt="" /></p>
+
+<p>Next, I used another script to automatically communicate parsed contents with ChatGPT. Here are some conversations.</p>
+
+<p><img src="/img/posts/221215-chatgpt-11.webp" alt="" /></p>
+
+<p><img src="/img/posts/221215-chatgpt-12.webp" alt="" /></p>
+
+<p><img src="/img/posts/221215-chatgpt-13.webp" alt="" /></p>
+
+<p>Cool! At the moment, it seems like our friend ChatGPT knows more about Lusail City in terms of the World Cup.</p>
+
+<p>Let me ask the same question again!</p>
+
+<p><img src="/img/posts/221215-chatgpt-14.webp" alt="" /></p>
+
+<p>Excellent! The 2022 FIFA World Cup is included in the introduction of Lusail city!</p>
+
+<p>Again, use the <a href="https://huggingface.co/spaces/stabilityai/stable-diffusion">Stable Diffusion</a> to visualize Lusail city from the new ChatGPT’s perspective.</p>
+
+<p><img src="/img/posts/221215-chatgpt-15.webp" alt="" /></p>
+
+<p>Fantastic! Despite the fact that it is far from the actual city of Lusail. 😂</p>
+
+<p>But the visualization shows how much more realistically ChatGPT can explain how a city looks from a sports perspective and how it looks now.</p>
+
+<p>When it becomes a football expert, which I believe it will, I will ask about its predictions for future World Cup champions. 🏆🏆🏆</p>]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[The World Cup ⚽️ and ChatGPT have recently been the most popular subjects all across the world. The World Cup is the largest football event conducted every four years, and it is being held in Qatar this year, and ChatGPT is the natural language model for dialogue built by OpenAI.]]></summary></entry><entry><title type="html">Data reliability testing for dbt state with PipeRider</title><link href="https://blog.piperider.io/data-reliability-dbt-state-piperider.html" rel="alternate" type="text/html" title="Data reliability testing for dbt state with PipeRider" /><published>2022-12-06T00:00:00+08:00</published><updated>2022-12-06T00:00:00+08:00</updated><id>https://blog.piperider.io/data-reliability-dbt-state-piperider</id><content type="html" xml:base="https://blog.piperider.io/data-reliability-dbt-state-piperider.html"><![CDATA[<p><em>tl;dr PipeRider now supports <a href="https://docs.getdbt.com/reference/node-selection/methods#the-state-method">dbt state</a>! You can profile and run data reliability tests on only the tables that have been modified as part of your dbt state</em></p>
 
 <hr />
 
@@ -44,6 +125,9 @@
 </code></pre></div></div>
 
 <p>This command auto compares the last two reports, and only compares tables that appeared in the <em>target</em> report. Which, in this case, would be the report that only includes tables modified as per the dbt state.  This is perfect if you want a report that only focuses on the comparison of modified models before-and-after your latest changes.</p>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">dbt state is a powerful way to build only modified/specified models<br /><br />You can now profile and test <a href="https://twitter.com/hashtag/dbt?src=hash&amp;ref_src=twsrc%5Etfw">#dbt</a> states with PipeRider, available now in version 0.14<br /><br />👀 Read more<a href="https://t.co/vvV3IMhH2Y">https://t.co/vvV3IMhH2Y</a><br /><br />⭐️Star on GitHub<a href="https://t.co/rqp6ynbyeM">https://t.co/rqp6ynbyeM</a><a href="https://twitter.com/hashtag/dataquality?src=hash&amp;ref_src=twsrc%5Etfw">#dataquality</a> <a href="https://twitter.com/hashtag/datareliability?src=hash&amp;ref_src=twsrc%5Etfw">#datareliability</a> <a href="https://twitter.com/hashtag/opensource?src=hash&amp;ref_src=twsrc%5Etfw">#opensource</a> <a href="https://t.co/jk2qvO7uPM">pic.twitter.com/jk2qvO7uPM</a></p>&mdash; InfuseAI (@InfuseAI) <a href="https://twitter.com/InfuseAI/status/1600150571402477569?ref_src=twsrc%5Etfw">December 6, 2022</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <h2 id="get-started-with-piperider">Get started with PipeRider</h2>
 
@@ -138,7 +222,253 @@ piperider init
 
 <p>Have you been bitten by schema change? Let me know what happened and how you discovered the change.</p>
 
-<p>If I missed any important or obvious schema changes to look out for, please tell me and I’ll improve the list.</p>]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[As a data or analytics engineer you need to anticipate the unexpected, especially when building pipelines from data sources that you have no control over. While a data pipeline might be a house of cards, with data observability you’re able to keep an eye on any changes to the underlying structure, and be prepared for schema changes.]]></summary></entry><entry><title type="html">Guide to Data Reliability</title><link href="https://blog.piperider.io/guide-to-data-reliability.html" rel="alternate" type="text/html" title="Guide to Data Reliability" /><published>2022-09-27T00:00:00+08:00</published><updated>2022-09-27T00:00:00+08:00</updated><id>https://blog.piperider.io/guide-to-data-reliability</id><content type="html" xml:base="https://blog.piperider.io/guide-to-data-reliability.html"><![CDATA[<p>Modern organizations have gained unprecedented access to quantitative and qualitative data. With all this information available, it’s become best practice for every team to make data-driven decisions. But there’s a problem.</p>
+<p>If I missed any important or obvious schema changes to look out for, please tell me and I’ll improve the list.</p>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Watch out for that schema change! It&#39;s a doozy!<br /><br />As a data engineer, you&#39;re always alerted to upstream table changes, right? (yes that&#39;s sarcasm😛)<br /><br />Use PipeRider to make sure you don&#39;t get caught off guard:<a href="https://t.co/2sFy2ikXYA">https://t.co/2sFy2ikXYA</a><a href="https://twitter.com/hashtag/snowflake?src=hash&amp;ref_src=twsrc%5Etfw">#snowflake</a> <a href="https://twitter.com/hashtag/dataengineering?src=hash&amp;ref_src=twsrc%5Etfw">#dataengineering</a> <a href="https://twitter.com/hashtag/datareliability?src=hash&amp;ref_src=twsrc%5Etfw">#datareliability</a> <a href="https://t.co/m9zpuUP1jY">pic.twitter.com/m9zpuUP1jY</a></p>&mdash; InfuseAI (@InfuseAI) <a href="https://twitter.com/InfuseAI/status/1599780636826472449?ref_src=twsrc%5Etfw">December 5, 2022</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[As a data or analytics engineer you need to anticipate the unexpected, especially when building pipelines from data sources that you have no control over. While a data pipeline might be a house of cards, with data observability you’re able to keep an eye on any changes to the underlying structure, and be prepared for schema changes.]]></summary></entry><entry><title type="html">How do you know you can trust your data?</title><link href="https://blog.piperider.io/how-do-you-know-you-can-trust-your-data.html" rel="alternate" type="text/html" title="How do you know you can trust your data?" /><published>2022-10-23T00:00:00+08:00</published><updated>2022-10-23T00:00:00+08:00</updated><id>https://blog.piperider.io/how-do-you-know-you-can-trust-your-data</id><content type="html" xml:base="https://blog.piperider.io/how-do-you-know-you-can-trust-your-data.html"><![CDATA[<p>Every decision in business is made based on supporting data. “Data-driven” is more than just a buzzword for meetings, it’s a way for a company to be self-aware. Using metrics derived from all sorts of data, it’s possible to understand the performance of each operational unit in a business. From sales figures to marketing efforts, from time sheets to billable hours, data helps us determine what is the correct decision to make, backed up by proof in the form of metrics.</p>
+
+<p>With data being such a valuable commodity, there has to be trust in it. By the time data makes its way downstream, it could have undergone many transformations on the way. With each ingestion, transformation, or abstraction, there is the possibility of mistakes being introduced into the data pipeline.</p>
+
+<p>At each step of the way along the pipeline, how do you ensure that the data is correct and can be trusted?</p>
+
+<p><img src="/img/posts/221023-1.webp" alt="" />
+<em>If you can’t trust your data, you can’t make data-driven decisions.</em></p>
+
+<h2>　</h2>
+<h2 id="can-we-put-that-in-writing">Can we put that in writing?</h2>
+<p>Recently, <a href="https://dataproducts.substack.com/p/the-rise-of-data-contracts">data contracts</a> have been hailed as the savior of the relationship between data producer and data consumer. Data contracts define the ‘rules of the game’ by explicitly stating things like schema structure, ingestion frequency, source tables, and even contact information for stakeholders.</p>
+
+<p>By clearly <a href="https://davidsj.substack.com/p/yet-another-post-on-data-contracts#%C2%A7what-a-data-contract-should-contain">defining the requirements of the the data</a>, the data producer knows what data to serve, and in what format, and the data consumer knows what they will be receiving.</p>
+
+<p>Once the scale of your data pipeline reaches a certain threshold, and you’re <a href="/data-monitoring-be-the-master-of-your-pipeline.html">collecting metrics <em>about</em> the pipeline</a>, then it might be time to introduce data contracts. As Gleb, of Data Fold, <a href="https://www.datafold.com/blog/the-best-data-contract-is-the-pull-request">puts it</a>, when “metadata becomes big data… when something breaks, figuring out what the origin is becomes a huge task”. If you’re clear about what’s happening between the connections in the pipeline, this task is made a whole lot easier.</p>
+
+<h2 id="-1">　</h2>
+<h2 id="quality-data-prove-it">Quality data? Prove it!</h2>
+
+<p>If you don’t have the luxury of implementing a new system such as data contracts, there are still other things you can do to ensure data quality, and subsequently data trust. Through data profiling and data assertions you’re able to ensure that the data continually meets your requirements.</p>
+
+<p>Data assertions are data ‘contracts’ on some level. Assertions enable you to verify the structure and contents of the data source. If a data assertion fails then you know that some predetermined requirement of the data has not been met. If the the data assertions pass then this is proof that the data meets the needs for downstream use.</p>
+
+<p>Actual proof could take the form of a <a href="https://docs.piperider.io/data-profile-and-metrics/data-profile">data profile</a> that shows a breakdown of metrics about the data, or even better, a set of <a href="https://docs.piperider.io/cli/data-quality-assertions">data assertions</a> and results that prove the data is fit for purpose. By generating profiling reports regularly and automating assertions after ingestions or transformations, you can be sure that unexpected errors are not introduced and the pipeline is functioning correctly.</p>
+
+<h2 id="-2">　</h2>
+<h2 id="the-path-to-data-trust">The path to data trust</h2>
+<p>The path to trust in a data pipeline comes from confidence that the data is complete. In turn, confidence in that data comes from proving that the data meets the needs of the data consumer, either enforced through data contracts, or demonstrated with assertion test results.</p>
+
+<p>Without some form of proof of data quality, or method to determine that data is not changing in a way that might break downstream usage, there’s no real way to trust that data is accurate.</p>
+
+<p>What methods are you using to test data after ingestions or transformations?</p>
+
+<p>Are you using data contracts, either in production or testing?</p>
+
+<p>I’d love to hear about your use-cases and experiences — please leave a comment and share your experience.</p>
+
+<h2 id="-3">　</h2>
+<h3 id="add-data-profiling-to-your-data-reliability-strategy">Add data profiling to your data reliability strategy</h3>
+<p><a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a> is an open-source data reliability CLI tool that adds data profiling and assertions to data warehouses such as BigQuery, Snowflake, Redshift and more. Data profile and assertions results are provided in an HTML report each time you run PipeRider.</p>]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[Every decision in business is made based on supporting data. “Data-driven” is more than just a buzzword for meetings, it’s a way for a company to be self-aware. Using metrics derived from all sorts of data, it’s possible to understand the performance of each operational unit in a business. From sales figures to marketing efforts, from time sheets to billable hours, data helps us determine what is the correct decision to make, backed up by proof in the form of metrics.]]></summary></entry><entry><title type="html">Building Reliable Data Pipelines With Profiling and Assertions</title><link href="https://blog.piperider.io/building-reliable-data-pipelines-with-profiling-and-assertions.html" rel="alternate" type="text/html" title="Building Reliable Data Pipelines With Profiling and Assertions" /><published>2022-10-19T00:00:00+08:00</published><updated>2022-10-19T00:00:00+08:00</updated><id>https://blog.piperider.io/building-reliable-data-pipelines-with-profiling-and-assertions</id><content type="html" xml:base="https://blog.piperider.io/building-reliable-data-pipelines-with-profiling-and-assertions.html"><![CDATA[<p>The process of creating a data pipeline involves taking data from various sources and transforming it to make it useful for specific analytical and/or business purposes. It sounds easy enough but, with increasingly complex pipelines, errors can easily go unnoticed.</p>
+
+<p>Creating error-free data pipelines takes a lot of effort from data engineers, but by using data profiling the task of building and maintaining reliable data pipelines is a lot more manageable.</p>
+
+<hr />
+
+<h2 id="data-profiling-and-assertions-for-quality-assurance">Data profiling and assertions for quality assurance</h2>
+<p>The metrics that data profiling provides can be used to ensure that data meets the requirements it’s intended for, and also enables you (the data engineer) to spot anomalies or anything out of the ordinary. Essentially providing a layer of quality assurance to the pipeline.</p>
+
+<p>When paired with data assertions, the profile can be tested to ensure that metrics are within desired thresholds. This is not only useful for building the pipeline, but also for continued testing throughout the life of the pipeline. Data profiling is an essential part of creating a dedicated data monitoring pipeline so you can become <a href="/data-monitoring-be-the-master-of-your-pipeline.html">‘master of your pipeline’</a>.</p>
+
+<h2>　</h2>
+<h2 id="add-data-profiling-and-assertion-to-your-elt-pipeline">Add data profiling and assertion to your ELT pipeline</h2>
+<p>The idea is to augment the ELT process with two new stages — profiling, and assertions, creating (drum-roll) ELTPA. In this updated process, a testing loop occurs during the pipeline creation to help ensure that the resulting data is robust and reliable, and then continually once the pipeline is in use.</p>
+
+<p>The following diagram demonstrates the process.
+<img src="/img/posts/221019-1.webp" alt="" /></p>
+
+<h2 id="-1">　</h2>
+<h2 id="pipeline-creation">Pipeline creation</h2>
+<p>After data is transformed, it is profiled and tested with assertions. You can write assertions based on stakeholder requirements or, if you are modifying an existing pipeline, then you may already be aware of common issues.</p>
+
+<p>If an assertion fails and generates an error, you can go back to the transformation phase and find the root cause of the problem before continuing the process.</p>
+
+<h2 id="-2">　</h2>
+<h2 id="pipeline-monitoring-and-observability">Pipeline monitoring and observability</h2>
+<p>For continual monitoring, a data profile should also be regularly generated. If the data profile metrics reveal a change in data that needs investigation, you can compare the most recent report with previous reports to see what might have happened.</p>
+
+<p>After the issue is resolved, you can update the data assertions to account for the issue and ensure that testing covers similar situations going forward.</p>
+
+<h2 id="-3">　</h2>
+<h2 id="conclusion">Conclusion</h2>
+<p>A data profile is useful for creating the data pipeline and, when generated regularly, can also be used for monitoring data distribution over time and debugging issues. The addition of assertions makes it a great way to test for data reliability. In many cases, a data profile report can reduce the need for a complex BI dashboard.</p>
+
+<p>If you like this article, please consider liking and sharing on <a href="https://twitter.com/InfuseAI/status/1582733321594753024?s=20&amp;t=Nw2rTYJOoFJAWdNIdMTxfw">Twitter</a>.</p>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Improve your ELT pipeline creation process with data profiling and data assertions<br /><br />These extra steps at a layer of quality control to your pipeline for build and monitoring data pipelines<a href="https://t.co/cXtJx6BwL4">https://t.co/cXtJx6BwL4</a><a href="https://twitter.com/hashtag/dataobservability?src=hash&amp;ref_src=twsrc%5Etfw">#dataobservability</a> <a href="https://twitter.com/dataprofiling?ref_src=twsrc%5Etfw">@dataprofiling</a> <a href="https://twitter.com/hashtag/datareliability?src=hash&amp;ref_src=twsrc%5Etfw">#datareliability</a></p>&mdash; InfuseAI (@InfuseAI) <a href="https://twitter.com/InfuseAI/status/1582733321594753024?ref_src=twsrc%5Etfw">October 19, 2022</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<h2 id="-4">　</h2>
+<h3 id="add-data-profiling-to-your-data-reliability-strategy">Add data profiling to your data reliability strategy</h3>
+<p><a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a> is an open-source data reliability CLI tool that adds data profiling and assertions to data warehouses such as BigQuery, Snowflake, Redshift and more. Data profile and assertions results are provided in an HTML report each time you run PipeRider.</p>]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[The process of creating a data pipeline involves taking data from various sources and transforming it to make it useful for specific analytical and/or business purposes. It sounds easy enough but, with increasingly complex pipelines, errors can easily go unnoticed.]]></summary></entry><entry><title type="html">Data Monitoring — Be the Master of Your Pipeline</title><link href="https://blog.piperider.io/data-monitoring-be-the-master-of-your-pipeline.html" rel="alternate" type="text/html" title="Data Monitoring — Be the Master of Your Pipeline" /><published>2022-10-18T00:00:00+08:00</published><updated>2022-10-18T00:00:00+08:00</updated><id>https://blog.piperider.io/data-monitoring-be-the-master-of-your-pipeline</id><content type="html" xml:base="https://blog.piperider.io/data-monitoring-be-the-master-of-your-pipeline.html"><![CDATA[<p>Data pipelines have evolved from a single series of workloads (or DAG within a system), to more abstract semantics with a mix of orchestrated workflows, internal tools, in-warehouse transformations and 3rd party tools exports or ingestion.</p>
+
+<p>The increasing complexity of data pipelines makes monitoring difficult, to implement an effective data monitoring strategy you need to understand the pipeline completely. This could range from tracking the status of pipeline tasks and setting up alerts, right up to being the ultimate “master of your pipeline” by setting up a dedicated monitoring pipeline with metrics.</p>
+
+<hr />
+
+<h2 id="data-monitoring-is-essential">Data monitoring is essential</h2>
+<p>Once your data pipeline reaches a certain complexity, the requirement for some kind of monitoring is unavoidable. When you get the call (hopefully monitoring can help you avoid the call) that a dashboard is broken because data isn’t being updated, if you’ve got the pipeline metrics available you’ll know where to look first.</p>
+
+<h3 id="understand-whats-happening">Understand what’s happening</h3>
+<p>In its basic form, data monitoring means that you understand what’s happening in the pipeline. Start with understanding the normal execution time for tasks in your data pipelines, then set up SLAs that will raise alerts when they fail.</p>
+
+<p>If you find that individual tasks are hanging, you might set up monitoring for each task separately, and then trigger an alert once a certain time threshold has been exceeded.</p>
+
+<h3 id="how-long-is-too-long">How long is too long?</h3>
+<p>How you determine what is a “normal” amount of time for tasks in your pipeline to execute will differ for each case. This is where some sleuthing on your part is required. You’ll need to track the execution time and then work out what is acceptable</p>
+
+<p>Some data warehouses offer execution statistics and, if you use a data monitoring service, check if event logs are available that will contain lots of metadata about your task executions.</p>
+
+<p>Writing tests for each pipeline can be an extensive task, and it requires a lot of effort to maintain. At some point you might consider a more structured approach.</p>
+
+<h2>　</h2>
+<h2 id="take-it-to-the-next-level">Take it to the next level</h2>
+<p>To get serious about your data monitoring, you can set up a dedicated pipeline for monitoring metrics. In these more complex data monitoring efforts, you can monitor many metrics and set up alerts for each kind of metric.</p>
+
+<h3 id="what-should-you-monitor">What should you monitor?</h3>
+<p>Examples of metrics to monitor could include things like -</p>
+
+<ul>
+  <li>Data freshness</li>
+  <li>Schema types</li>
+  <li>The number of rows in a table</li>
+  <li>The number of inserted rows</li>
+  <li>The percentage of null values</li>
+  <li>The acceptable range of values</li>
+  <li>The distribution of data</li>
+</ul>
+
+<p>The type of metrics you monitor will depend on a mix of what is important to the stakeholder, what issues you are running into on a regular basis and, of course, metrics that you need to monitor to ensure that the pipeline is functioning.</p>
+
+<h3 id="what-are-the-acceptable-thresholds">What are the acceptable thresholds?</h3>
+<p>Once you know the metrics that need to be monitored, you need to figure out acceptable thresholds for these metrics. This will either involve asking the stakeholder, or employing some form of data profiling so you can track the metric over time and determine acceptable values and/or ranges.</p>
+
+<h2 id="-1">　</h2>
+<h2 id="conclusion">Conclusion</h2>
+<p>The complexity of the data monitoring solution you employ will be based on the complexity of your pipeline. I’ve mentioned a few methods that you might use to monitor your data pipelines, but there are many more things to monitor — I’ve not even touched on business logic as that introduced a whole other set of complexity.</p>
+
+<p>What methods are you using for monitoring your data pipelines?</p>
+
+<p>How do you determine what are the important things to monitor and track the metrics over time?</p>
+
+<h2 id="-2">　</h2>
+<h3 id="add-data-profiling-to-your-data-reliability-strategy">Add data profiling to your data reliability strategy</h3>
+<p><a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a> is an open-source data reliability CLI tool that adds data profiling and assertions to data warehouses such as BigQuery, Snowflake, Redshift and more. Data profile and assertions results are provided in an HTML report each time you run PipeRider.</p>
+
+<p>If you found this article useful please consider liking and <a href="https://twitter.com/InfuseAI/status/1582554616092184576?s=20&amp;t=U8_JhQpFZRqjShVTA98vTg">retweeting</a>❤.</p>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Are you master of your domain, er... pipeline?<br /><br />Data pipelines aren&#39;t getting any simpler!<br /><br />What kind of monitoring are you running and which metrics are important to you?<a href="https://t.co/EevD4la0bo">https://t.co/EevD4la0bo</a><a href="https://twitter.com/hashtag/dataobservability?src=hash&amp;ref_src=twsrc%5Etfw">#dataobservability</a> <a href="https://twitter.com/hashtag/datamonitoring?src=hash&amp;ref_src=twsrc%5Etfw">#datamonitoring</a></p>&mdash; InfuseAI (@InfuseAI) <a href="https://twitter.com/InfuseAI/status/1582554616092184576?ref_src=twsrc%5Etfw">October 19, 2022</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[Data pipelines have evolved from a single series of workloads (or DAG within a system), to more abstract semantics with a mix of orchestrated workflows, internal tools, in-warehouse transformations and 3rd party tools exports or ingestion.]]></summary></entry><entry><title type="html">5 Metrics Elon Musk Should Check In Twitter’s Data</title><link href="https://blog.piperider.io/5-metrics-elon-musk-should-check-in-twitter-data.html" rel="alternate" type="text/html" title="5 Metrics Elon Musk Should Check In Twitter’s Data" /><published>2022-10-13T00:00:00+08:00</published><updated>2022-10-13T00:00:00+08:00</updated><id>https://blog.piperider.io/5-metrics-elon-musk-should-check-in-twitter-data</id><content type="html" xml:base="https://blog.piperider.io/5-metrics-elon-musk-should-check-in-twitter-data.html"><![CDATA[<p>The value of Twitter has been <a href="https://www.theverge.com/2022/10/4/23387592/elon-musk-twitter-deal-lawsuit-faq">in the news</a> a lot recently. Antics related to Elon Musk’s possible Twitter buyout has led to a legal battle that may result in Twitter releasing a snapshot of data on its users and tweets. If Musk actually gets his hands on this data, what kind of things might he be looking for?</p>
+
+<hr />
+
+<p>Data profiling is a great way to analyze and explore a dataset. A data profile not only helps you to understand the structure of a dataset, but the statistical metrics are also great for exploratory analysis.</p>
+
+<p>In this article, I take some publicly available Twitter datasets and run them through a <a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">data profiler</a> to see what interesting metrics I can find.</p>
+
+<h2>　</h2>
+<h2 id="the-datasets">The datasets</h2>
+<p>I used two datasets for this analysis:</p>
+
+<ul>
+  <li>A portion of the <a href="https://archive.org/details/archiveteam-twitter-stream-2021-06">Archive Team Twitter Stream</a> dataset from June 2021. This dataset comes in JSON form, so you’ll need to use a tool such as <a href="https://github.com/cantino/twitter_to_csv">twitter_to_csv</a> to convert the raw Twitter API JSON to CSV.</li>
+  <li>A pre-prepared dataset from Kaggle. I found the Gender classification set, with data from 2015, was the most useful as it retained much of the user data, such as profile image URL, retweet count, and profile description.</li>
+</ul>
+
+<p>For both methods I used <a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a>, an open-source CLI tool for profiling datasets. It outputs an HTML report which makes it easy to see the metrics. There are also data assertions if you need to add testing to your dataset.</p>
+
+<h2 id="-1">　</h2>
+<h2 id="the-metrics">The metrics</h2>
+<p>So, what things might Elon Musk, or anyone analyzing the value of a social network data need to look out for? What interesting metrics can be found, and what are the implications in regard to determining the ‘value’ of Twitter users and Tweets.</p>
+
+<h2 id="-2">　</h2>
+<h3 id="1-account-creation-date">1. Account creation date</h3>
+<p>Looking at the account created date in the gender dataset, there are active accounts that date back all the way to 2006.</p>
+
+<p><strong>Implication</strong></p>
+
+<p>Twitter has good user retention, as these are users that have been coming back for years.</p>
+
+<p>Twitter account creation date metric via PipeRider: 
+<img src="/img/posts/221013-1.webp" alt="" /></p>
+
+<h2 id="-3">　</h2>
+<h3 id="2-profile-image">2. Profile image</h3>
+<p>You might not think that a profile image could indicate much, but the notorious <a href="https://www.vox.com/2017/3/31/15139192/twitter-egg-profile-default-change">Twitter egg</a> fiasco proves otherwise. 18.3% of profile images in the Kaggle dataset are duplicates, and it looks like this is because they are using the default image.</p>
+
+<p>The Archive Team dataset was around the same, at 17.1% for my sampling.</p>
+
+<p>Twitter profile image metrics via PipeRider:
+<img src="/img/posts/221013-2.webp" alt="" /></p>
+
+<p><strong>Implication</strong></p>
+
+<p>This could be an indication of throw-away accounts, bots, trolls, or generally users who aren’t invested enough to update their profile image.</p>
+
+<h2 id="-4">　</h2>
+<h3 id="3-duplicated-tweet-content">3. Duplicated Tweet content</h3>
+<p>This doesn’t refer to retweets, or quote tweets, but to tweets with identical content. Why would a tweet contain the same content? There was 8.7% of tweets with duplicated content in the Kaggle dataset.</p>
+
+<p><strong>Implication</strong></p>
+
+<p>This could be an indication of a bot farm spreading propaganda, or users could simply be clicking the “share this article” button on news websites.</p>
+
+<p>Twitter metrics indicate possible bot messages via PipeRider: 
+<img src="/img/posts/221013-3.webp" alt="" /></p>
+
+<p>The Kaggle dataset shows a lot bizarre of Weather Chanel tweets.</p>
+
+<p>Interestingly, these tweets cannot be found by searching Twitter now. All I can find is <a href="https://twitter.com/ArdentCrayon/status/722136691809525764?s=20&amp;t=9IY8SlHv4k813B-xxwjGxw">someone asking</a> why there are so many bots spamming the weather channel.</p>
+
+<p>The Archive Team dataset shows many retweets of an account for a Korean band (I think). The <a href="https://twitter.com/WeareoneEXO">account</a> has 13million followers, so I suppose a few thousand fans retweeting isn’t out of the ordinary.</p>
+
+<p>Tweet content metrics via PipeRider:
+<img src="/img/posts/221013-4.webp" alt="" /></p>
+
+<h2 id="-5">　</h2>
+<h3 id="4-retweet-count">4. Retweet count</h3>
+<p>Retweet count was extremely low in both datasets — 99.9% of the tweets in the Kaggle set were not retweeted.</p>
+
+<p><strong>Implication</strong></p>
+
+<p>It could mean low interaction rates on Twitter, but is probably just an indication that the dataset time frame is too narrow — only an hour, and that it takes a while for a tweet to gain momentum. This could be one to analyze over a period of a few hours or days.</p>
+
+<p>Retweet metrics via PipeRider:
+<img src="/img/posts/221013-5.webp" alt="" /></p>
+
+<h2 id="-6">　</h2>
+<h3 id="5-follower-count">5. Follower count</h3>
+<p>Follower count not only indicates how popular you are, but also if users are interacting and ‘listening’ to each other on Twitter. Are most users shouting into the wind? According to the Archive Team dataset, 4800 users were talking to themselves during that time frame.</p>
+
+<p><strong>Implication</strong></p>
+
+<p>It’s difficult to gauge this one without more analysis of the accounts with zero followers. They could be the bots we mentioned earlier, or just angry loners shouting in the wind.</p>
+
+<p>Follower count metrics via PipeRider: 
+<img src="/img/posts/221013-6.webp" alt="" /></p>
+
+<h2 id="-7">　</h2>
+<h2 id="conclusion">Conclusion</h2>
+<p>Data exploration is fun, even if you’re not a billionaire mulling over the potential purchase of a $44 billion social network.</p>
+
+<p>Data profiling can provide interesting insights into a dataset that you may not have previously thought of. Even the process of cleaning and transforming data in preparation for analysis can yield interesting results. For instance, while importing the Archive Team dataset, I found that there were many ‘deleted’ entries listed. I presume these are deleted tweets, a figure that could also offer some valuable insight.</p>
+
+<h2 id="-8">　</h2>
+<h2 id="add-data-profiling-to-your-data-reliability-strategy">Add data profiling to your data reliability strategy</h2>
+<p>If you’re interested in the tool I used here, check out PipeRider — it’s a CLI tool that profiles all the popular data warehouses and provides an HTML data profile report.</p>
+
+<p>Also, before you finish the reading the contracts for your Twitter purchase, please follow us on Twitter — we’re <a href="https://twitter.com/infuseai">@infuseai</a> ❤</p>
+
+<p>If you found this article interesting please <a href="https://twitter.com/InfuseAI/status/1580574430442377217?s=20&amp;t=GwuHVBwmjPMAU8nWlXetBw">retweet</a> to support more content like this.</p>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">5 Metrics that Elon Musk should check in the Twitter data<br /><br />What would you want to check before dropping $44m on a social network?<a href="https://t.co/LzSxGz5Lz9">https://t.co/LzSxGz5Lz9</a><a href="https://twitter.com/hashtag/opensource?src=hash&amp;ref_src=twsrc%5Etfw">#opensource</a> <a href="https://twitter.com/hashtag/dataprofiling?src=hash&amp;ref_src=twsrc%5Etfw">#dataprofiling</a> <a href="https://twitter.com/hashtag/eda?src=hash&amp;ref_src=twsrc%5Etfw">#eda</a> <a href="https://twitter.com/hashtag/dataanalysis?src=hash&amp;ref_src=twsrc%5Etfw">#dataanalysis</a> <a href="https://twitter.com/hashtag/dataobservability?src=hash&amp;ref_src=twsrc%5Etfw">#dataobservability</a></p>&mdash; InfuseAI (@InfuseAI) <a href="https://twitter.com/InfuseAI/status/1580574430442377217?ref_src=twsrc%5Etfw">October 13, 2022</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[The value of Twitter has been in the news a lot recently. Antics related to Elon Musk’s possible Twitter buyout has led to a legal battle that may result in Twitter releasing a snapshot of data on its users and tweets. If Musk actually gets his hands on this data, what kind of things might he be looking for?]]></summary></entry><entry><title type="html">Guide to Data Reliability</title><link href="https://blog.piperider.io/guide-to-data-reliability.html" rel="alternate" type="text/html" title="Guide to Data Reliability" /><published>2022-09-27T00:00:00+08:00</published><updated>2022-09-27T00:00:00+08:00</updated><id>https://blog.piperider.io/guide-to-data-reliability</id><content type="html" xml:base="https://blog.piperider.io/guide-to-data-reliability.html"><![CDATA[<p>Modern organizations have gained unprecedented access to quantitative and qualitative data. With all this information available, it’s become best practice for every team to make data-driven decisions. But there’s a problem.</p>
 
 <p>You may be collecting a large amount of information within your data stack, but are you certain that these data sets are complete, accurate, and up-to-date? If not, these data sets might cost you a lot.</p>
 
@@ -324,395 +654,116 @@ According to research, one-third of data analysts spend more than 40 percent of 
 
 <h2 id="integrate-data-observability-with-piperider">Integrate Data Observability with PipeRider</h2>
 
-<p>PipeRider is an open-source, free, and easy-to-use data observability tool with data profiling and data quality checks through assertions. It executes no-code data profiling and test assertions against your dataset with simple commands. It recommends assertions to save you time and renders your test results into a visual report in minutes. Using the data profiling report you can verify that the data meets your requirements enabling you to trust your data and make better decisions. PipeRider embraces the modern data stack and connects anywhere on your data pipeline that uses a supported data source.</p>]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[The number of data sources that data teams have to deal with is ever increasing. According to a recent survey by Matillion and IDG, the number of data sources per organization is around 400, with over 20 percent of organizations having 1000 or more. The sheer amount of data makes managing and tracking it increasingly difficult, never mind understanding the bigger picture. That’s where data observability comes in.]]></summary></entry><entry><title type="html">Add Data Profiling and Assertions to dbt with PipeRider</title><link href="https://blog.piperider.io/add-data-profiling-and-assertions-to-dbt-with-piperider.html" rel="alternate" type="text/html" title="Add Data Profiling and Assertions to dbt with PipeRider" /><published>2022-07-26T00:00:00+08:00</published><updated>2022-07-26T00:00:00+08:00</updated><id>https://blog.piperider.io/add-data-profiling-and-assertions-to-dbt-with-piperider</id><content type="html" xml:base="https://blog.piperider.io/add-data-profiling-and-assertions-to-dbt-with-piperider.html"><![CDATA[<h3 id="tldr">tl;dr</h3>
+<p>PipeRider is an open-source, free, and easy-to-use data observability tool with data profiling and data quality checks through assertions. It executes no-code data profiling and test assertions against your dataset with simple commands. It recommends assertions to save you time and renders your test results into a visual report in minutes. Using the data profiling report you can verify that the data meets your requirements enabling you to trust your data and make better decisions. PipeRider embraces the modern data stack and connects anywhere on your data pipeline that uses a supported data source.</p>]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[The number of data sources that data teams have to deal with is ever increasing. According to a recent survey by Matillion and IDG, the number of data sources per organization is around 400, with over 20 percent of organizations having 1000 or more. The sheer amount of data makes managing and tracking it increasingly difficult, never mind understanding the bigger picture. That’s where data observability comes in.]]></summary></entry><entry><title type="html">Adding Data Observability and Alerts to your Data Pipeline is easier than you think</title><link href="https://blog.piperider.io/adding-data-observability-and-alerts-to-your-data-pipeline-is-easier-than-you-think.html" rel="alternate" type="text/html" title="Adding Data Observability and Alerts to your Data Pipeline is easier than you think" /><published>2022-09-05T00:00:00+08:00</published><updated>2022-09-05T00:00:00+08:00</updated><id>https://blog.piperider.io/adding-data-observability-and-alerts-to-your-data-pipeline-is-easier-than-you-think</id><content type="html" xml:base="https://blog.piperider.io/adding-data-observability-and-alerts-to-your-data-pipeline-is-easier-than-you-think.html"><![CDATA[<p>After you’ve transformed the data in your data warehouse and sent it on its way, you might think that your job is done. That is, until you get a call that there’s missing data, an unexpected schema change, or some unexpected data or outlier has been introduced. To understand when these issues might have occurred, you need some form of data observability for your pipeline.</p>
 
-<p>Data profiling helps you understand your data. When used with data assertions, a data profile can be used to determine data reliability. PipeRider is a non-intrusive open-source platform for adding profiling and assertions to data sources (such as dbt, Postgres, Snowflake). Star PipeRider on <a href="https://github.com/InfuseAI/piperider">Github</a>.</p>
+<p>Data observability means that you can monitor the data moving through the pipeline, be alerted to any changes or issues with the data structure, and compare data to help visualize change and aid in tracking down issues.</p>
 
-<h3 id="why-data-profiling">Why Data profiling?</h3>
+<hr />
 
-<p>Profiling is super important for understanding your data. A data profile is essentially data <em>about</em> your data. On its own a data profile can provide interesting insights about the data, but the real value comes from pairing the profile with data assertions. Together they form the basis of data reliability. Through data assertions you can define the acceptable norms for your data, and then test that your profile meets this specification.</p>
+<p>With the open-source data observability toolkit, <a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a>, you can add data observability to your data source and start understanding more about your data in minutes with:</p>
 
-<h3 id="datapipelinerider">[data]Pipe[line]Rider</h3>
+<p>Non-intrusive implementation — Focus on understanding your data without changing it
+Data profiling — In-depth analysis of the structure of your data source
+Data assertions — Ensure your data stays within acceptable ranges through testing
+Reporting — The data profile and testing results are exported to an HTML report
+Following are the steps you need to get starting adding data observability and data assertions to your existing data pipeline.</p>
 
-<p>With PipeRider you can easily add data profiling and assertions to your dbt project* and start profiling and testing your dbt models.</p>
-
-<p>PipeRider shows profiling results on the command line, and also in an HTML report. Plus, if you run your dbt tests as part of the PipeRider run, they’ll also be included in the report.</p>
-
-<p><em>PipeRider also works with other data sources, such as Snowflake, Postgres, SQLite, but for this tutorial I’ll focus on dbt.</em></p>
-
-<p>If you’d prefer to watch how this is done then check out the <a href="https://www.youtube.com/watch?v=dnUq35s8AoY">YouTube video</a>. Otherwise read on.</p>
-
-<h3 id="dbt-yeah-you-know-me">dbt, ‘yeah you know me’</h3>
-
-<p>This guide assumes that you already have a dbt project ready to go, and that your dbt project is using either Snowflake or Postgres as a data source. Let’s add data reliability to your dbt project:</p>
-
-<h3 id="install-piperider">Install PipeRider</h3>
-
-<p>Install PipeRider using pip and specifying the data source your dbt project uses. I recommend using a virtual environment such as <code class="language-plaintext highlighter-rouge">venv</code> or <code class="language-plaintext highlighter-rouge">Conda</code> .</p>
-
-<p><strong>Postgres</strong></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install 'piperider[postgres]'
+<h2 id="1-install-piperider">1. Install PipeRider</h2>
+<p>PipeRider is installed via pip:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install -U piperider
 </code></pre></div></div>
 
-<p><strong>Snowflake</strong></p>
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style>
+<div class="embed-container">    <iframe title="YouTube video player" width="640" height="390" src="//www.youtube.com/embed/vZVHo09fD-c" frameborder="0" allowfullscreen=""></iframe></div>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install 'piperider[snowflake]'
+<p>By default it comes with SQLite, but the following connectors are also available:</p>
+
+<ul>
+  <li>Postgres</li>
+  <li>Snowflake</li>
+  <li>BigQuery</li>
+  <li>Redshift</li>
+  <li>dbt (with one of the supported connectors)</li>
+  <li>duckdb</li>
+  <li>CSV</li>
+  <li>Parquet</li>
+</ul>
+
+<p>Install PipeRider with a connector like this:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install -U 'piperider[postgres,snowflake]'
 </code></pre></div></div>
-
-<p>(don’t forget the quotes)</p>
-
-<h3 id="initialize-piperider">Initialize PipeRider</h3>
-
-<p>Inside your dbt project, run the following command to initialize PipeRider:</p>
+<h2>　</h2>
+<h2 id="2-initialize-a-piperider-project">2. Initialize a PipeRider project</h2>
+<p>Once installed, initialize a new project with the following command.</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider init
 </code></pre></div></div>
 
-<p><img src="/img/posts/220726-2.png" alt="PipeRider init automatically detects your dbt project" title="PipeRider init automatically detects your dbt project" /></p>
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style>
+<div class="embed-container">    <iframe title="YouTube video player" width="640" height="390" src="//www.youtube.com/embed/jRxZQJoMQGc" frameborder="0" allowfullscreen=""></iframe></div>
 
-<p>PipeRider will then automatically detect your dbt data source settings from your <code class="language-plaintext highlighter-rouge">dbt_project.yml</code> and <code class="language-plaintext highlighter-rouge">profiles.yml</code>.</p>
+<p>Just select your data source, enter the relevant details and you’re ready to go. dbt project settings will be auto-detected, so dbt projects really are zero config!</p>
 
-<h3 id="check-your-connection">Check your connection</h3>
-
-<p>To test the connection to your data source, run the diagnose command:</p>
+<p>Verify your connection settings with the diagnose command.</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider diagnose
 </code></pre></div></div>
-
-<p>In the Check Connections section, you should see your dbt models listed.</p>
-
-<p><img src="/img/posts/220726-3.png" alt="Check that PipeRider can connect to your data source" title="Check that PipeRider can connect to your data source" /></p>
-
-<h3 id="run-piperider">Run PipeRider</h3>
-
-<p>Now all you need to do is run PipeRider!</p>
+<h2 id="-1">　</h2>
+<h2 id="3-run-piperider">3. Run PipeRider</h2>
+<p>With a data source connected you’re ready to run PipeRider.</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider run
 </code></pre></div></div>
 
-<p>Since this is a dbt project, you likely already have some dbt tests configured. If you want your dbt tests to appear on your PipeRider report you can add the <code class="language-plaintext highlighter-rouge">--dbt-test</code> or <code class="language-plaintext highlighter-rouge">--dbt-build</code> option to the command. Check the <a href="https://docs.piperider.io/piperider-cli">PipeRider docs</a> for more info on available options.</p>
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style>
+<div class="embed-container">    <iframe title="YouTube video player" width="640" height="390" src="//www.youtube.com/embed/Y9KIqu2DOsg" frameborder="0" allowfullscreen=""></iframe></div>
 
-<h3 id="profile-and-assertions">Profile and Assertions</h3>
-
-<p>PipeRider will profile the tables and columns from your data source and, as this is the first run, prompt to generate some recommended assertion files.</p>
-
-<p><img src="/img/posts/220726-4.png" alt="Data profiled, do you want to generate recommended assertions?" title="Data profiled, do you want to generate recommended assertions?" /></p>
-
-<p>If you choose ‘<strong>yes</strong>’, PipeRider will make assertion files with some sensible defaults based on the current structure of your data.</p>
-
-<p>If you choose ‘<strong>no</strong>’, then PipeRider will create skeleton assertion files.</p>
-
-<p>Choose ‘yes’ and you’ll see that PipeRider creates assertion files for your tables, and then tests them against the recommended assertions.</p>
-
-<p><img src="/img/posts/220726-5.png" alt="PipeRider tests the data source against the assertions" title="PipeRider tests the data source against the assertions" /></p>
-
-<p>As it’s the first run, and you’re using recommended assertions, all of the assertions pass. You’ll find out how to edit the assertions below.</p>
-
-<h3 id="html-report">HTML Report</h3>
-
-<p>At the end of the CLI output, you’ll also find a link to the PipeRider report.</p>
-
-<p><img src="/img/posts/220726-6.png" alt="PipeRider run summary and link to the generated HTML report" title="PipeRider run summary and link to the generated HTML report" /></p>
-
-<p>The report contains the data profile for each table, plus the PipeRider assertion and dbt test results (if you ran those as well).</p>
-
-<p><img src="/img/posts/220726-7.png" alt="A sample of PipeRider's data profile report" title="A sample of PipeRider's data profile report" /></p>
-
-<h3 id="assertions">Assertions</h3>
-
-<p>The recommended assertions provide some sensible defaults that you can use as a starting off point. If you’re confident your data is currently in good health, then you can leave them as-is.</p>
-
-<p>Most likely, you’ll want to review the data profile in your PipeRider report, and then adjust the recommended assertions as you see fit.</p>
-
-<p>The assertion files for your tables can be found in <code class="language-plaintext highlighter-rouge">.piperider/assertions</code></p>
-
-<p><img src="/img/posts/220726-8.png" alt="Assertions files can be found in .piperider/assertions" title="Assertions files can be found in .piperider/assertions" /></p>
-
-<p>Open one of the assertion files and you’ll see the defaults that PipeRider has set up for you.</p>
-
-<p><img src="/img/posts/220726-9.png" alt="An example of a PipeRider recommended assertions file" title="An example of a PipeRider recommended assertions file" /></p>
-
-<p>PipeRider comes with some <a href="https://docs.piperider.io/data-quality-assertions/assertion-configuration">built-in assertions</a> you can use to test your data profile. If you want to get your hands dirty then you can also make <a href="https://docs.piperider.io/data-quality-assertions/custom-assertions">custom assertions</a> — if it’s in your data profile, you can test it.</p>
-
-<p>After updating your assertion files, simply run PipeRider again to test your data profile against the new assertions. Failed assertion results can be viewed both on the CLI, and in the generated reports.</p>
-
-<p><img src="/img/posts/220726-10.png" alt="PipeRider CLI output with failed assertion" title="PipeRider CLI output with failed assertion" /></p>
-
-<h3 id="whats-next">What’s next?</h3>
-
-<p>There’s lots more to check out with PipeRider, such as <a href="https://docs.piperider.io/how-to/compare-reports">comparing reports</a>, regenerating assertions, and <a href="https://docs.piperider.io/how-to/github-action">GitHub actions</a>. Check out the <a href="https://docs.piperider.io/">PipeRider documentation</a> for full details of all features.</p>
-
-<h3 id="infuseai-is-making-data-reliability-tools">InfuseAI is making data reliability tools</h3>
-
-<p>We’re InfuseAI: lovers of open-source, data-quality aficionados.</p>
-
-<p>Tell us you want better data reliability by:</p>
+<p>This one command will do the following:</p>
 
 <ul>
-  <li>Staring PipeRider on <a href="https://github.com/InfuseAI/piperider">Github</a></li>
-  <li>Joining the InfuseAI <a href="https://discord.gg/328QcXnkKD">Discord community</a></li>
-  <li>Saying hi to <a href="https://twitter.com/InfuseAI">@infuseai</a> on Twitter</li>
-  <li>Clapping or giving us some feedback in the comments</li>
+  <li>Profile your data source</li>
+  <li>Generate recommended data assertions (on first run)</li>
+  <li>Test the data profile against the data assertions</li>
+  <li>Display the data assertion test results on the CLI</li>
+  <li>Generate an HTML report with the data profile and test results</li>
 </ul>
 
-<h3 id="if-you-read-here-you-might-want-to-learn-more-about-data-reliability">If you read here, you might want to learn more about data reliability:</h3>
+<h2 id="-2">　</h2>
+<h2 id="4-test-your-piperider-data-profile-with-data-assertions">4. Test your PipeRider data profile with data assertions</h2>
+<p>PipeRider creates a set of recommended assertions based on the current state of your data. You can add to or edit these using the available suite of <a href="https://docs.piperider.io/cli/data-quality-assertions/assertion-configuration">built-in assertions</a>, and through custom assertions you can <a href="https://blog.piperider.io/define-your-own-data-quality-tests-in-piperider.html">create your own data reliability tests</a>.</p>
+
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style>
+<div class="embed-container">    <iframe title="YouTube video player" width="640" height="390" src="//www.youtube.com/embed/t4YHkynRIpI" frameborder="0" allowfullscreen=""></iframe></div>
+
+<h2 id="-3">　</h2>
+<h2 id="5-compare-data-profile-reports">5. Compare data profile reports</h2>
+<p>When your data changes and you have multiple PipeRider runs, compare reports easily with the following command.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider compare-reports
+</code></pre></div></div>
+
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style>
+<div class="embed-container">    <iframe title="YouTube video player" width="640" height="390" src="//www.youtube.com/embed/COohk2TAiPA" frameborder="0" allowfullscreen=""></iframe></div>
+
+<p>You can also compare the last two reports automatically (without needing to manually select them) by using the <code class="language-plaintext highlighter-rouge">--last</code> flag.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider compare-reports —last
+</code></pre></div></div>
+
+<p>　</p>
+<h2 id="sample-reports">Sample Reports</h2>
+<p>Links to example reports will always be available in the PipeRider documentation. Here are samples created with PipeRider 0.7:</p>
+
 <ul>
-  <li><a href="https://blog.piperider.io/data-reliability-automated-with-piperider.html">Data Reliability Automated with PipeRider</a></li>
-  <li><a href="https://blog.piperider.io/guide-to-data-reliability.html">Guide to Data Reliability</a></li>
-</ul>]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[tl;dr]]></summary></entry><entry><title type="html">Test your data quality in minutes with PipeRider</title><link href="https://blog.piperider.io/test-your-data-quality-in-minutes-with-piperider.html" rel="alternate" type="text/html" title="Test your data quality in minutes with PipeRider" /><published>2022-07-06T00:00:00+08:00</published><updated>2022-07-06T00:00:00+08:00</updated><id>https://blog.piperider.io/test-your-data-quality-in-minutes-with-piperider</id><content type="html" xml:base="https://blog.piperider.io/test-your-data-quality-in-minutes-with-piperider.html"><![CDATA[<h1 id="test-your-data-quality-in-minutes-with-piperider">Test your data quality in minutes with PipeRider</h1>
-
-<p><strong>tl;dr</strong> If you missed out on PipeRider’s initial release, then now is a great time to take it for a spin. <strong>Data reliability just got even more reliable with better dbt integration</strong>, data assertion recommendations, and reporting enhancements. PipeRider is <a href="https://github.com/InfuseAI/piperider">open-source</a> and easy to <a href="https://docs.piperider.io/quick-start?utm_source=blog&amp;utm_medium=20220706&amp;utm_id=medium">get started</a>.</p>
-
-<h2 id="piperider-recap">PipeRider Recap</h2>
-
-<p>PipeRider is your open-source data reliability toolkit that connects to your existing data pipelines and provides data profiling, data quality assertions, convenient HTML reports, and integration with popular data warehouses. <a href="https://blog.infuseai.io/data-reliability-automated-with-piperider-7a823521ef11">Read more</a> about the story behind PipeRider’s creation.</p>
-
-<p><img src="/img/posts/220706-2.png" alt="test your data quality within minutes" /></p>
-
-<h2 id="whats-new">What’s New?</h2>
-
-<p>Recent updates to PipeRider include the following features:</p>
-
-<ul>
-  <li><a href="https://blog.infuseai.io/test-your-data-quality-in-minutes-with-piperider-91da57a5c5d5#31b3">Recommended data assertion generation</a> — PipeRider’s intelligently generated assertions give you a head-start on data reliability.</li>
-  <li><a href="https://blog.infuseai.io/test-your-data-quality-in-minutes-with-piperider-91da57a5c5d5#7d35">Improved dbt integration</a> — PipeRider will auto-detect your dbt project and data source settings. You can also run dbt tests with PipeRider and dbt test results are included in your report.</li>
-  <li><a href="https://blog.infuseai.io/test-your-data-quality-in-minutes-with-piperider-91da57a5c5d5#7511">Improved reporting</a> — Automatically generated reports provide data profiling information and assertion results.</li>
+  <li><a href="https://piperider-github-readme.s3.ap-northeast-1.amazonaws.com/run-0.7.0/index.html#/">Sample PipeRider data profile report</a></li>
+  <li><a href="https://piperider-github-readme.s3.ap-northeast-1.amazonaws.com/comparison-0.7.0/index.html">Sample PipeRider report comparison</a></li>
 </ul>
 
-<p>Let’s take a deeper dive into these new features.</p>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">1/ PipeRider is our open-source data reliability tool that brings data profiling and reliability to your data pipeline<br /><br />Here’s a series of rough-and-ready videos to show how easy it is to get started using PipeRider<br /><br />⭐️<a href="https://t.co/6gkuAMEhMz">https://t.co/6gkuAMEhMz</a><a href="https://twitter.com/hashtag/opensource?src=hash&amp;ref_src=twsrc%5Etfw">#opensource</a> <a href="https://twitter.com/hashtag/dataquality?src=hash&amp;ref_src=twsrc%5Etfw">#dataquality</a> <a href="https://t.co/8N6ZGTAAlu">pic.twitter.com/8N6ZGTAAlu</a></p>&mdash; InfuseAI (@InfuseAI) <a href="https://twitter.com/InfuseAI/status/1555112648643350528?ref_src=twsrc%5Etfw">August 4, 2022</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<h2 id="recommended-assertions">Recommended assertions</h2>
+<h2 id="-4">　</h2>
+<h2 id="who-makes-piperider">Who makes PipeRider?</h2>
+<p><a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a> is developed by <a href="https://infuseai.io/">InfuseAI</a>, the company behind the end-to-end machine learning platform <a href="https://www.infuseai.io/primehub-ai-platform">PrimeHub</a>.</p>
 
-<p>The first time you run PipeRider and your data is profiled, PipeRider will offer to generate recommended assertions based on the profile of your data source.</p>
-
-<p>PipeRider analyzes the contents of your data source and makes intelligent suggestions based on the content, such as:</p>
-
-<ul>
-  <li>Asserting which columns require data and should not be null</li>
-  <li>Asserting the schema type for columns</li>
-  <li>Asserting the acceptable range of minimum and maximum values for numerical columns</li>
-</ul>
-
-<p><img src="/img/posts/220706-3.png" alt="PipeRider's CLI tool offers to generate recommended data assertions based on your data profile" title="Generate recommended assertions with PipeRider on first run" /></p>
-
-<p>By using the recommended assertions you give yourself a head start by not having to manually write all of the assertions. Instead, you can tweak and add to the recommendations if necessary.</p>
-
-<p><img src="/img/posts/220706-4.png" alt="An example of a recommended assertions file generate by PipeRider, a data reliability tool" title="Example of PipeRider's recommended assertions for a data source" /></p>
-
-<p>If you’d rather not use the recommendations, PipeRider can also generate empty assertion template files, complete with column names, ready for you to customize with <a href="https://docs.piperider.io/data-quality-assertions/assertion-configuration">built-in assertions</a>, or your own <a href="https://docs.piperider.io/data-quality-assertions/custom-assertions">custom assertions</a>.</p>
-
-<h2 id="dbt-integration">dbt integration</h2>
-
-<p>You can now initialize PipeRider inside your dbt project, this brings PipeRider’s profiling, assertions, and reporting features to your dbt models.</p>
-
-<p><img src="/img/posts/220706-5.png" alt="PipeRider auto-detects your dbt project settings which makes adding data profiling to a dbt project easy" title="PipeRider auto detects your dbt project settings" /></p>
-
-<p>PipeRider will automatically detect your dbt project settings and treat your dbt models as if they were part of your PipeRider project. This includes -</p>
-
-<ul>
-  <li>Profiling dbt models.</li>
-  <li>Generating recommended assertions for dbt models.</li>
-  <li>Testing dbt model data-profiles with PipeRider assertions.</li>
-  <li>Including dbt test results in PipeRider reports.</li>
-</ul>
-
-<p><img src="/img/posts/220706-6.png" alt="PipeRider can run both dbt tests and PipeRider's own assertions with one command" title="PipeRider and dbt tests can be run with one command" /></p>
-
-<p>You can also build your dbt models using PipeRider, which means it’s possible to condense your dbt and PipeRider workflow to one command: <code class="language-plaintext highlighter-rouge">piperider run --dbt-build --dbt-test</code>. This one command will:</p>
-
-<ol>
-  <li>Build your dbt models.</li>
-  <li>Profile your data with PipeRider’s profiler.</li>
-  <li>Run your dbt tests.</li>
-  <li>Test your data profile with PipeRider assertions</li>
-  <li>Generate an HTML report.</li>
-</ol>
-
-<p>Full details and other available options can be found in the <a href="https://docs.piperider.io/piperider-cli">command reference</a>.</p>
-
-<h2 id="improved-reporting">Improved reporting</h2>
-
-<p>Reports are now automatically generated each time you run PipeRider and include the following information.</p>
-
-<ul>
-  <li>All tables included</li>
-  <li>Per-table profiling data</li>
-  <li>Per-table test results</li>
-  <li>Per-table dbt test results</li>
-</ul>
-
-<h3 id="report-overview">Report overview</h3>
-
-<p>The report overview page shows a quick view of which tables or dbt models have been profiled and tested, along with stats about passed and failed tests.</p>
-
-<p><img src="/img/posts/220706-7.png" alt="PipeRider report overview showing both PipeRider assertion results and dbt test results" title="PipeRider report overview showing both PipeRider assertion results and dbt test results" /></p>
-
-<h3 id="per-table-reports">Per-table reports</h3>
-
-<p>Click through to each table to view the data profile detailed test results for that table.</p>
-
-<p><img src="/img/posts/220706-6.png" alt="View detailed per-table information on data profile and test results in PipeRider's report" title="PipeRider data table report features data profile and test results" /></p>
-
-<h3 id="dbt-test-results">dbt test results</h3>
-
-<p>If the PipeRider is run on a dbt project, then the report will include a tab with details of dbt-specific test results.</p>
-
-<p><img src="/img/posts/220706-8.png" alt="View dbt test results in your PipeRider report" title="View dbt test results in your PipeRider report" /></p>
-
-<h3 id="compare-reports">Compare reports</h3>
-
-<p>Two reports can also be compared showing the differences between the data profile for each run, together with the expected and actual results for each test.</p>
-
-<p><img src="/img/posts/220706-9.png" alt="Compare results for two PipeRider runs that shows the difference in data profile and test results" title="Compare two reports from different PipeRider runs" /></p>
-
-<h3 id="no-excuse-for-unreliable-data">No excuse for unreliable data</h3>
-
-<p>PipeRider is so easy to use there really is no excuse for not picking up on that data drift. All you need to do it:</p>
-
-<ol>
-  <li><a href="https://docs.piperider.io/install-piperider">Install PipeRider</a> (a quick install with pip)</li>
-  <li>Point it to your data warehouse — if you’re using dbt your settings will be auto-detected</li>
-  <li>With one <a href="https://docs.piperider.io/piperider-cli">command</a> you can generate a data profile, with suggested assertions, and output a report</li>
-</ol>
-
-<p>Check out the <a href="https://docs.piperider.io/quick-start?utm_source=blog&amp;utm_medium=20220706&amp;utm_id=medium">quick-start guide</a>, which includes a sample dataset, for how to use the main features of PipeRider.</p>
-
-<h2 id="more-info">More info</h2>
-
-<p>For help using PipeRider, or if you have ideas how we can make it better, get in touch via:</p>
-
-<ul>
-  <li>InfuseAI <a href="https://discord.gg/328QcXnkKD">Discord community</a></li>
-  <li><a href="https://twitter.com/InfuseAI">@infuseai</a> on Twitter</li>
-  <li>⭐️ Star us on <a href="https://github.com/InfuseAI/piperider">Github</a></li>
-</ul>
-
-<h2 id="want-to-learn-more-about-data-quality">Want to learn more about data quality?</h2>
-<p>You may also like to read:</p>
-<ul>
-  <li><a href="https://blog.piperider.io/data-reliability-automated-with-piperider.html">Data Reliability Automated with PipeRider</a></li>
-  <li><a href="https://blog.piperider.io/guide-to-data-reliability.html">Guide to Data Reliability</a></li>
-</ul>]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[Test your data quality in minutes with PipeRider]]></summary></entry><entry><title type="html">Data Reliability Automated with PipeRider</title><link href="https://blog.piperider.io/data-reliability-automated-with-piperider.html" rel="alternate" type="text/html" title="Data Reliability Automated with PipeRider" /><published>2022-06-22T00:00:00+08:00</published><updated>2022-06-22T00:00:00+08:00</updated><id>https://blog.piperider.io/data-reliability-automated-with-piperider</id><content type="html" xml:base="https://blog.piperider.io/data-reliability-automated-with-piperider.html"><![CDATA[<p>tl;dr <em>PipeRider is an open-source data reliability toolkit for identifying data quality issues across pipelines. PipeRider was created after months of industry research and it’s </em><a href="https://github.com/InfuseAI/piperider"><em>available now</em></a><em>. Start learning more about the quality of your data by taking PipeRider for a </em><a href="https://docs.piperider.io/quick-start?utm_source=medium&amp;utm_medium=piperider_intro&amp;utm_id=blog"><em>test drive</em></a><em>.</em></p>
-
-<p>It’s been an interesting and fun time at <a href="https://www.infuseai.io/?utm_source=medium&amp;utm_medium=piperider_intro&amp;utm_id=blog">InfuseAI</a> during the latter half of 2021 and the beginning of 2022 as we’ve been working on our new open-source data reliability product, <a href="https://piperider.io/?utm_source=medium&amp;utm_medium=piperider_intro&amp;utm_id=blog">PipeRider</a>.</p>
-
-<hr />
-
-<p><strong>PipeRider — Data Reliability Automated</strong></p>
-
-<p>For a few months we were deep in research as we interviewed many data industry professionals about the tools they use in their daily workflow, and the common issues they run into when working with data. The result of our research was a plan for a new product that would fix these issues at the source — the data source.</p>
-
-<p>That’s where PipeRider comes in — our data reliability toolkit. But first, let’s rewind and look at some of the issues that were raised during our research and how these came to determine what exactly PipeRider would become.</p>
-
-<h2 id="trust-in-data">Trust in Data</h2>
-
-<p>In a data-centric world, trusting your data is essential to make informed business decisions. For organizations that rely heavily on data, blindly trusting the quality of that data is a big ask. Business decisions are so reliant on quality data and, in some cases, trust so lacking, that during our research we heard about instances of data scientists <em>manually</em> checking data to ensure its reliability. An unsustainable situation.</p>
-
-<p><img src="/img/posts/220622-2.png" alt="" /></p>
-
-<h3 id="gut-feeling-is-no-way-to-make-business-decisions">‘Gut feeling’ is no way to make business decisions</h3>
-
-<p>When the data sources were too abundant, making manual checking impossible, sometimes decisions were made on “gut feeling”, with data sources serving only as a reference. Exactly the opposite of what should be happening in data-centric environments.</p>
-
-<p>We found other situations in which BI had so much distrust in the data reports they were receiving that they sought out data engineers to ask questions face-to-face.</p>
-
-<p><img src="/img/posts/220622-3.png" alt="" /></p>
-
-<p>The main takeaway here is that a lack of robust data reliability testing leads to a distrust of data, which in turn leads to wasted time, second-guessing, and decisions led by gut-feeling. In other words — Lost revenue. In those cases when untested data was incorrectly trusted, errors were only noticed when some anomaly was discovered downstream, far too late to prevent any negative effects</p>
-
-<h3 id="learn-from-your-data-nightmares">Learn from your data-nightmares</h3>
-
-<p>We’re not recounting these data-nightmares for dramatic effect, we needed to learn from these mistakes, as the oft-used George Santayana quote says <em>“<strong>Those who cannot remember the past are condemned to repeat it</strong>“</em>… Maybe we should coin a new phrase? <em>“Those who do not test their data, are condemned to data decay”</em>. (Not as catchy? Oh well)</p>
-
-<p>The research gave us insight into some essential attributes of a data reliability tool:</p>
-
-<ul>
-  <li>It should help manage the complexity of data pipelines, providing data profiles to help you keep ahead of show-stopping data changes. The last thing you want is to be checking logs after something breaks.</li>
-  <li>It should fit into your existing tool ecosystem, and enable you to seamlessly insert it between stages in the pipeline. Users can’t be expected to completely rework their pipelines to fit in a data quality tool.</li>
-  <li>It should allow users to trust their data, and prove the data is trustworthy by providing useful and insightful reporting.</li>
-</ul>
-
-<h2 id="riding-the-data-pipeline">Riding the data pipeline</h2>
-
-<p>PipeRider is a data reliability tool which ensures the health of your data. It does this by profiling the data and schema and then applying data assertions to ensure that the integrity of the data is retained.</p>
-
-<h3 id="maintain-a-high-profile">Maintain a high-profile</h3>
-
-<p>Hands on, the idea behind PipeRider is simple -</p>
-
-<ol>
-  <li>Connect it to your data source at any point in your pipeline.</li>
-  <li>Run PipeRider to generate a data profile.</li>
-  <li>Test the profile against your data assertions.</li>
-</ol>
-
-<p>The data profile works on both the table and column level and provides information such as the number of rows, schema structure, distribution of column data, ranges etc.</p>
-
-<p><img src="/img/posts/220622-4.png" alt="PipeRider profiles a data source" title="PipeRider profiles a data source" /></p>
-
-<p>Assertions provide a way for you to define your expectations of the data, and then test your data source against these assertions. Each time you run PipeRider, your data is profiled and checked against these assertions. If any of the profiled data falls outside the bounds of your assertions then the test fails and an alert raised.</p>
-
-<h3 id="be-assertive">Be assertive</h3>
-
-<p>PipeRider comes bundled with a set of data assertions that you can implement by adding them to your data assertions file. These ready made assertions allow you to test factors of your data such as:</p>
-
-<ul>
-  <li>Ensuring that certain column exists.</li>
-  <li>Ensuring the uniqueness of a column.</li>
-  <li>Ensuring the data type of a column.</li>
-  <li>Testing for null values.</li>
-  <li>Applying acceptable ranges to minimum and maximum values of a column.</li>
-  <li>Monitoring for schema changes between runs.</li>
-</ul>
-
-<p><img src="/img/posts/220622-5.png" alt="PipeRider run with assertion results" title="PipeRider run with assertion results" /></p>
-
-<p>When your data source is profiled for the first time, PipeRider will output an assertion template for each table. Then you only need to apply your desired assertions to each column and the next time PipeRider runs, your data will be tested against the assertion files.</p>
-
-<h2 id="customized-assertions-for-your-needs">Customized assertions for your needs</h2>
-
-<p>In addition to the built-in assertions, PipeRider also has a plugin system that allows you to create your own custom assertions. So long as the information is contained in the PipeRider data profile, then you can test against it. All that is required is a little Python knowledge and you can create assertions to test all aspects of your data profile — a task that is well within reach of all data engineers.</p>
-
-<h2 id="data-quality-reports">Data quality reports</h2>
-
-<p>Running data checks on the command line isn’t for everyone, especially departments who need the visualize the data in a meaningful way. Each time PipeRider runs, it automatically creates a report on the current state of your data.</p>
-
-<p><img src="/img/posts/220622-6.png" alt="Data quality reports are generated each time PipeRider runs" title="Data quality reports are generated each time PipeRider runs" /></p>
-
-<p>If any data assertions have failed, or the schema has changed in any way, then the report will show this information, along with the profiling information for the data source. Reports provide a convenient way to share data profiling and assertion results to users who aren’t interested in running commands in the terminal.</p>
-
-<p>Comparison reports are also available to compare the results of two different PipeRider reports and see how data has changed between profiling and testing runs.</p>
-
-<h2 id="the-future-is-automated">The future is automated</h2>
-
-<p>PipeRider has only just seen its first public release, but we’re moving fast on our roadmap to implement even more features to ensure the reliability of your data.</p>
-
-<p>One feature we’re really excited about is automatically suggesting tests based on your data profile. Right now it’s up to you set decide on which assertions to use for which columns, but the new version of our profiler will intelligently analyze your data source and suggest recommended tests based on the structure of your data.</p>
-
-<p>For instance, PipeRider might suggest that a certain column should be within a numerical range, the content should belong to a set of values, or automatically detect that a column should adhere to some business logic format such as email address, date, IP etc. This could really speed up the time to implement data reliability checks and even shed light on previously overlooked data .</p>
-
-<p>In addition, we’ve got more data warehouse support coming, insight into data lineage, integration with dbt tests, and also enhanced notifications through popular communication platforms such as Slack.</p>
-
-<h2 id="join-us-on-the-data-reliability-journey">Join us on the data reliability journey</h2>
-
-<p>As the developer adage goes — release early, release often. We’ve released PipeRider with what we feel is a solid base of features that we are already building on, and we want you to come with us on the journey and help us make PipeRider meet your needs.</p>
-
-<p>PipeRider is an open source project, and with all our projects at InfuseAI, that means you are welcome to contribute to the project. A contribution could be anything — code if you’re a developer, a bug report or feature request if you’re a user, or simply your thoughts about the project after using it.</p>
-
-<p>It’s easy to take PipeRider for a test drive, just head over to the <a href="https://docs.piperider.io/quick-start?utm_source=medium&amp;utm_medium=piperider_intro&amp;utm_id=blog">Quick Start</a> guide in our documentation. We’ve got a sample dataset ready for you to use, so you won’t need to connect to an existing project to try it out.</p>
-
-<p>After using PipeRider we’d appreciate your feedback! Get in touch through whichever platform you prefer:</p>
-
-<ul>
-  <li>GitHub: <a href="https://github.com/InfuseAI/piperider">https://github.com/InfuseAI/piperider</a></li>
-  <li>Twitter: <a href="https://twitter.com/InfuseAI">@InfuseAI</a></li>
-  <li>Discord: <a href="https://discord.com/invite/328QcXnkKD">InfuseAI Community</a></li>
-</ul>
-
-<hr />
-<h4 id="learn-more-about">Learn more about</h4>
-<ul>
-  <li><a href="https://blog.piperider.io/guide-to-data-observability.html">Data Observability Explained and How to Integrate It into Your Workflow</a></li>
-  <li><a href="https://blog.piperider.io/guide-to-data-reliability.html">Guide to Data Reliability</a></li>
-</ul>]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[tl;dr PipeRider is an open-source data reliability toolkit for identifying data quality issues across pipelines. PipeRider was created after months of industry research and it’s available now. Start learning more about the quality of your data by taking PipeRider for a test drive.]]></summary></entry></feed>
+<p>InfuseAI has an impressive <a href="https://github.com/InfuseAI/">portfolio of open-source projects</a> so you know you’re in good hands!</p>]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[After you’ve transformed the data in your data warehouse and sent it on its way, you might think that your job is done. That is, until you get a call that there’s missing data, an unexpected schema change, or some unexpected data or outlier has been introduced. To understand when these issues might have occurred, you need some form of data observability for your pipeline.]]></summary></entry></feed>

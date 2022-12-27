@@ -1,0 +1,135 @@
+I"�"<h1 id="test-your-data-quality-in-minutes-with-piperider">Test your data quality in minutes with PipeRider</h1>
+
+<p><strong>tl;dr</strong> If you missed out on PipeRider’s initial release, then now is a great time to take it for a spin. <strong>Data reliability just got even more reliable with better dbt integration</strong>, data assertion recommendations, and reporting enhancements. PipeRider is <a href="https://github.com/InfuseAI/piperider">open-source</a> and easy to <a href="https://docs.piperider.io/quick-start?utm_source=blog&amp;utm_medium=20220706&amp;utm_id=medium">get started</a>.</p>
+
+<h2 id="piperider-recap">PipeRider Recap</h2>
+
+<p>PipeRider is your open-source data reliability toolkit that connects to your existing data pipelines and provides data profiling, data quality assertions, convenient HTML reports, and integration with popular data warehouses. <a href="https://blog.infuseai.io/data-reliability-automated-with-piperider-7a823521ef11">Read more</a> about the story behind PipeRider’s creation.</p>
+
+<p><img src="/img/posts/220706-2.png" alt="test your data quality within minutes" /></p>
+
+<h2 id="whats-new">What’s New?</h2>
+
+<p>Recent updates to PipeRider include the following features:</p>
+
+<ul>
+  <li><a href="https://blog.infuseai.io/test-your-data-quality-in-minutes-with-piperider-91da57a5c5d5#31b3">Recommended data assertion generation</a> — PipeRider’s intelligently generated assertions give you a head-start on data reliability.</li>
+  <li><a href="https://blog.infuseai.io/test-your-data-quality-in-minutes-with-piperider-91da57a5c5d5#7d35">Improved dbt integration</a> — PipeRider will auto-detect your dbt project and data source settings. You can also run dbt tests with PipeRider and dbt test results are included in your report.</li>
+  <li><a href="https://blog.infuseai.io/test-your-data-quality-in-minutes-with-piperider-91da57a5c5d5#7511">Improved reporting</a> — Automatically generated reports provide data profiling information and assertion results.</li>
+</ul>
+
+<p>Let’s take a deeper dive into these new features.</p>
+
+<h2 id="recommended-assertions">Recommended assertions</h2>
+
+<p>The first time you run PipeRider and your data is profiled, PipeRider will offer to generate recommended assertions based on the profile of your data source.</p>
+
+<p>PipeRider analyzes the contents of your data source and makes intelligent suggestions based on the content, such as:</p>
+
+<ul>
+  <li>Asserting which columns require data and should not be null</li>
+  <li>Asserting the schema type for columns</li>
+  <li>Asserting the acceptable range of minimum and maximum values for numerical columns</li>
+</ul>
+
+<p><img src="/img/posts/220706-3.png" alt="PipeRider's CLI tool offers to generate recommended data assertions based on your data profile" title="Generate recommended assertions with PipeRider on first run" /></p>
+
+<p>By using the recommended assertions you give yourself a head start by not having to manually write all of the assertions. Instead, you can tweak and add to the recommendations if necessary.</p>
+
+<p><img src="/img/posts/220706-4.png" alt="An example of a recommended assertions file generate by PipeRider, a data reliability tool" title="Example of PipeRider's recommended assertions for a data source" /></p>
+
+<p>If you’d rather not use the recommendations, PipeRider can also generate empty assertion template files, complete with column names, ready for you to customize with <a href="https://docs.piperider.io/data-quality-assertions/assertion-configuration">built-in assertions</a>, or your own <a href="https://docs.piperider.io/data-quality-assertions/custom-assertions">custom assertions</a>.</p>
+
+<h2 id="dbt-integration">dbt integration</h2>
+
+<p>You can now initialize PipeRider inside your dbt project, this brings PipeRider’s profiling, assertions, and reporting features to your dbt models.</p>
+
+<p><img src="/img/posts/220706-5.png" alt="PipeRider auto-detects your dbt project settings which makes adding data profiling to a dbt project easy" title="PipeRider auto detects your dbt project settings" /></p>
+
+<p>PipeRider will automatically detect your dbt project settings and treat your dbt models as if they were part of your PipeRider project. This includes -</p>
+
+<ul>
+  <li>Profiling dbt models.</li>
+  <li>Generating recommended assertions for dbt models.</li>
+  <li>Testing dbt model data-profiles with PipeRider assertions.</li>
+  <li>Including dbt test results in PipeRider reports.</li>
+</ul>
+
+<p><img src="/img/posts/220706-6.png" alt="PipeRider can run both dbt tests and PipeRider's own assertions with one command" title="PipeRider and dbt tests can be run with one command" /></p>
+
+<p>You can also build your dbt models using PipeRider, which means it’s possible to condense your dbt and PipeRider workflow to one command: <code class="language-plaintext highlighter-rouge">piperider run --dbt-build --dbt-test</code>. This one command will:</p>
+
+<ol>
+  <li>Build your dbt models.</li>
+  <li>Profile your data with PipeRider’s profiler.</li>
+  <li>Run your dbt tests.</li>
+  <li>Test your data profile with PipeRider assertions</li>
+  <li>Generate an HTML report.</li>
+</ol>
+
+<p>Full details and other available options can be found in the <a href="https://docs.piperider.io/piperider-cli">command reference</a>.</p>
+
+<h2 id="improved-reporting">Improved reporting</h2>
+
+<p>Reports are now automatically generated each time you run PipeRider and include the following information.</p>
+
+<ul>
+  <li>All tables included</li>
+  <li>Per-table profiling data</li>
+  <li>Per-table test results</li>
+  <li>Per-table dbt test results</li>
+</ul>
+
+<h3 id="report-overview">Report overview</h3>
+
+<p>The report overview page shows a quick view of which tables or dbt models have been profiled and tested, along with stats about passed and failed tests.</p>
+
+<p><img src="/img/posts/220706-7.png" alt="PipeRider report overview showing both PipeRider assertion results and dbt test results" title="PipeRider report overview showing both PipeRider assertion results and dbt test results" /></p>
+
+<h3 id="per-table-reports">Per-table reports</h3>
+
+<p>Click through to each table to view the data profile detailed test results for that table.</p>
+
+<p><img src="/img/posts/220706-6.png" alt="View detailed per-table information on data profile and test results in PipeRider's report" title="PipeRider data table report features data profile and test results" /></p>
+
+<h3 id="dbt-test-results">dbt test results</h3>
+
+<p>If the PipeRider is run on a dbt project, then the report will include a tab with details of dbt-specific test results.</p>
+
+<p><img src="/img/posts/220706-8.png" alt="View dbt test results in your PipeRider report" title="View dbt test results in your PipeRider report" /></p>
+
+<h3 id="compare-reports">Compare reports</h3>
+
+<p>Two reports can also be compared showing the differences between the data profile for each run, together with the expected and actual results for each test.</p>
+
+<p><img src="/img/posts/220706-9.png" alt="Compare results for two PipeRider runs that shows the difference in data profile and test results" title="Compare two reports from different PipeRider runs" /></p>
+
+<h3 id="no-excuse-for-unreliable-data">No excuse for unreliable data</h3>
+
+<p>PipeRider is so easy to use there really is no excuse for not picking up on that data drift. All you need to do it:</p>
+
+<ol>
+  <li><a href="https://docs.piperider.io/cli/install-piperider">Install PipeRider</a> (a quick install with pip)</li>
+  <li>Point it to your data warehouse — if you’re using dbt your settings will be auto-detected</li>
+  <li>With one <a href="https://docs.piperider.io/cli/quick-start#run-piperider-profile-data-and-generate-report">command</a> you can generate a data profile, with suggested assertions, and output a report</li>
+</ol>
+
+<p>Check out the <a href="https://docs.piperider.io/cli/quick-start?utm_source=blog&amp;utm_medium=20220706&amp;utm_id=medium">quick-start guide</a>, which includes a sample dataset, for how to use the main features of PipeRider.</p>
+
+<h2 id="more-info">More info</h2>
+
+<p>For help using PipeRider, or if you have ideas how we can make it better, get in touch via:</p>
+
+<ul>
+  <li>InfuseAI <a href="https://discord.gg/xKxsdPx4d5">Discord community</a></li>
+  <li><a href="https://twitter.com/InfuseAI">@infuseai</a> on Twitter</li>
+  <li>⭐️ Star us on <a href="https://github.com/InfuseAI/piperider">Github</a></li>
+</ul>
+
+<h2 id="want-to-learn-more-about-data-quality">Want to learn more about data quality?</h2>
+<p>You may also like to read:</p>
+<ul>
+  <li><a href="https://blog.piperider.io/data-reliability-automated-with-piperider.html">Data Reliability Automated with PipeRider</a></li>
+  <li><a href="https://blog.piperider.io/guide-to-data-reliability.html">Guide to Data Reliability</a></li>
+</ul>
+:ET

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Building Reliable Data Pipelines With Profiling and Assertions - PipeRider
+    
+  </title>
+
+  <meta name="description" content="The process of creating a data pipeline involves taking data from various sources and transforming it to make it useful for specific analytical and/or busine...">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Building Reliable Data Pipelines With Profiling and Assertions | PipeRider</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Building Reliable Data Pipelines With Profiling and Assertions" />
+<meta name="author" content="PipeRider" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The process of creating a data pipeline involves taking data from various sources and transforming it to make it useful for specific analytical and/or business purposes. It sounds easy enough but, with increasingly complex pipelines, errors can easily go unnoticed." />
+<meta property="og:description" content="The process of creating a data pipeline involves taking data from various sources and transforming it to make it useful for specific analytical and/or business purposes. It sounds easy enough but, with increasingly complex pipelines, errors can easily go unnoticed." />
+<link rel="canonical" href="https://blog.piperider.io/building-reliable-data-pipelines-with-profiling-and-assertions.html" />
+<meta property="og:url" content="https://blog.piperider.io/building-reliable-data-pipelines-with-profiling-and-assertions.html" />
+<meta property="og:site_name" content="PipeRider" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-10-19T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Building Reliable Data Pipelines With Profiling and Assertions" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"PipeRider"},"dateModified":"2022-10-19T00:00:00+08:00","datePublished":"2022-10-19T00:00:00+08:00","description":"The process of creating a data pipeline involves taking data from various sources and transforming it to make it useful for specific analytical and/or business purposes. It sounds easy enough but, with increasingly complex pipelines, errors can easily go unnoticed.","headline":"Building Reliable Data Pipelines With Profiling and Assertions","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.piperider.io/building-reliable-data-pipelines-with-profiling-and-assertions.html"},"url":"https://blog.piperider.io/building-reliable-data-pipelines-with-profiling-and-assertions.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://blog.piperider.io/building-reliable-data-pipelines-with-profiling-and-assertions.html">
+  <link rel="alternate" type="application/rss+xml" title="PipeRider" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <img src="/img/piperider-logo.svg" alt="PipeRider Logo">
+      PipeRider
+    </a>    
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <!-- <a class="nav-link" href="/">Home</a> -->
+          <a class="nav-link" href="https://piperider.io">PipeRider Website</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://docs.piperider.io">Documentation</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/infuseai/piperider">GitHub</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="/contact">Contact</a>
+        </li> -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"  role="button" data-toggle="dropdown" aria-expanded="false">Community</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="https://discord.gg/328QcXnkKD">Discord</a>
+            <a class="dropdown-item" href="mailto:support@piperider.io">Support</a>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+
+  <header class="piperider-masthead">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Building Reliable Data Pipelines With Profiling and Assertions</h1>
+            
+            <h2 class="subheading">Data profiling makes the task of building and maintaining reliable data pipelines a lot more manageable</h2>
+            
+            <span class="meta">Posted by
+              PipeRider
+              
+              &middot; <span class="reading-time" title="Estimated read time">
+  
+   4 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <article class="post-single">
+
+          
+          <div class="featured-image">
+            <img src="/img/posts/221019-0.webp" />
+          </div>
+          
+
+          <p>The process of creating a data pipeline involves taking data from various sources and transforming it to make it useful for specific analytical and/or business purposes. It sounds easy enough but, with increasingly complex pipelines, errors can easily go unnoticed.</p>
+
+<p>Creating error-free data pipelines takes a lot of effort from data engineers, but by using data profiling the task of building and maintaining reliable data pipelines is a lot more manageable.</p>
+
+<hr />
+
+<h2 id="data-profiling-and-assertions-for-quality-assurance">Data profiling and assertions for quality assurance</h2>
+<p>The metrics that data profiling provides can be used to ensure that data meets the requirements it’s intended for, and also enables you (the data engineer) to spot anomalies or anything out of the ordinary. Essentially providing a layer of quality assurance to the pipeline.</p>
+
+<p>When paired with data assertions, the profile can be tested to ensure that metrics are within desired thresholds. This is not only useful for building the pipeline, but also for continued testing throughout the life of the pipeline. Data profiling is an essential part of creating a dedicated data monitoring pipeline so you can become <a href="/data-monitoring-be-the-master-of-your-pipeline.html">‘master of your pipeline’</a>.</p>
+
+<h2>　</h2>
+<h2 id="add-data-profiling-and-assertion-to-your-elt-pipeline">Add data profiling and assertion to your ELT pipeline</h2>
+<p>The idea is to augment the ELT process with two new stages — profiling, and assertions, creating (drum-roll) ELTPA. In this updated process, a testing loop occurs during the pipeline creation to help ensure that the resulting data is robust and reliable, and then continually once the pipeline is in use.</p>
+
+<p>The following diagram demonstrates the process.
+<img src="/img/posts/221019-1.webp" alt="" /></p>
+
+<h2 id="-1">　</h2>
+<h2 id="pipeline-creation">Pipeline creation</h2>
+<p>After data is transformed, it is profiled and tested with assertions. You can write assertions based on stakeholder requirements or, if you are modifying an existing pipeline, then you may already be aware of common issues.</p>
+
+<p>If an assertion fails and generates an error, you can go back to the transformation phase and find the root cause of the problem before continuing the process.</p>
+
+<h2 id="-2">　</h2>
+<h2 id="pipeline-monitoring-and-observability">Pipeline monitoring and observability</h2>
+<p>For continual monitoring, a data profile should also be regularly generated. If the data profile metrics reveal a change in data that needs investigation, you can compare the most recent report with previous reports to see what might have happened.</p>
+
+<p>After the issue is resolved, you can update the data assertions to account for the issue and ensure that testing covers similar situations going forward.</p>
+
+<h2 id="-3">　</h2>
+<h2 id="conclusion">Conclusion</h2>
+<p>A data profile is useful for creating the data pipeline and, when generated regularly, can also be used for monitoring data distribution over time and debugging issues. The addition of assertions makes it a great way to test for data reliability. In many cases, a data profile report can reduce the need for a complex BI dashboard.</p>
+
+<p>If you like this article, please consider liking and sharing on <a href="https://twitter.com/InfuseAI/status/1582733321594753024?s=20&amp;t=Nw2rTYJOoFJAWdNIdMTxfw">Twitter</a>.</p>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Improve your ELT pipeline creation process with data profiling and data assertions<br /><br />These extra steps at a layer of quality control to your pipeline for build and monitoring data pipelines<a href="https://t.co/cXtJx6BwL4">https://t.co/cXtJx6BwL4</a><a href="https://twitter.com/hashtag/dataobservability?src=hash&amp;ref_src=twsrc%5Etfw">#dataobservability</a> <a href="https://twitter.com/dataprofiling?ref_src=twsrc%5Etfw">@dataprofiling</a> <a href="https://twitter.com/hashtag/datareliability?src=hash&amp;ref_src=twsrc%5Etfw">#datareliability</a></p>&mdash; InfuseAI (@InfuseAI) <a href="https://twitter.com/InfuseAI/status/1582733321594753024?ref_src=twsrc%5Etfw">October 19, 2022</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<h2 id="-4">　</h2>
+<h3 id="add-data-profiling-to-your-data-reliability-strategy">Add data profiling to your data reliability strategy</h3>
+<p><a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a> is an open-source data reliability CLI tool that adds data profiling and assertions to data warehouses such as BigQuery, Snowflake, Redshift and more. Data profile and assertions results are provided in an HTML report each time you run PipeRider.</p>
+
+
+
+          
+            <hr class="cta-hr" />
+
+<h2>InfuseAI is solving data quality issues</h2>
+
+<p><a href="https://infuseai.io" target="_blank">InfuseAI</a> makes PipeRider, the open-source data reliability CLI tool that adds data profiling and assertions to data warehouses such as BigQuery, Snowflake, Redshift and more. Data profile and data assertion results are provided in an HTML report each time you run PipeRider.</p>
+
+<ul>
+    <li><a href="https://piperider.io" target="_blank">PipeRider homepage</a></li>
+    <li><a href="https://github.com/infuseai/piperider" target="_blank">PipeRider GitHub repo</a></li>
+    <li>Twitter <a href="https://twitter.com/infuseai" target="_blank">@infuseai</a></li>
+    <li>Mastodon <a href="https://fosstodon.org/@piperider" target="_blank">@piperider@fosstondon.org</a></li>
+</ul>
+          
+            
+
+        </article>
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/data-monitoring-be-the-master-of-your-pipeline.html" data-toggle="tooltip" data-placement="top" title="Data Monitoring — Be the Master of Your Pipeline">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/how-do-you-know-you-can-trust-your-data.html" data-toggle="tooltip" data-placement="top" title="How do you know you can trust your data?">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center social-icons">
+          
+          <li class="list-inline-item">
+            <a href="mailto:support@piperider.io">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/company/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; <a href="https://infuseai.io">InfuseAI</a> 2022</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/atom-one-dark-reasonable.min.css">
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1P3NVFS4NW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1P3NVFS4NW');
+</script>
+
+
+
+  <script>
+  window.intercomSettings = {
+    api_base: "https://api-iam.intercom.io",
+    app_id: "ofl16ydc"
+  };
+</script>
+
+<script>
+// We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/ofl16ydc'
+(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/ofl16ydc';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+</script>  
+
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+I"�<p><strong>tl;dr</strong> Open-Source Spotlight welcomed us back to to demo <a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a>, the open-source data reliability toolkit. In the video, CL Kao, InfuseAI’s CEO, shows how it’s possible to profile and test a data set, and then generate a visualization report with just a few commands.</p>
+<hr />
+
+<p>Data quality has a new hero!</p>
+
+<p>We’ve been on Open-Source Spotlight a <a href="https://www.youtube.com/watch?v=Q3aMaxBH1-o">few</a> <a href="https://www.youtube.com/watch?v=2ebo1H0XgEs">times</a> <a href="https://www.youtube.com/watch?v=akhj7or9gmQ">already</a>, and this time CL Kao, the CEO of InfuseAI, was invited to demonstrate <a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a>.</p>
+
+<p>PipeRider is your open-source data reliability toolkit for adding data profiling and data quality assertions with visualization reports to your data warehouse.</p>
+
+<h2 id="break-it-down">Break it down</h2>
+<p>That’s quite a mouthful of features, so let’s break down what PipeRider can do (I’ve linked to the relevant documentation pages):</p>
+
+<ul>
+  <li>Data profiling: PipeRider will profile your data source, providing insightful metrics about the structure of your data.</li>
+  <li>Data Assertions: Use PipeRider’s built-in data assertion suite to test the structure and contents of your data profile. You’ll be alerted when your data assertions fail.</li>
+  <li>Visualization Report: From the data profile, PipeRider will create an HTML report that shows the structure of your data source, including test results.</li>
+  <li>Report Comparison: Compare past data profiling reports to see how your data source has changed between runs.</li>
+  <li>Supported Data Warehouses: SQLite, Postgres, Snowflake, and dbt are supported (PipeRider v0.6), with BigQuery and Redshift support just days away (PipeRider v0.7). And you can find more data source on <a href="https://docs.piperider.io/cli/supported-data-sources">Supported Data Sources documentation</a>.</li>
+</ul>
+
+<h2 id="watch-the-demo">Watch the demo</h2>
+
+<p>Watch the video to see PipeRider in action:</p>
+
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style>
+<div class="embed-container">    <iframe title="YouTube video player" width="640" height="390" src="//www.youtube.com/embed/03MyOkIo8Hg" frameborder="0" allowfullscreen=""></iframe></div>
+
+<p><em><a href="https://www.youtube.com/playlist?list=PL3MmuxUbc_hJ5t5nnjzC0F2zan76Dpsz0">Open Source Spotlight</a>, the video series by the <a href="http://datatalks.club/">DataTalks.club</a> community continues to give back to the open-source community by providing a platform for projects to demo what they’re working on. Definitely check out the <a href="https://www.youtube.com/datatalksclub">YouTube channel</a> if you’re involved in data and/or machine learning.</em></p>
+
+<h2 id="how-to-get-started-with-data-reliability">How to get started with data reliability</h2>
+<p>PipeRider is available now. It’s open-source, free to use, and well documented. As of writing, PipeRider is about to release version 0.7. The version demoed in the video above is 0.3, so make sure to check the websites below for up-to-date information:</p>
+
+<ul>
+  <li><a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">Official PipeRider website</a></li>
+  <li><a href="https://github.com/InfuseAI/piperider">GitHub Repo</a></li>
+  <li><a href="https://docs.piperider.io/">Documentation</a></li>
+</ul>
+
+<h2 id="we-need-your-feedback">We need your feedback</h2>
+<p>After you’ve used PipeRider, tell us what you think. Good or bad, we want to know. Get in touch in one of the following ways:</p>
+
+<ul>
+  <li>Twitter<a href="https://twitter.com/infuseai">@infuseai</a></li>
+  <li><a href="https://discord.gg/xKxsdPx4d5">Discord Community</a></li>
+  <li><a href="https://github.com/InfuseAI/piperider/issues">GitHub Issue</a></li>
+  <li>Mastodon <a href="https://fosstodon.org/@piperider">@piperider@fosstondon.org</a></li>
+</ul>
+:ET

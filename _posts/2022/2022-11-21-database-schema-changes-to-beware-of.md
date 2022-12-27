@@ -92,3 +92,5 @@ Have you been bitten by schema change? Let me know what happened and how you dis
 
 If I missed any important or obvious schema changes to look out for, please tell me and I’ll improve the list.
 
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Watch out for that schema change! It&#39;s a doozy!<br><br>As a data engineer, you&#39;re always alerted to upstream table changes, right? (yes that&#39;s sarcasm😛)<br><br>Use PipeRider to make sure you don&#39;t get caught off guard:<a href="https://t.co/2sFy2ikXYA">https://t.co/2sFy2ikXYA</a><a href="https://twitter.com/hashtag/snowflake?src=hash&amp;ref_src=twsrc%5Etfw">#snowflake</a> <a href="https://twitter.com/hashtag/dataengineering?src=hash&amp;ref_src=twsrc%5Etfw">#dataengineering</a> <a href="https://twitter.com/hashtag/datareliability?src=hash&amp;ref_src=twsrc%5Etfw">#datareliability</a> <a href="https://t.co/m9zpuUP1jY">pic.twitter.com/m9zpuUP1jY</a></p>&mdash; InfuseAI (@InfuseAI) <a href="https://twitter.com/InfuseAI/status/1599780636826472449?ref_src=twsrc%5Etfw">December 5, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+

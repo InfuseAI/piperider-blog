@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Transfer the CSV Files into an SQLite Database - PipeRider
+    
+  </title>
+
+  <meta name="description" content="Datasets are readily available as CSV files on websites such as Kaggle and other real-world datasets. However, CSV isn’t really suitable for querying and tra...">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Transfer the CSV Files into an SQLite Database | PipeRider</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Transfer the CSV Files into an SQLite Database" />
+<meta name="author" content="PipeRider" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Datasets are readily available as CSV files on websites such as Kaggle and other real-world datasets. However, CSV isn’t really suitable for querying and transforming easily. Therefore, it’s better to store the data in a database." />
+<meta property="og:description" content="Datasets are readily available as CSV files on websites such as Kaggle and other real-world datasets. However, CSV isn’t really suitable for querying and transforming easily. Therefore, it’s better to store the data in a database." />
+<link rel="canonical" href="https://blog.piperider.io/transfer-the-csv-files-into-an-sqlite-database.html" />
+<meta property="og:url" content="https://blog.piperider.io/transfer-the-csv-files-into-an-sqlite-database.html" />
+<meta property="og:site_name" content="PipeRider" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-08-04T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Transfer the CSV Files into an SQLite Database" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"PipeRider"},"dateModified":"2022-08-04T00:00:00+08:00","datePublished":"2022-08-04T00:00:00+08:00","description":"Datasets are readily available as CSV files on websites such as Kaggle and other real-world datasets. However, CSV isn’t really suitable for querying and transforming easily. Therefore, it’s better to store the data in a database.","headline":"Transfer the CSV Files into an SQLite Database","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.piperider.io/transfer-the-csv-files-into-an-sqlite-database.html"},"url":"https://blog.piperider.io/transfer-the-csv-files-into-an-sqlite-database.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://blog.piperider.io/transfer-the-csv-files-into-an-sqlite-database.html">
+  <link rel="alternate" type="application/rss+xml" title="PipeRider" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <img src="/img/piperider-logo.svg" alt="PipeRider Logo">
+      PipeRider
+    </a>    
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <!-- <a class="nav-link" href="/">Home</a> -->
+          <a class="nav-link" href="https://piperider.io">PipeRider Website</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://docs.piperider.io">Documentation</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/infuseai/piperider">GitHub</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="/contact">Contact</a>
+        </li> -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"  role="button" data-toggle="dropdown" aria-expanded="false">Community</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="https://discord.gg/328QcXnkKD">Discord</a>
+            <a class="dropdown-item" href="mailto:support@piperider.io">Support</a>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+
+  <header class="piperider-masthead">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Transfer the CSV Files into an SQLite Database</h1>
+            
+            <h2 class="subheading">Use open-source tool csvs-to-sqlite to convert CSV files into SQLite databases</h2>
+            
+            <span class="meta">Posted by
+              PipeRider
+              
+              &middot; <span class="reading-time" title="Estimated read time">
+  
+   2 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <article class="post-single">
+
+          
+          <div class="featured-image">
+            <img src="/img/posts/220804-0.png" />
+          </div>
+          
+
+          <p>Datasets are readily available as CSV files on websites such as Kaggle and other real-world datasets. However, CSV isn’t really suitable for querying and transforming easily. Therefore, it’s better to store the data in a database.</p>
+
+<p>In this article, you will use csvs-to-sqlite to convert CSV files into SQLite databases. Once the data is in a database, it’s easier for users to query with SQL and add to their ETL service.</p>
+
+<p>We have to get the dataset first, here is an example of the <a href="https://github.com/ldkrsi/cpbl-opendata">CPBL dataset</a>.</p>
+
+<hr />
+
+<h2 id="convert-csv-to-sqlite">Convert CSV to SQLite</h2>
+
+<p>“<a href="https://github.com/simonw/csvs-to-sqlite">csvs-to-sqlite</a>” tool is an open-source project and put it in the Github. We can easily use the pip install method to install the tools.</p>
+
+<p>You can use the following commands to download the data and install the <a href="https://pypi.org/project/csvs-to-sqlite/">python package</a>.</p>
+
+<script src="https://gist.github.com/LiuYuWei/a9ec256303f6c63b5958a4b12d03e625.js"></script>
+
+<p>After configuring the environment, we can convert the CSV files into several SQLite databases.</p>
+
+<p>The format of the csvs-to-sqlite command is:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>csvs-to-sqlite /path/to/your.csv sqlite-db-name.db
+</code></pre></div></div>
+<script src="https://gist.github.com/LiuYuWei/e4cad03c0bee591b6105bc1056a22f0b.js"></script>
+
+<p>The result after we convert the CSV files into a database:
+<img src="/img/posts/220804-1.webp" alt="The result after we convert the CSV files into a database" /></p>
+
+<h2 id="verify-the-csv-was-imported-correctly">Verify the CSV was imported correctly</h2>
+<p>We can now check if the data was successfully inserted into the SQLite database using the “sqlite3” command line tool to open the database and query the data.</p>
+
+<script src="https://gist.github.com/LiuYuWei/29cd132ca02351bb3f66a1680c521d39.js"></script>
+
+<p>We have successfully queried the SQLite data, which is the same as the CSV data. Now, If a data engineer wanted to query the historical data of an individual baseball player, they could use SQL to query the data faster.</p>
+
+<p>The result of querying data from the SQLite database:
+<img src="/img/posts/220804-2.webp" alt="The result of querying data from the SQLite database" /></p>
+
+<hr />
+<h3 id="i-am-simon">I am Simon</h3>
+<p>Hi, I am Simon, Customer Success Engineer in InfuseAI. If you think the article is helpful to you, please give me applause. Welcome to provide some suggestions and discuss with me in InfuseAI <a href="https://discord.gg/xKxsdPx4d5">Discord</a>.
+Linkedin: <a href="https://www.linkedin.com/in/simonliuyuwei/">https://www.linkedin.com/in/simonliuyuwei/</a></p>
+
+
+
+          
+            <hr class="cta-hr" />
+
+<h2>InfuseAI is solving data quality issues</h2>
+
+<p><a href="https://infuseai.io" target="_blank">InfuseAI</a> makes PipeRider, the open-source data reliability CLI tool that adds data profiling and assertions to data warehouses such as BigQuery, Snowflake, Redshift and more. Data profile and data assertion results are provided in an HTML report each time you run PipeRider.</p>
+
+<ul>
+    <li><a href="https://piperider.io" target="_blank">PipeRider homepage</a></li>
+    <li><a href="https://github.com/infuseai/piperider" target="_blank">PipeRider GitHub repo</a></li>
+    <li>Twitter <a href="https://twitter.com/infuseai" target="_blank">@infuseai</a></li>
+    <li>Mastodon <a href="https://fosstodon.org/@piperider" target="_blank">@piperider@fosstondon.org</a></li>
+</ul>
+          
+            
+
+        </article>
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/piperider-data-profiling-just-got-more-colorful-and-useful.html" data-toggle="tooltip" data-placement="top" title="PipeRider data profiling just got more colorful (and useful)">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/spotlight-on-data-reliability.html" data-toggle="tooltip" data-placement="top" title="Spotlight on Data Reliability">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center social-icons">
+          
+          <li class="list-inline-item">
+            <a href="mailto:support@piperider.io">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/company/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; <a href="https://infuseai.io">InfuseAI</a> 2022</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/atom-one-dark-reasonable.min.css">
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1P3NVFS4NW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1P3NVFS4NW');
+</script>
+
+
+
+  <script>
+  window.intercomSettings = {
+    api_base: "https://api-iam.intercom.io",
+    app_id: "ofl16ydc"
+  };
+</script>
+
+<script>
+// We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/ofl16ydc'
+(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/ofl16ydc';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+</script>  
+
+</body>
+
+</html>

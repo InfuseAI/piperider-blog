@@ -1,0 +1,44 @@
+I"�<p>The process of creating a data pipeline involves taking data from various sources and transforming it to make it useful for specific analytical and/or business purposes. It sounds easy enough but, with increasingly complex pipelines, errors can easily go unnoticed.</p>
+
+<p>Creating error-free data pipelines takes a lot of effort from data engineers, but by using data profiling the task of building and maintaining reliable data pipelines is a lot more manageable.</p>
+
+<hr />
+
+<h2 id="data-profiling-and-assertions-for-quality-assurance">Data profiling and assertions for quality assurance</h2>
+<p>The metrics that data profiling provides can be used to ensure that data meets the requirements it’s intended for, and also enables you (the data engineer) to spot anomalies or anything out of the ordinary. Essentially providing a layer of quality assurance to the pipeline.</p>
+
+<p>When paired with data assertions, the profile can be tested to ensure that metrics are within desired thresholds. This is not only useful for building the pipeline, but also for continued testing throughout the life of the pipeline. Data profiling is an essential part of creating a dedicated data monitoring pipeline so you can become <a href="/data-monitoring-be-the-master-of-your-pipeline.html">‘master of your pipeline’</a>.</p>
+
+<h2>　</h2>
+<h2 id="add-data-profiling-and-assertion-to-your-elt-pipeline">Add data profiling and assertion to your ELT pipeline</h2>
+<p>The idea is to augment the ELT process with two new stages — profiling, and assertions, creating (drum-roll) ELTPA. In this updated process, a testing loop occurs during the pipeline creation to help ensure that the resulting data is robust and reliable, and then continually once the pipeline is in use.</p>
+
+<p>The following diagram demonstrates the process.
+<img src="/img/posts/221019-1.webp" alt="" /></p>
+
+<h2 id="-1">　</h2>
+<h2 id="pipeline-creation">Pipeline creation</h2>
+<p>After data is transformed, it is profiled and tested with assertions. You can write assertions based on stakeholder requirements or, if you are modifying an existing pipeline, then you may already be aware of common issues.</p>
+
+<p>If an assertion fails and generates an error, you can go back to the transformation phase and find the root cause of the problem before continuing the process.</p>
+
+<h2 id="-2">　</h2>
+<h2 id="pipeline-monitoring-and-observability">Pipeline monitoring and observability</h2>
+<p>For continual monitoring, a data profile should also be regularly generated. If the data profile metrics reveal a change in data that needs investigation, you can compare the most recent report with previous reports to see what might have happened.</p>
+
+<p>After the issue is resolved, you can update the data assertions to account for the issue and ensure that testing covers similar situations going forward.</p>
+
+<h2 id="-3">　</h2>
+<h2 id="conclusion">Conclusion</h2>
+<p>A data profile is useful for creating the data pipeline and, when generated regularly, can also be used for monitoring data distribution over time and debugging issues. The addition of assertions makes it a great way to test for data reliability. In many cases, a data profile report can reduce the need for a complex BI dashboard.</p>
+
+<p>If you like this article, please consider liking and sharing on <a href="https://twitter.com/InfuseAI/status/1582733321594753024?s=20&amp;t=Nw2rTYJOoFJAWdNIdMTxfw">Twitter</a>.</p>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Improve your ELT pipeline creation process with data profiling and data assertions<br /><br />These extra steps at a layer of quality control to your pipeline for build and monitoring data pipelines<a href="https://t.co/cXtJx6BwL4">https://t.co/cXtJx6BwL4</a><a href="https://twitter.com/hashtag/dataobservability?src=hash&amp;ref_src=twsrc%5Etfw">#dataobservability</a> <a href="https://twitter.com/dataprofiling?ref_src=twsrc%5Etfw">@dataprofiling</a> <a href="https://twitter.com/hashtag/datareliability?src=hash&amp;ref_src=twsrc%5Etfw">#datareliability</a></p>&mdash; InfuseAI (@InfuseAI) <a href="https://twitter.com/InfuseAI/status/1582733321594753024?ref_src=twsrc%5Etfw">October 19, 2022</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<h2 id="-4">　</h2>
+<h3 id="add-data-profiling-to-your-data-reliability-strategy">Add data profiling to your data reliability strategy</h3>
+<p><a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a> is an open-source data reliability CLI tool that adds data profiling and assertions to data warehouses such as BigQuery, Snowflake, Redshift and more. Data profile and assertions results are provided in an HTML report each time you run PipeRider.</p>
+
+:ET

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Define your own Data Quality Tests in PipeRider - PipeRider
+    
+  </title>
+
+  <meta name="description" content="tl;dr PipeRider comes with a built-in suite of data quality assertions, but you can also define your own assertions to meet your needs. This guide will show ...">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Define your own Data Quality Tests in PipeRider | PipeRider</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Define your own Data Quality Tests in PipeRider" />
+<meta name="author" content="PipeRider" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="tl;dr PipeRider comes with a built-in suite of data quality assertions, but you can also define your own assertions to meet your needs. This guide will show you how to implement a custom assertion to allow a specific number of nulls without raising an alert." />
+<meta property="og:description" content="tl;dr PipeRider comes with a built-in suite of data quality assertions, but you can also define your own assertions to meet your needs. This guide will show you how to implement a custom assertion to allow a specific number of nulls without raising an alert." />
+<link rel="canonical" href="https://blog.piperider.io/define-your-own-data-quality-tests-in-piperider.html" />
+<meta property="og:url" content="https://blog.piperider.io/define-your-own-data-quality-tests-in-piperider.html" />
+<meta property="og:site_name" content="PipeRider" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-09-02T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Define your own Data Quality Tests in PipeRider" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"PipeRider"},"dateModified":"2022-09-02T00:00:00+08:00","datePublished":"2022-09-02T00:00:00+08:00","description":"tl;dr PipeRider comes with a built-in suite of data quality assertions, but you can also define your own assertions to meet your needs. This guide will show you how to implement a custom assertion to allow a specific number of nulls without raising an alert.","headline":"Define your own Data Quality Tests in PipeRider","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.piperider.io/define-your-own-data-quality-tests-in-piperider.html"},"url":"https://blog.piperider.io/define-your-own-data-quality-tests-in-piperider.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://blog.piperider.io/define-your-own-data-quality-tests-in-piperider.html">
+  <link rel="alternate" type="application/rss+xml" title="PipeRider" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <img src="/img/piperider-logo.svg" alt="PipeRider Logo">
+      PipeRider
+    </a>    
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <!-- <a class="nav-link" href="/">Home</a> -->
+          <a class="nav-link" href="https://piperider.io">PipeRider Website</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://docs.piperider.io">Documentation</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/infuseai/piperider">GitHub</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="/contact">Contact</a>
+        </li> -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"  role="button" data-toggle="dropdown" aria-expanded="false">Community</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="https://discord.gg/328QcXnkKD">Discord</a>
+            <a class="dropdown-item" href="mailto:support@piperider.io">Support</a>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+
+  <header class="piperider-masthead">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Define your own Data Quality Tests in PipeRider</h1>
+            
+            <h2 class="subheading">PipeRider comes with a built-in suite of data quality assertions, but you can also define your own assertions to meet your needs</h2>
+            
+            <span class="meta">Posted by
+              PipeRider
+              
+              &middot; <span class="reading-time" title="Estimated read time">
+  
+   8 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <article class="post-single">
+
+          
+          <div class="featured-image">
+            <img src="/img/posts/220902-0.webp" />
+          </div>
+          
+
+          <p><strong>tl;dr</strong> <a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a> comes with a built-in suite of data quality assertions, but you can also define your own assertions to meet your needs. This guide will show you how to implement a custom assertion to allow a specific number of nulls without raising an alert.</p>
+
+<hr />
+
+<p>You don’t always have the luxury of a complete dataset, and that’s not always a bad thing — there are some cases in which a certain amount of missing data, or null values, can be acceptable in a data source.</p>
+
+<p>Sometimes a certain amount of NULL values is OK</p>
+
+<h2 id="missing-data-no-problem">Missing data? No problem</h2>
+<p>Let’s say you have some incomplete data in a sales database and, even so, you still need to perform some calculations based on the data. You might be willing to allow a certain percentage of missing values before worrying about it affecting your results.</p>
+
+<p><a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a> has <a href="https://docs.piperider.io/cli/data-quality-assertions/assertion-configuration">built-in assertions</a> for testing if a column does not contain nulls, or that a it must be null, but there is no middle-ground for allowing for a certain quantity of nulls — custom assertions to the rescue!</p>
+
+<p><img src="/img/posts/220902-1.webp" alt="" /></p>
+
+<p><em>For the rest of this article, I’ll assume you already have a PipeRider project set up — If not, it’s really easy to do, the <a href="https://docs.piperider.io/cli/quick-start">Quick Start</a> guide will have you up and running in minutes.</em></p>
+
+<h2 id="from-data-profile-to-data-assertions">From data profile to data assertions</h2>
+<p>Each time you run PipeRider it creates a <a href="https://docs.piperider.io/data-profile-and-metrics/data-profile">profile of your data</a>, and then by applying data assertions you can test the contents of the profile to ensure the data meets your structural requirements.</p>
+
+<p>Using the missing data example from above, we’ll create a custom assertion that checks the number of nulls in a column, and raises an alert if there are more than our specified amount.</p>
+
+<h2 id="custom-column-assertion-template">Custom Column-Assertion Template</h2>
+<p>Here’s the template we’ll be using to create our custom column-assertion, Steps 1 to 5 in the code-comments are what we’ll be working on:</p>
+
+<script src="https://gist.github.com/DaveFlynn/7f26ee7cdecedef332d4b5601dec721f.js"></script>
+
+<h2 id="create-your-custom-column-assertion">Create your custom column-assertion</h2>
+<p>In your PipeRider project, open <code class="language-plaintext highlighter-rouge">.piperider/plugins/customized_assertions.py</code> in your favorite text editor and paste the above template at the bottom, above where it says <code class="language-plaintext highlighter-rouge"># register new assertions</code></p>
+
+<p>Give the assertion a name. Here, I’ve named the class <code class="language-plaintext highlighter-rouge">AssertNullCount</code> and the name of <code class="language-plaintext highlighter-rouge">assert_null_count</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class AssertNullCount<span class="o">(</span>BaseAssertionType<span class="o">)</span>:
+  def name<span class="o">(</span>self<span class="o">)</span>:
+    <span class="k">return</span> <span class="s2">"assert_null_count"</span>
+</code></pre></div></div>
+
+<p>Now, I’ll run you through the commented steps 1 - 5 in the assertion template.</p>
+
+<h3 id="1-get-the-desired-metric">1: Get the desired metric</h3>
+<p>The first thing we need to do is get the value of the desired metric we want to test. For this assertion, we’ll be testing the number of <strong>nulls</strong>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 1. Get the metric for the desired column, e.g. num of nulls in column
+nulls = column_metrics.get('nulls')
+</code></pre></div></div>
+
+<p>For a full list of available metrics, check the <a href="https://docs.piperider.io/data-profile-and-metrics/data-profile">Data Profile</a> page in the PipeRider documentation.</p>
+
+<h3 id="2-get-the-expected-value-from-the-assertion-file">2: Get the expected value from the assertion file</h3>
+<p>You could hard-code the the number of allowed nulls, but then we couldn’t re-use the assertion. Luckily, it’s possible to pass a value from the assertion YAML file into the custom assertion.</p>
+
+<p>Here we grab the value of <code class="language-plaintext highlighter-rouge">allowed_null</code>s`. I’ll show you how to define the value of this variable in your assertion YAML later on.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 2. Get expectation from assertion file
+allowed_nulls = context.asserts.get('allowed_nulls', [])
+</code></pre></div></div>
+
+<h3 id="34-implement-logic-to-test-the-metric-and-either-pass-or-fail">3,4: Implement logic to test the metric and either pass or fail</h3>
+<p>After comparing the value of nulls with the value of allowed_nulls, we return a pass result if nulls is less than or equal to our threshold, and a fail otherwise.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 3. Implement logic to compare expected and actual metric value
+if (nulls &lt;= allowed_nulls):
+	# 4. return pass (acceptable number of nulls)
+	return context.result.success('There are {} null values'.format(nulls))
+else:
+	# 4. or return fail (more nulls than we expected)
+	return context.result.fail(nulls)
+</code></pre></div></div>
+
+<h3 id="5-register-the-new-assertion">5: Register the new assertion</h3>
+<p>Now that you’ve created the assertion, register it with PipeRider. <strong>This goes outside of your new class</strong>, at the bottom of the <code class="language-plaintext highlighter-rouge">customized_assertions.py</code> file.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#register new assertion
+register_assertion_function(AssertNullCount)
+</code></pre></div></div>
+
+<h2 id="completed-assertion-class">Completed assertion class</h2>
+<p>The completed custom assertion class should now look like this:</p>
+
+<script src="https://gist.github.com/DaveFlynn/37b9f92e2784187566a6b4f8d3101250.js"></script>
+
+<h2 id="put-your-custom-assertion-into-action">Put your custom assertion into action</h2>
+<p>Open the assertions file for the table you want to run the new assertion on. You can find the assertion YAML files in <code class="language-plaintext highlighter-rouge">.piperider/assertions/&lt;table&gt;.yml</code>. If you generated <a href="https://docs.piperider.io/cli/quick-start#generate-data-assertions">recommended assertions</a> then your table assertions file should already be populated.</p>
+
+<p>Find the desired column and apply your custom assertion. In example below, I have applied the new assertion to the Global Sales column:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Global_sales: # Column Name
+  description: 'Combined global sales figures'
+  # Test Cases for Column
+  tests:
+  - name: assert_allowed_nulls
+    assert:
+        allowed_nulls: 5
+</code></pre></div></div>
+
+<p>The last line, <code class="language-plaintext highlighter-rouge">allowed_nulls</code>, is the value we pass through to the custom assertion and check the actual number of nulls against.</p>
+
+<h2 id="run-piperider-to-check-that-it-works">Run PipeRider to check that it works</h2>
+<p>The next time you run PipeRider your custom assertion will be tested.</p>
+
+<p><strong>Passed assertion</strong>
+If it passes, you’ll see the test with the status <code class="language-plaintext highlighter-rouge">[OK]</code>.</p>
+
+<p>all.Global_sales assertion passed with 5 nulls out of 10 allowed
+<img src="/img/posts/220902-2.webp" alt="all.Global_sales assertion passed with 5 nulls out of 10 allowed" /></p>
+
+<p><strong>Failed assertion</strong>
+If it fails you’ll see it in the list of <strong>failed assertions</strong>.</p>
+
+<p>all.Global_sales failed with 15 nulls — 5 more than the 10 allowed
+<img src="/img/posts/220902-3.webp" alt="all.Global_sales failed with 15 nulls — 5 more than the 10 allowed" /></p>
+
+<h2 id="take-it-a-step-further">Take it a step further</h2>
+<p>Specifying an exact number of allowed nulls might not be an ideal solution for all datasets. For instance, when dealing with large datasets, you might prefer to allow a certain percentage of nulls. In that case, the code we wrote only needs a small adjustment.</p>
+
+<p>All you need to do is get the total number of rows for the table; the number of nulls; then work out the percentage of nulls and test if the percentage exceeds your threshold of allowed nulls.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># get total number of rows
+total = column_metrics.get('total')
+
+# get the number of nulls
+nulls = column_metrics.get('nulls')
+
+#work out the percentage of nulls
+percent_nulls = round(((100 / total) * nulls), 2)
+
+# get the number of allowed nulls from your assertion definition
+allowed_nulls = context.asserts.get('allowed_nulls')
+if (nulls &gt; percent_nulls * allowed_nulls): 
+    # too many nulls
+    return context.result.fail('{}%'.format(percent_nulls))
+else: 
+    # acceptable percentage of nulls
+    return context.result.success('There are {}% nulls'.format(percent_nulls))
+</code></pre></div></div>
+
+<p>You’re only limited by the metrics available in the data profile, and your ability to write Python, so check the <a href="https://docs.piperider.io/">PipeRider documentation</a> and <strong>start making your data more reliable today</strong>!</p>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">PipeRider has a suite of built-in data quality tests, but you can also define your own.<br /><br />Learn how to create your own custom data assertion to allow a certain number of null values before raising an alert:<a href="https://t.co/hrb4Oqwdx9">https://t.co/hrb4Oqwdx9</a><a href="https://twitter.com/hashtag/dataquality?src=hash&amp;ref_src=twsrc%5Etfw">#dataquality</a> <a href="https://twitter.com/hashtag/opensource?src=hash&amp;ref_src=twsrc%5Etfw">#opensource</a> <a href="https://twitter.com/hashtag/datareliability?src=hash&amp;ref_src=twsrc%5Etfw">#datareliability</a></p>&mdash; InfuseAI (@InfuseAI) <a href="https://twitter.com/InfuseAI/status/1565618009359945728?ref_src=twsrc%5Etfw">September 2, 2022</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+
+          
+            <hr class="cta-hr" />
+
+<h2>InfuseAI is solving data quality issues</h2>
+
+<p><a href="https://infuseai.io" target="_blank">InfuseAI</a> makes PipeRider, the open-source data reliability CLI tool that adds data profiling and assertions to data warehouses such as BigQuery, Snowflake, Redshift and more. Data profile and data assertion results are provided in an HTML report each time you run PipeRider.</p>
+
+<ul>
+    <li><a href="https://piperider.io" target="_blank">PipeRider homepage</a></li>
+    <li><a href="https://github.com/infuseai/piperider" target="_blank">PipeRider GitHub repo</a></li>
+    <li>Twitter <a href="https://twitter.com/infuseai" target="_blank">@infuseai</a></li>
+    <li>Mastodon <a href="https://fosstodon.org/@piperider" target="_blank">@piperider@fosstondon.org</a></li>
+</ul>
+          
+            
+
+        </article>
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/spotlight-on-data-reliability.html" data-toggle="tooltip" data-placement="top" title="Spotlight on Data Reliability">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/adding-data-observability-and-alerts-to-your-data-pipeline-is-easier-than-you-think.html" data-toggle="tooltip" data-placement="top" title="Adding Data Observability and Alerts to your Data Pipeline is easier than you think">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center social-icons">
+          
+          <li class="list-inline-item">
+            <a href="mailto:support@piperider.io">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/company/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; <a href="https://infuseai.io">InfuseAI</a> 2022</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/atom-one-dark-reasonable.min.css">
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1P3NVFS4NW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1P3NVFS4NW');
+</script>
+
+
+
+  <script>
+  window.intercomSettings = {
+    api_base: "https://api-iam.intercom.io",
+    app_id: "ofl16ydc"
+  };
+</script>
+
+<script>
+// We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/ofl16ydc'
+(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/ofl16ydc';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+</script>  
+
+</body>
+
+</html>

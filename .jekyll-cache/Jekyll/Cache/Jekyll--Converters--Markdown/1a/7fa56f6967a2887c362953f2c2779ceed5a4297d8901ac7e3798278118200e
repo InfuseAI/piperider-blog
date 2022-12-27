@@ -1,0 +1,52 @@
+I"�<p><a href="https://github.com/InfuseAI/piperider/releases/tag/v0.5.0">PipeRider 0.5.0</a> was released last week and introduces some CLI updates that improve visual feedback during profiling, and the reporting feature adds some options to make it more suitable for use in your CI pipeline.</p>
+
+<p><em>In case you missed it — <a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a> is a new open-source <a href="https://blog.piperider.io/test-your-data-quality-in-minutes-with-piperider.html">data reliability</a> tool with data profiling, data assertions, and support for <a href="https://blog.piperider.io/add-data-profiling-and-assertions-to-dbt-with-piperider.html">popular data sources</a>.</em></p>
+
+<hr />
+
+<h2 id="cli-now-with-extra-prettiness">CLI now with extra prettiness</h2>
+<p>The PipeRider CLI is now includes extra visual feedback when profiling in the form of per-table progress bars.</p>
+
+<h3 id="progress-bars--so-satisfying">Progress bars — so satisfying</h3>
+<p>The progress bars show how many tables are left to profile, the number of columns that are being profiled, and a timer.</p>
+
+<p><img src="/img/posts/220802-1.gif" alt="Progress bars — satisfying :)" /></p>
+
+<p>This enables you to see where you are in the profiling progress — no more thinking that the profiler hung when profiling your beefy dbt models.</p>
+
+<h3 id="tabular-summary">Tabular Summary</h3>
+<p>The profiling and data assertions summary is now displayed in a table so you can see test results at a glance.</p>
+
+<p><img src="/img/posts/220802-2.webp" alt="Profiling and data assertion test results are now tabular — awesome!
+" /></p>
+
+<p>Extra color has also been sprinkled around to make the CLI output generally easier to read. So now it’ll fit better with your colorful terminal theme (<a href="https://draculatheme.com/terminal">Dracula</a>, anyone?).</p>
+
+<p>If you’re working on the command line all day, then these should be some welcome additions.</p>
+
+<h2 id="reports-where-you-want-them-when-you-want-them">Reports where you want them, when you want them</h2>
+<p>For reporting, we’ve got a some great features to make generating and exporting reports more convenient.</p>
+
+<h3 id="output-location">Output Location</h3>
+<p>The default location for reports is <code class="language-plaintext highlighter-rouge">.piperider/outputs</code>, but this isn’t always the best location, especially if you want to share the reports with BI or other users who don’t want to dig around in a hidden folder.</p>
+
+<p>In PipeRider v0.5.0 you can choose the output location for a report by using the <code class="language-plaintext highlighter-rouge">-o</code> option and specifying a location, e.g.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider generate-report -o ~/piperider-reports
+</code></pre></div></div>
+
+<p>This works for <code class="language-plaintext highlighter-rouge">piperider run</code> and <code class="language-plaintext highlighter-rouge">piperider compare-reports</code>, too!</p>
+
+<h2 id="compare-the-last-two-reports-automatically">Compare the last two reports automatically</h2>
+<p>On the subject of comparing reports, now you can compare the last two reports without having to select them manually — Just use the <code class="language-plaintext highlighter-rouge">--last</code> option:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider compare-reports --last
+</code></pre></div></div>
+
+<p>Pair this with a custom output location and you can easily automate PipeRider reports as part of your CI pipeline — we’ll have a tutorial/show-case on how to do this very soon. Make sure to follow us to be notified.</p>
+
+<p>Check out the documentation <a href="https://docs.piperider.io/cli/piperider-cli">command reference</a> for more info, there are also a couple of how-to docs for <a href="https://docs.piperider.io/cli/quick-start#run-piperider-profile-data-and-generate-report">generating</a> and <a href="https://docs.piperider.io/cli/quick-start#run-piperider-profile-data-test-assertions-generate-report">comparing</a> reports.</p>
+
+<hr />
+
+:ET

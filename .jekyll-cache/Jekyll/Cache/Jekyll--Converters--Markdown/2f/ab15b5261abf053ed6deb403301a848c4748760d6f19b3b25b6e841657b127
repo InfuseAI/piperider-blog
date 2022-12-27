@@ -1,0 +1,107 @@
+I"� <p>The value of Twitter has been <a href="https://www.theverge.com/2022/10/4/23387592/elon-musk-twitter-deal-lawsuit-faq">in the news</a> a lot recently. Antics related to Elon Musk’s possible Twitter buyout has led to a legal battle that may result in Twitter releasing a snapshot of data on its users and tweets. If Musk actually gets his hands on this data, what kind of things might he be looking for?</p>
+
+<hr />
+
+<p>Data profiling is a great way to analyze and explore a dataset. A data profile not only helps you to understand the structure of a dataset, but the statistical metrics are also great for exploratory analysis.</p>
+
+<p>In this article, I take some publicly available Twitter datasets and run them through a <a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">data profiler</a> to see what interesting metrics I can find.</p>
+
+<h2>　</h2>
+<h2 id="the-datasets">The datasets</h2>
+<p>I used two datasets for this analysis:</p>
+
+<ul>
+  <li>A portion of the <a href="https://archive.org/details/archiveteam-twitter-stream-2021-06">Archive Team Twitter Stream</a> dataset from June 2021. This dataset comes in JSON form, so you’ll need to use a tool such as <a href="https://github.com/cantino/twitter_to_csv">twitter_to_csv</a> to convert the raw Twitter API JSON to CSV.</li>
+  <li>A pre-prepared dataset from Kaggle. I found the Gender classification set, with data from 2015, was the most useful as it retained much of the user data, such as profile image URL, retweet count, and profile description.</li>
+</ul>
+
+<p>For both methods I used <a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a>, an open-source CLI tool for profiling datasets. It outputs an HTML report which makes it easy to see the metrics. There are also data assertions if you need to add testing to your dataset.</p>
+
+<h2 id="-1">　</h2>
+<h2 id="the-metrics">The metrics</h2>
+<p>So, what things might Elon Musk, or anyone analyzing the value of a social network data need to look out for? What interesting metrics can be found, and what are the implications in regard to determining the ‘value’ of Twitter users and Tweets.</p>
+
+<h2 id="-2">　</h2>
+<h3 id="1-account-creation-date">1. Account creation date</h3>
+<p>Looking at the account created date in the gender dataset, there are active accounts that date back all the way to 2006.</p>
+
+<p><strong>Implication</strong></p>
+
+<p>Twitter has good user retention, as these are users that have been coming back for years.</p>
+
+<p>Twitter account creation date metric via PipeRider: 
+<img src="/img/posts/221013-1.webp" alt="" /></p>
+
+<h2 id="-3">　</h2>
+<h3 id="2-profile-image">2. Profile image</h3>
+<p>You might not think that a profile image could indicate much, but the notorious <a href="https://www.vox.com/2017/3/31/15139192/twitter-egg-profile-default-change">Twitter egg</a> fiasco proves otherwise. 18.3% of profile images in the Kaggle dataset are duplicates, and it looks like this is because they are using the default image.</p>
+
+<p>The Archive Team dataset was around the same, at 17.1% for my sampling.</p>
+
+<p>Twitter profile image metrics via PipeRider:
+<img src="/img/posts/221013-2.webp" alt="" /></p>
+
+<p><strong>Implication</strong></p>
+
+<p>This could be an indication of throw-away accounts, bots, trolls, or generally users who aren’t invested enough to update their profile image.</p>
+
+<h2 id="-4">　</h2>
+<h3 id="3-duplicated-tweet-content">3. Duplicated Tweet content</h3>
+<p>This doesn’t refer to retweets, or quote tweets, but to tweets with identical content. Why would a tweet contain the same content? There was 8.7% of tweets with duplicated content in the Kaggle dataset.</p>
+
+<p><strong>Implication</strong></p>
+
+<p>This could be an indication of a bot farm spreading propaganda, or users could simply be clicking the “share this article” button on news websites.</p>
+
+<p>Twitter metrics indicate possible bot messages via PipeRider: 
+<img src="/img/posts/221013-3.webp" alt="" /></p>
+
+<p>The Kaggle dataset shows a lot bizarre of Weather Chanel tweets.</p>
+
+<p>Interestingly, these tweets cannot be found by searching Twitter now. All I can find is <a href="https://twitter.com/ArdentCrayon/status/722136691809525764?s=20&amp;t=9IY8SlHv4k813B-xxwjGxw">someone asking</a> why there are so many bots spamming the weather channel.</p>
+
+<p>The Archive Team dataset shows many retweets of an account for a Korean band (I think). The <a href="https://twitter.com/WeareoneEXO">account</a> has 13million followers, so I suppose a few thousand fans retweeting isn’t out of the ordinary.</p>
+
+<p>Tweet content metrics via PipeRider:
+<img src="/img/posts/221013-4.webp" alt="" /></p>
+
+<h2 id="-5">　</h2>
+<h3 id="4-retweet-count">4. Retweet count</h3>
+<p>Retweet count was extremely low in both datasets — 99.9% of the tweets in the Kaggle set were not retweeted.</p>
+
+<p><strong>Implication</strong></p>
+
+<p>It could mean low interaction rates on Twitter, but is probably just an indication that the dataset time frame is too narrow — only an hour, and that it takes a while for a tweet to gain momentum. This could be one to analyze over a period of a few hours or days.</p>
+
+<p>Retweet metrics via PipeRider:
+<img src="/img/posts/221013-5.webp" alt="" /></p>
+
+<h2 id="-6">　</h2>
+<h3 id="5-follower-count">5. Follower count</h3>
+<p>Follower count not only indicates how popular you are, but also if users are interacting and ‘listening’ to each other on Twitter. Are most users shouting into the wind? According to the Archive Team dataset, 4800 users were talking to themselves during that time frame.</p>
+
+<p><strong>Implication</strong></p>
+
+<p>It’s difficult to gauge this one without more analysis of the accounts with zero followers. They could be the bots we mentioned earlier, or just angry loners shouting in the wind.</p>
+
+<p>Follower count metrics via PipeRider: 
+<img src="/img/posts/221013-6.webp" alt="" /></p>
+
+<h2 id="-7">　</h2>
+<h2 id="conclusion">Conclusion</h2>
+<p>Data exploration is fun, even if you’re not a billionaire mulling over the potential purchase of a $44 billion social network.</p>
+
+<p>Data profiling can provide interesting insights into a dataset that you may not have previously thought of. Even the process of cleaning and transforming data in preparation for analysis can yield interesting results. For instance, while importing the Archive Team dataset, I found that there were many ‘deleted’ entries listed. I presume these are deleted tweets, a figure that could also offer some valuable insight.</p>
+
+<h2 id="-8">　</h2>
+<h2 id="add-data-profiling-to-your-data-reliability-strategy">Add data profiling to your data reliability strategy</h2>
+<p>If you’re interested in the tool I used here, check out PipeRider — it’s a CLI tool that profiles all the popular data warehouses and provides an HTML data profile report.</p>
+
+<p>Also, before you finish the reading the contracts for your Twitter purchase, please follow us on Twitter — we’re <a href="https://twitter.com/infuseai">@infuseai</a> ❤</p>
+
+<p>If you found this article interesting please <a href="https://twitter.com/InfuseAI/status/1580574430442377217?s=20&amp;t=GwuHVBwmjPMAU8nWlXetBw">retweet</a> to support more content like this.</p>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">5 Metrics that Elon Musk should check in the Twitter data<br /><br />What would you want to check before dropping $44m on a social network?<a href="https://t.co/LzSxGz5Lz9">https://t.co/LzSxGz5Lz9</a><a href="https://twitter.com/hashtag/opensource?src=hash&amp;ref_src=twsrc%5Etfw">#opensource</a> <a href="https://twitter.com/hashtag/dataprofiling?src=hash&amp;ref_src=twsrc%5Etfw">#dataprofiling</a> <a href="https://twitter.com/hashtag/eda?src=hash&amp;ref_src=twsrc%5Etfw">#eda</a> <a href="https://twitter.com/hashtag/dataanalysis?src=hash&amp;ref_src=twsrc%5Etfw">#dataanalysis</a> <a href="https://twitter.com/hashtag/dataobservability?src=hash&amp;ref_src=twsrc%5Etfw">#dataobservability</a></p>&mdash; InfuseAI (@InfuseAI) <a href="https://twitter.com/InfuseAI/status/1580574430442377217?ref_src=twsrc%5Etfw">October 13, 2022</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+:ET
