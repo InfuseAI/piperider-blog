@@ -1,4 +1,4 @@
-I".<p>As a data or analytics engineer you need to anticipate the unexpected, especially when building pipelines from data sources that you have no control over. While a data pipeline might be a house of cards, with data observability you’re able to keep an eye on any changes to the underlying structure, and be prepared for schema changes.</p>
+I"<p>As a data or analytics engineer you need to anticipate the unexpected, especially when building pipelines from data sources that you have no control over. While a data pipeline might be a house of cards, with data observability you’re able to keep an eye on any changes to the underlying structure, and be prepared for schema changes.</p>
 
 <p>Structure is the key point here, as one of the main ways that a data source can change is the schema, or structure, of a database table. The schema is important because the pipelines you build may have specific downstream uses that are directly tied to the current structure of the data. By staying ahead of schema changes you’ll know about potential issues before they affect the data and downstream uses.</p>
 
@@ -86,5 +86,8 @@
 <p>Have you been bitten by schema change? Let me know what happened and how you discovered the change.</p>
 
 <p>If I missed any important or obvious schema changes to look out for, please tell me and I’ll improve the list.</p>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Watch out for that schema change! It&#39;s a doozy!<br /><br />As a data engineer, you&#39;re always alerted to upstream table changes, right? (yes that&#39;s sarcasm😛)<br /><br />Use PipeRider to make sure you don&#39;t get caught off guard:<a href="https://t.co/2sFy2ikXYA">https://t.co/2sFy2ikXYA</a><a href="https://twitter.com/hashtag/snowflake?src=hash&amp;ref_src=twsrc%5Etfw">#snowflake</a> <a href="https://twitter.com/hashtag/dataengineering?src=hash&amp;ref_src=twsrc%5Etfw">#dataengineering</a> <a href="https://twitter.com/hashtag/datareliability?src=hash&amp;ref_src=twsrc%5Etfw">#datareliability</a> <a href="https://t.co/m9zpuUP1jY">pic.twitter.com/m9zpuUP1jY</a></p>&mdash; InfuseAI (@InfuseAI) <a href="https://twitter.com/InfuseAI/status/1599780636826472449?ref_src=twsrc%5Etfw">December 5, 2022</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 :ET

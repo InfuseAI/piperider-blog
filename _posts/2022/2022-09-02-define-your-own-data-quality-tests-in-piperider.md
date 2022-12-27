@@ -17,7 +17,7 @@ You don’t always have the luxury of a complete dataset, and that’s not alway
 
 Sometimes a certain amount of NULL values is OK 
 
-## Missing data? No problem 
+## Missing data? No problem
 Let’s say you have some incomplete data in a sales database and, even so, you still need to perform some calculations based on the data. You might be willing to allow a certain percentage of missing values before worrying about it affecting your results.
 
 [PipeRider](https://piperider.io/?utm_source=piperiderblog&utm_medium=blog) has [built-in assertions](https://docs.piperider.io/cli/data-quality-assertions/assertion-configuration) for testing if a column does not contain nulls, or that a it must be null, but there is no middle-ground for allowing for a certain quantity of nulls — custom assertions to the rescue!
@@ -26,7 +26,7 @@ Let’s say you have some incomplete data in a sales database and, even so, you 
 
 *For the rest of this article, I’ll assume you already have a PipeRider project set up — If not, it’s really easy to do, the [Quick Start](https://docs.piperider.io/cli/quick-start) guide will have you up and running in minutes.*
 
-## From data profile to data assertions 
+## From data profile to data assertions
 Each time you run PipeRider it creates a [profile of your data](https://docs.piperider.io/data-profile-and-metrics/data-profile), and then by applying data assertions you can test the contents of the profile to ensure the data meets your structural requirements.
 
 Using the missing data example from above, we’ll create a custom assertion that checks the number of nulls in a column, and raises an alert if there are more than our specified amount.
@@ -36,7 +36,7 @@ Here’s the template we’ll be using to create our custom column-assertion, St
 
 <script src="https://gist.github.com/DaveFlynn/7f26ee7cdecedef332d4b5601dec721f.js"></script>
 
-## Create your custom column-assertion 
+## Create your custom column-assertion
 In your PipeRider project, open `.piperider/plugins/customized_assertions.py` in your favorite text editor and paste the above template at the bottom, above where it says `# register new assertions`
 
 Give the assertion a name. Here, I’ve named the class `AssertNullCount` and the name of `assert_null_count`:
@@ -82,7 +82,7 @@ else:
 	return context.result.fail(nulls)
 ```
 
-### 5: Register the new assertion 
+### 5: Register the new assertion
 Now that you’ve created the assertion, register it with PipeRider. **This goes outside of your new class**, at the bottom of the `customized_assertions.py` file.
 
 ```
@@ -95,7 +95,7 @@ The completed custom assertion class should now look like this:
 
 <script src="https://gist.github.com/DaveFlynn/37b9f92e2784187566a6b4f8d3101250.js"></script>
 
-## Put your custom assertion into action 
+## Put your custom assertion into action
 Open the assertions file for the table you want to run the new assertion on. You can find the assertion YAML files in `.piperider/assertions/<table>.yml`. If you generated [recommended assertions](https://docs.piperider.io/cli/quick-start#generate-data-assertions) then your table assertions file should already be populated.
 
 Find the desired column and apply your custom assertion. In example below, I have applied the new assertion to the Global Sales column:
@@ -112,7 +112,7 @@ Global_sales: # Column Name
 
 The last line, `allowed_nulls`, is the value we pass through to the custom assertion and check the actual number of nulls against.
 
-## Run PipeRider to check that it works 
+## Run PipeRider to check that it works
 The next time you run PipeRider your custom assertion will be tested.
 
 **Passed assertion**
@@ -153,4 +153,6 @@ else:
 ```
 
 You’re only limited by the metrics available in the data profile, and your ability to write Python, so check the [PipeRider documentation](https://docs.piperider.io/) and **start making your data more reliable today**! 
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">PipeRider has a suite of built-in data quality tests, but you can also define your own.<br><br>Learn how to create your own custom data assertion to allow a certain number of null values before raising an alert:<a href="https://t.co/hrb4Oqwdx9">https://t.co/hrb4Oqwdx9</a><a href="https://twitter.com/hashtag/dataquality?src=hash&amp;ref_src=twsrc%5Etfw">#dataquality</a> <a href="https://twitter.com/hashtag/opensource?src=hash&amp;ref_src=twsrc%5Etfw">#opensource</a> <a href="https://twitter.com/hashtag/datareliability?src=hash&amp;ref_src=twsrc%5Etfw">#datareliability</a></p>&mdash; InfuseAI (@InfuseAI) <a href="https://twitter.com/InfuseAI/status/1565618009359945728?ref_src=twsrc%5Etfw">September 2, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 

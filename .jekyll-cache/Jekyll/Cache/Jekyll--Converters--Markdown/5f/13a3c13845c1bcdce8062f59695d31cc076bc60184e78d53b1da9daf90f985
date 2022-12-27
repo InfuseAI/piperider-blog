@@ -1,11 +1,11 @@
-I"�<p>Every decision in business is made based on supporting data. “Data-driven” is more than just a buzzword for meetings, it’s a way for a company to be self-aware. Using metrics derived from all sorts of data, it’s possible to understand the performance of each operational unit in a business. From sales figures to marketing efforts, from time sheets to billable hours, data helps us determine what is the correct decision to make, backed up by proof in the form of metrics.</p>
+I"�<p>Every decision in business is made based on supporting data. “Data-driven” is more than just a buzzword for meetings, it’s a way for a company to be self-aware. Using metrics derived from all sorts of data, it’s possible to understand the performance of each operational unit in a business. From sales figures to marketing efforts, from time sheets to billable hours, data helps us determine what is the correct decision to make, backed up by proof in the form of metrics.</p>
 
 <p>With data being such a valuable commodity, there has to be trust in it. By the time data makes its way downstream, it could have undergone many transformations on the way. With each ingestion, transformation, or abstraction, there is the possibility of mistakes being introduced into the data pipeline.</p>
 
 <p>At each step of the way along the pipeline, how do you ensure that the data is correct and can be trusted?</p>
 
 <p><img src="/img/posts/221023-1.webp" alt="" />
-<em>If you can’t trust your data, you can’t make data-drive decisions.</em></p>
+<em>If you can’t trust your data, you can’t make data-driven decisions.</em></p>
 
 <h2>　</h2>
 <h2 id="can-we-put-that-in-writing">Can we put that in writing?</h2>
@@ -13,7 +13,7 @@
 
 <p>By clearly <a href="https://davidsj.substack.com/p/yet-another-post-on-data-contracts#%C2%A7what-a-data-contract-should-contain">defining the requirements of the the data</a>, the data producer knows what data to serve, and in what format, and the data consumer knows what they will be receiving.</p>
 
-<p>Once the scale of your data pipeline reaches a certain threshold, and you’re <a href="https://blog.piperider.io/data-monitoring-be-the-master-of-your-pipeline.html">collecting metrics <em>about</em> the pipeline</a>, then it might be time to introduce data contracts. As Gleb, of Data Fold, <a href="https://www.datafold.com/blog/the-best-data-contract-is-the-pull-request">puts it</a>, when “metadata becomes big data… when something breaks, figuring out what the origin is becomes a huge task”. If you’re clear about what’s happening between the connections in the pipeline, this task is made a whole lot easier.</p>
+<p>Once the scale of your data pipeline reaches a certain threshold, and you’re <a href="/data-monitoring-be-the-master-of-your-pipeline.html">collecting metrics <em>about</em> the pipeline</a>, then it might be time to introduce data contracts. As Gleb, of Data Fold, <a href="https://www.datafold.com/blog/the-best-data-contract-is-the-pull-request">puts it</a>, when “metadata becomes big data… when something breaks, figuring out what the origin is becomes a huge task”. If you’re clear about what’s happening between the connections in the pipeline, this task is made a whole lot easier.</p>
 
 <h2 id="-1">　</h2>
 <h2 id="quality-data-prove-it">Quality data? Prove it!</h2>

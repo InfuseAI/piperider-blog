@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "How do you know you can trust your data?"
-subtitle: "Trustworthy data: the foundation of data-driven decision making"
+subtitle: "Trustworthy data is the foundation of data-driven decision making"
 author: PipeRider
 background: '/img/posts/06.jpg'
 hidedate: true
@@ -16,7 +16,7 @@ With data being such a valuable commodity, there has to be trust in it. By the t
 At each step of the way along the pipeline, how do you ensure that the data is correct and can be trusted?
 
 ![](/img/posts/221023-1.webp)
-*If you can’t trust your data, you can’t make data-drive decisions.*
+*If you can’t trust your data, you can’t make data-driven decisions.*
 
 ## 　
 ## Can we put that in writing?
@@ -24,7 +24,7 @@ Recently, [data contracts](https://dataproducts.substack.com/p/the-rise-of-data-
 
 By clearly [defining the requirements of the the data](https://davidsj.substack.com/p/yet-another-post-on-data-contracts#%C2%A7what-a-data-contract-should-contain), the data producer knows what data to serve, and in what format, and the data consumer knows what they will be receiving.
 
-Once the scale of your data pipeline reaches a certain threshold, and you’re [collecting metrics *about* the pipeline](https://blog.piperider.io/data-monitoring-be-the-master-of-your-pipeline.html), then it might be time to introduce data contracts. As Gleb, of Data Fold, [puts it](https://www.datafold.com/blog/the-best-data-contract-is-the-pull-request), when “metadata becomes big data… when something breaks, figuring out what the origin is becomes a huge task”. If you’re clear about what’s happening between the connections in the pipeline, this task is made a whole lot easier.
+Once the scale of your data pipeline reaches a certain threshold, and you’re [collecting metrics *about* the pipeline](/data-monitoring-be-the-master-of-your-pipeline.html), then it might be time to introduce data contracts. As Gleb, of Data Fold, [puts it](https://www.datafold.com/blog/the-best-data-contract-is-the-pull-request), when “metadata becomes big data… when something breaks, figuring out what the origin is becomes a huge task”. If you’re clear about what’s happening between the connections in the pipeline, this task is made a whole lot easier.
 
 ## 　
 ## Quality data? Prove it!

@@ -60,6 +60,9 @@ piperider compare-reports --last --tables-from target-only
 
 This command auto compares the last two reports, and only compares tables that appeared in the *target* report. Which, in this case, would be the report that only includes tables modified as per the dbt state.  This is perfect if you want a report that only focuses on the comparison of modified models before-and-after your latest changes.
 
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">dbt state is a powerful way to build only modified/specified models<br><br>You can now profile and test <a href="https://twitter.com/hashtag/dbt?src=hash&amp;ref_src=twsrc%5Etfw">#dbt</a> states with PipeRider, available now in version 0.14<br><br>👀 Read more<a href="https://t.co/vvV3IMhH2Y">https://t.co/vvV3IMhH2Y</a><br><br>⭐️Star on GitHub<a href="https://t.co/rqp6ynbyeM">https://t.co/rqp6ynbyeM</a><a href="https://twitter.com/hashtag/dataquality?src=hash&amp;ref_src=twsrc%5Etfw">#dataquality</a> <a href="https://twitter.com/hashtag/datareliability?src=hash&amp;ref_src=twsrc%5Etfw">#datareliability</a> <a href="https://twitter.com/hashtag/opensource?src=hash&amp;ref_src=twsrc%5Etfw">#opensource</a> <a href="https://t.co/jk2qvO7uPM">pic.twitter.com/jk2qvO7uPM</a></p>&mdash; InfuseAI (@InfuseAI) <a href="https://twitter.com/InfuseAI/status/1600150571402477569?ref_src=twsrc%5Etfw">December 6, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+
+
 ## Get started with PipeRider
 
 As I mentioned above, if you’re a dbt user then PipeRider should be your go-to data reliability tool.  If you already have a dbt project, all you need to do is [initialize PipeRider inside the project](https://docs.piperider.io/cli/dbt-integration) and your data source settings will be automatically detected:

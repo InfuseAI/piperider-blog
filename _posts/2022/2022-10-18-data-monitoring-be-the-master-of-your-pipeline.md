@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Data Monitoring — Be the Master of Your Pipeline"
-subtitle: "Setting up a dedicated monitoring ipeline"
+subtitle: "Setting up a dedicated monitoring Pipeline"
 author: PipeRider
 background: '/img/posts/06.jpg'
 hidedate: true
@@ -62,5 +62,7 @@ How do you determine what are the important things to monitor and track the metr
 ### Add data profiling to your data reliability strategy
 [PipeRider](https://piperider.io/?utm_source=piperiderblog&utm_medium=blog) is an open-source data reliability CLI tool that adds data profiling and assertions to data warehouses such as BigQuery, Snowflake, Redshift and more. Data profile and assertions results are provided in an HTML report each time you run PipeRider.
 
-If you found this article useful please consider [retweeting](https://twitter.com/InfuseAI/status/1582554616092184576?s=20&t=U8_JhQpFZRqjShVTA98vTg)❤.
+If you found this article useful please consider liking and [retweeting](https://twitter.com/InfuseAI/status/1582554616092184576?s=20&t=U8_JhQpFZRqjShVTA98vTg)❤.
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Are you master of your domain, er... pipeline?<br><br>Data pipelines aren&#39;t getting any simpler!<br><br>What kind of monitoring are you running and which metrics are important to you?<a href="https://t.co/EevD4la0bo">https://t.co/EevD4la0bo</a><a href="https://twitter.com/hashtag/dataobservability?src=hash&amp;ref_src=twsrc%5Etfw">#dataobservability</a> <a href="https://twitter.com/hashtag/datamonitoring?src=hash&amp;ref_src=twsrc%5Etfw">#datamonitoring</a></p>&mdash; InfuseAI (@InfuseAI) <a href="https://twitter.com/InfuseAI/status/1582554616092184576?ref_src=twsrc%5Etfw">October 19, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 

@@ -103,14 +103,17 @@ You can also compare the last two reports automatically (without needing to manu
 piperider compare-reports —last
 ```
 
-## 　  
+　  
 ## Sample Reports
 Links to example reports will always be available in the PipeRider documentation. Here are samples created with PipeRider 0.7:
 
-[Sample PipeRider data profile report](https://piperider-github-readme.s3.ap-northeast-1.amazonaws.com/run-0.7.0/index.html#/)
-[Sample PipeRider report comparison](https://piperider-github-readme.s3.ap-northeast-1.amazonaws.com/comparison-0.7.0/index.html)
+- [Sample PipeRider data profile report](https://piperider-github-readme.s3.ap-northeast-1.amazonaws.com/run-0.7.0/index.html#/)
+- [Sample PipeRider report comparison](https://piperider-github-readme.s3.ap-northeast-1.amazonaws.com/comparison-0.7.0/index.html)
 
-## 　  
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">1/ PipeRider is our open-source data reliability tool that brings data profiling and reliability to your data pipeline<br><br>Here’s a series of rough-and-ready videos to show how easy it is to get started using PipeRider<br><br>⭐️<a href="https://t.co/6gkuAMEhMz">https://t.co/6gkuAMEhMz</a><a href="https://twitter.com/hashtag/opensource?src=hash&amp;ref_src=twsrc%5Etfw">#opensource</a> <a href="https://twitter.com/hashtag/dataquality?src=hash&amp;ref_src=twsrc%5Etfw">#dataquality</a> <a href="https://t.co/8N6ZGTAAlu">pic.twitter.com/8N6ZGTAAlu</a></p>&mdash; InfuseAI (@InfuseAI) <a href="https://twitter.com/InfuseAI/status/1555112648643350528?ref_src=twsrc%5Etfw">August 4, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+
+　
 --- 
 ## Who makes PipeRider?
 [PipeRider](https://piperider.io/?utm_source=piperiderblog&utm_medium=blog) is developed by [InfuseAI](https://infuseai.io/), the company behind the end-to-end machine learning platform [PrimeHub](https://www.infuseai.io/primehub-ai-platform).

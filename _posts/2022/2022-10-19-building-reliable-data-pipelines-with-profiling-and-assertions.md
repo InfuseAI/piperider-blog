@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Building Reliable Data Oipelines With Profiling and Assertions"
-subtitle: "By using data profiling the task of building and maintaining reliable data pipelines is a lot more manageable"
+title: "Building Reliable Data Pipelines With Profiling and Assertions"
+subtitle: "Data profiling makes the task of building and maintaining reliable data pipelines a lot more manageable"
 author: PipeRider
 background: '/img/posts/06.jpg'
 hidedate: true
@@ -18,7 +18,7 @@ Creating error-free data pipelines takes a lot of effort from data engineers, bu
 ## Data profiling and assertions for quality assurance
 The metrics that data profiling provides can be used to ensure that data meets the requirements it’s intended for, and also enables you (the data engineer) to spot anomalies or anything out of the ordinary. Essentially providing a layer of quality assurance to the pipeline.
 
-When paired with data assertions, the profile can be tested to ensure that metrics are within desired thresholds. This is not only useful for building the pipeline, but also for continued testing throughout the life of the pipeline. Data profiling is an essential part of creating a dedicated data monitoring pipeline so you can become [‘master of your pipeline’](https://blog.piperider.io/data-monitoring-be-the-master-of-your-pipeline.html).
+When paired with data assertions, the profile can be tested to ensure that metrics are within desired thresholds. This is not only useful for building the pipeline, but also for continued testing throughout the life of the pipeline. Data profiling is an essential part of creating a dedicated data monitoring pipeline so you can become [‘master of your pipeline’](/data-monitoring-be-the-master-of-your-pipeline.html).
 
 ## 　
 ## Add data profiling and assertion to your ELT pipeline
@@ -43,8 +43,10 @@ After the issue is resolved, you can update the data assertions to account for t
 ## Conclusion
 A data profile is useful for creating the data pipeline and, when generated regularly, can also be used for monitoring data distribution over time and debugging issues. The addition of assertions makes it a great way to test for data reliability. In many cases, a data profile report can reduce the need for a complex BI dashboard.
 
-If you like this article, it’s a big encouragement to give us a like on [Twitter](https://twitter.com/InfuseAI/status/1582733321594753024?s=20&t=Nw2rTYJOoFJAWdNIdMTxfw).
+If you like this article, please consider liking and sharing on [Twitter](https://twitter.com/InfuseAI/status/1582733321594753024?s=20&t=Nw2rTYJOoFJAWdNIdMTxfw).
 
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Improve your ELT pipeline creation process with data profiling and data assertions<br><br>These extra steps at a layer of quality control to your pipeline for build and monitoring data pipelines<a href="https://t.co/cXtJx6BwL4">https://t.co/cXtJx6BwL4</a><a href="https://twitter.com/hashtag/dataobservability?src=hash&amp;ref_src=twsrc%5Etfw">#dataobservability</a> <a href="https://twitter.com/dataprofiling?ref_src=twsrc%5Etfw">@dataprofiling</a> <a href="https://twitter.com/hashtag/datareliability?src=hash&amp;ref_src=twsrc%5Etfw">#datareliability</a></p>&mdash; InfuseAI (@InfuseAI) <a href="https://twitter.com/InfuseAI/status/1582733321594753024?ref_src=twsrc%5Etfw">October 19, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 
 ## 　
 ### Add data profiling to your data reliability strategy

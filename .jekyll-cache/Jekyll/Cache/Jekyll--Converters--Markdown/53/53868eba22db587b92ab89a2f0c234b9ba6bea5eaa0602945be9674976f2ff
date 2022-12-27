@@ -1,4 +1,4 @@
-I" '<p><strong>tl;dr</strong> <a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a> comes with a built-in suite of data quality assertions, but you can also define your own assertions to meet your needs. This guide will show you how to implement a custom assertion to allow a specific number of nulls without raising an alert.</p>
+I"’*<p><strong>tl;dr</strong> <a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a> comes with a built-in suite of data quality assertions, but you can also define your own assertions to meet your needs. This guide will show you how to implement a custom assertion to allow a specific number of nulls without raising an alert.</p>
 
 <hr />
 
@@ -135,5 +135,8 @@ else:
 </code></pre></div></div>
 
 <p>Youâ€™re only limited by the metrics available in the data profile, and your ability to write Python, so check the <a href="https://docs.piperider.io/">PipeRider documentation</a> and <strong>start making your data more reliable today</strong>!</p>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">PipeRider has a suite of built-in data quality tests, but you can also define your own.<br /><br />Learn how to create your own custom data assertion to allow a certain number of null values before raising an alert:<a href="https://t.co/hrb4Oqwdx9">https://t.co/hrb4Oqwdx9</a><a href="https://twitter.com/hashtag/dataquality?src=hash&amp;ref_src=twsrc%5Etfw">#dataquality</a> <a href="https://twitter.com/hashtag/opensource?src=hash&amp;ref_src=twsrc%5Etfw">#opensource</a> <a href="https://twitter.com/hashtag/datareliability?src=hash&amp;ref_src=twsrc%5Etfw">#datareliability</a></p>&mdash; InfuseAI (@InfuseAI) <a href="https://twitter.com/InfuseAI/status/1565618009359945728?ref_src=twsrc%5Etfw">September 2, 2022</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 :ET

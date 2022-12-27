@@ -22,15 +22,15 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="tl;dr PipeRider now supports dbt state! You can profile and run data reliability tests on only the tables that have been modified as part of your dbt state" />
 <meta property="og:description" content="tl;dr PipeRider now supports dbt state! You can profile and run data reliability tests on only the tables that have been modified as part of your dbt state" />
-<link rel="canonical" href="http://localhost:4000/data-reliability-dbt-state-piperider.html" />
-<meta property="og:url" content="http://localhost:4000/data-reliability-dbt-state-piperider.html" />
+<link rel="canonical" href="https://blog.piperider.io/data-reliability-dbt-state-piperider.html" />
+<meta property="og:url" content="https://blog.piperider.io/data-reliability-dbt-state-piperider.html" />
 <meta property="og:site_name" content="PipeRider" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2022-12-06T00:00:00+08:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Data reliability testing for dbt state with PipeRider" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"PipeRider"},"dateModified":"2022-12-06T00:00:00+08:00","datePublished":"2022-12-06T00:00:00+08:00","description":"tl;dr PipeRider now supports dbt state! You can profile and run data reliability tests on only the tables that have been modified as part of your dbt state","headline":"Data reliability testing for dbt state with PipeRider","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/data-reliability-dbt-state-piperider.html"},"url":"http://localhost:4000/data-reliability-dbt-state-piperider.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"PipeRider"},"dateModified":"2022-12-06T00:00:00+08:00","datePublished":"2022-12-06T00:00:00+08:00","description":"tl;dr PipeRider now supports dbt state! You can profile and run data reliability tests on only the tables that have been modified as part of your dbt state","headline":"Data reliability testing for dbt state with PipeRider","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.piperider.io/data-reliability-dbt-state-piperider.html"},"url":"https://blog.piperider.io/data-reliability-dbt-state-piperider.html"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -45,7 +45,7 @@
   <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
 
   <link rel="stylesheet" href="/assets/main.css">
-  <link rel="canonical" href="http://localhost:4000/data-reliability-dbt-state-piperider.html">
+  <link rel="canonical" href="https://blog.piperider.io/data-reliability-dbt-state-piperider.html">
   <link rel="alternate" type="application/rss+xml" title="PipeRider" href="/feed.xml">
 
 </head>
@@ -176,6 +176,9 @@
 </code></pre></div></div>
 
 <p>This command auto compares the last two reports, and only compares tables that appeared in the <em>target</em> report. Which, in this case, would be the report that only includes tables modified as per the dbt state.  This is perfect if you want a report that only focuses on the comparison of modified models before-and-after your latest changes.</p>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">dbt state is a powerful way to build only modified/specified models<br /><br />You can now profile and test <a href="https://twitter.com/hashtag/dbt?src=hash&amp;ref_src=twsrc%5Etfw">#dbt</a> states with PipeRider, available now in version 0.14<br /><br />👀 Read more<a href="https://t.co/vvV3IMhH2Y">https://t.co/vvV3IMhH2Y</a><br /><br />⭐️Star on GitHub<a href="https://t.co/rqp6ynbyeM">https://t.co/rqp6ynbyeM</a><a href="https://twitter.com/hashtag/dataquality?src=hash&amp;ref_src=twsrc%5Etfw">#dataquality</a> <a href="https://twitter.com/hashtag/datareliability?src=hash&amp;ref_src=twsrc%5Etfw">#datareliability</a> <a href="https://twitter.com/hashtag/opensource?src=hash&amp;ref_src=twsrc%5Etfw">#opensource</a> <a href="https://t.co/jk2qvO7uPM">pic.twitter.com/jk2qvO7uPM</a></p>&mdash; InfuseAI (@InfuseAI) <a href="https://twitter.com/InfuseAI/status/1600150571402477569?ref_src=twsrc%5Etfw">December 6, 2022</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <h2 id="get-started-with-piperider">Get started with PipeRider</h2>
 
