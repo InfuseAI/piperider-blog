@@ -1,0 +1,91 @@
+I"1<p><em>tl;dr PipeRider can help detect data issues in a water quality dataset through data profiling and custom assertions, which can be useful for determining the drinkability of water and solving problems immediately if alerts are raised.</em></p>
+
+<hr />
+
+<p>Determining the drinkability of water is the perfect case for a data reliability tool. Not only can we detect if there is missing data, but also when values fall outside of safe ranges. If the water resources management center has a good data assertion tool to detect the water quality, they can solve the problem immediately. Also, the manager and the employee can see a daily report to know the data distribution and water status. If PipeRider’s data assertions raise an alert, they can make a decision and better manage it.”</p>
+
+<p>In this article, I will use a Kaggle water quality dataset and show how PipeRider can help detect data issues through data profiling and custom assertions.</p>
+
+<p><a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a> is a data quality toolkit for data professionals. With PipeRider, you can profile your data sources, create highly customizable data quality assertions, and generate insightful reports.</p>
+
+<h2 id="get-the-dataset-from-kaggle">Get the dataset from Kaggle</h2>
+
+<p>First, the Kaggle website stores the <a href="https://www.kaggle.com/datasets/adityakadiwal/water-potability">water quality</a> dataset. We need to download it and put it into the environment.</p>
+
+<p>If you want to use the Kaggle CLI tool, you need to download the Kaggle key JSON file from the Kaggle website. The Proceed as follows:</p>
+
+<p>Go to “Account”, go down the page, and find the “API” section.
+Click the “Create New API Token” button.
+We will download the “kaggle.json” file.
+Put the file into <code class="language-plaintext highlighter-rouge">~/.kaggle/</code> folder.</p>
+
+<p><img src="/img/posts/220727-1.webp" alt="Download the API token JSON file on the Kaggle Account page." /></p>
+
+<p>Then, we can download the datasets through the Kaggle CLI tool.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>kaggle
+
+kaggle datasets download <span class="nt">-d</span> adityakadiwal/water-potability
+
+unzip water-potability.zip
+</code></pre></div></div>
+
+<h2 id="transfer-csv-to-sqlite">Transfer CSV to SQLite</h2>
+<p>PipeRider supports four data sources: dbt integration, Postgres Connector, Snowflake Connector, and SQLite database. Here we use SQLite as our database example.</p>
+
+<p>However, we need to transfer the CSV file into the SQLite database for PipeRider’s suitable database. Here, We can use the open source tool <a href="https://github.com/simonw/csvs-to-sqlite">csv-to-sqlite</a> to transfer the CSV files to the SQLite database.</p>
+
+<p>You might also want to check the article of <a href="https://blog.piperider.io/transfer-the-csv-files-into-an-sqlite-database">Transfer the CSV Files into an SQLite Database</a></p>
+
+<p>Follow the command line to transfer the CSV files to the SQLite database.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>csvs-to-sqlite
+csvs-to-sqlite water-potability.csv water-potability.db
+</code></pre></div></div>
+
+<h2 id="add-build-in-assertion">Add build-in assertion</h2>
+<p>Now, we can start to use PipeRider. We provide a Quick Start tutorial on the documentation page to show how to use PipeRider. You can follow the method to initialize, configure, diagnose and run PipeRider. After you run the <code class="language-plaintext highlighter-rouge">piperider run</code> command, you will get the “.piperider” folder in your project folder.</p>
+
+<p><img src="/img/posts/220727-2.webp" alt="The structure of the .piperider folder" /></p>
+
+<p>Although PipeRider provides an automatic assertion generation method, we want to configure our logic assertion. For example, the range of PH values is 0 to 14. If the value is over the content of values, then the data detection has some problem, and the users need to collect the data again. PipeRider provides two types of built-in assertions, one takes no parameter, and the other takes parameters.</p>
+
+<p><a href="https://docs.piperider.io/cli/data-quality-assertions/assertion-configuration">Built-In Assertions Guide</a></p>
+
+<p>You can go to <code class="language-plaintext highlighter-rouge">.piperider/assertions/</code> to add assertions in <code class="language-plaintext highlighter-rouge">&lt;table&gt;.yml</code>. Here is an example of the built-in assertion yaml file.</p>
+
+<script src="https://gist.github.com/LiuYuWei/27dd7c6ec5685f13de9810accb9a3f6a.js"></script>
+
+<p>After modifying the YAML file, rerun the <code class="language-plaintext highlighter-rouge">piperider run</code> and see the assertion result.</p>
+
+<p><img src="/img/posts/220727-3.webp" alt="The result of piperider run (We configure the built-in assertion YAML file.)" /></p>
+
+<h2 id="add-custom-assertion">Add custom assertion</h2>
+
+<p>We can see that some assertions failed because the maximum value range exceeded the WHO recommended value. If the user views the assertion error. The user needs to find the root cause of the datasets and improve the water quality.</p>
+
+<p>In the description in the Kaggle datasets, we can see the content that tells us, “WHO has recommended maximum permissible limit of pH from 6.5 to 8.5.” Therefore, I want to test that the average value is in the range of 6.5 and 8.5. However, the built-in assertion method does not have this method. We need to write our own logic assertion to do the testing.</p>
+
+<p>PipeRider provides a few built-in assertions and supports custom assertions as <em>plugins</em> that can satisfy your data quality check requirements. In this showcase, we add the new <em>assert_column_avg_in_range</em> assertion method and use the assertion to test the data profiling values.</p>
+
+<p>PipeRider, by default, will load python files under <code class="language-plaintext highlighter-rouge">.piperider/plugins</code> custom assertion functions automatically. <code class="language-plaintext highlighter-rouge">.piperider/plugins</code> is created <code class="language-plaintext highlighter-rouge">piperider init</code> with a scaffolding of a custom assertion function, <code class="language-plaintext highlighter-rouge">customized_assertions.py</code>. You can rename the file or generate assertion functions in other python files.</p>
+
+<script src="https://gist.github.com/LiuYuWei/d7168d5cda4b6296997cc489be3d5687.js"></script>
+
+<p>After modifying the YAML file, rerun the <code class="language-plaintext highlighter-rouge">piperider run</code> and see the assertion result.</p>
+
+<p><img src="/img/posts/220727-4.webp" alt="The result of piperider run (We add the custom assertion method.)" /></p>
+
+<p>The result shows that the new assertion method is successfully tested. You can follow the python class structure to try the specific assertion method.</p>
+
+<p>Also, You can check the history assertion result in Pipeider UI.</p>
+
+<p><img src="/img/posts/220727-5.webp" alt="Assertion testing in PipeRider UI" /></p>
+
+<hr />
+
+<h3 id="i-am-simon">I am Simon</h3>
+<p>Hi, I am Simon, Customer Success Engineer in InfuseAI. Please give me applause and also welcome to provide me with some suggestions if you think the article is helpful for you. Welcome to discuss with me in InfuseAI <a href="https://discord.gg/xKxsdPx4d5">Discord</a>.<br />
+Linkedin: <a href="https://www.linkedin.com/in/simonliuyuwei/">https://www.linkedin.com/in/simonliuyuwei/</a></p>
+
+:ET

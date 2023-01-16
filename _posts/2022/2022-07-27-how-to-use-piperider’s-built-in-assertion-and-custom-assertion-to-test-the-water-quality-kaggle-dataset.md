@@ -43,7 +43,7 @@ kaggle datasets download -d adityakadiwal/water-potability
 unzip water-potability.zip
 ```
 
-## Transfer CSV to SQLite 
+## Transfer CSV to SQLite
 PipeRider supports four data sources: dbt integration, Postgres Connector, Snowflake Connector, and SQLite database. Here we use SQLite as our database example.
 
 However, we need to transfer the CSV file into the SQLite database for PipeRider’s suitable database. Here, We can use the open source tool [csv-to-sqlite](https://github.com/simonw/csvs-to-sqlite) to transfer the CSV files to the SQLite database.
@@ -57,14 +57,14 @@ pip install csvs-to-sqlite
 csvs-to-sqlite water-potability.csv water-potability.db
 ```
 
-## Add build-in assertion 
+## Add build-in assertion
 Now, we can start to use PipeRider. We provide a Quick Start tutorial on the documentation page to show how to use PipeRider. You can follow the method to initialize, configure, diagnose and run PipeRider. After you run the `piperider run` command, you will get the “.piperider” folder in your project folder.
 
 ![The structure of the .piperider folder](/img/posts/220727-2.webp)
 
 Although PipeRider provides an automatic assertion generation method, we want to configure our logic assertion. For example, the range of PH values is 0 to 14. If the value is over the content of values, then the data detection has some problem, and the users need to collect the data again. PipeRider provides two types of built-in assertions, one takes no parameter, and the other takes parameters.
 
-[Built-In Assertions Guide](https://docs.piperider.io/cli/data-quality-assertions/assertion-configuratio)
+[Built-In Assertions Guide](https://docs.piperider.io/cli/data-quality-assertions/assertion-configuration)
 
 You can go to `.piperider/assertions/` to add assertions in `<table>.yml`. Here is an example of the built-in assertion yaml file.
 
