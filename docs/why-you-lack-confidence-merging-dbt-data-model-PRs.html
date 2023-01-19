@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Why you lack confidence merging dbt data model PRs - PipeRider
+    
+  </title>
+
+  <meta name="description" content="We love dbt - Its popularity seems to have skyrocketed over the last year or so. Everywhere I look people are writing about learning and using dbt. Applying ...">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Why you lack confidence merging dbt data model PRs | PipeRider</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Why you lack confidence merging dbt data model PRs" />
+<meta name="author" content="PipeRider" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="We love dbt - Its popularity seems to have skyrocketed over the last year or so. Everywhere I look people are writing about learning and using dbt. Applying software development practices to data projects, and the beauty of ELT, has really struck a chord with data engineers." />
+<meta property="og:description" content="We love dbt - Its popularity seems to have skyrocketed over the last year or so. Everywhere I look people are writing about learning and using dbt. Applying software development practices to data projects, and the beauty of ELT, has really struck a chord with data engineers." />
+<link rel="canonical" href="https://blog.piperider.io/why-you-lack-confidence-merging-dbt-data-model-PRs.html" />
+<meta property="og:url" content="https://blog.piperider.io/why-you-lack-confidence-merging-dbt-data-model-PRs.html" />
+<meta property="og:site_name" content="PipeRider" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-01-19T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Why you lack confidence merging dbt data model PRs" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"PipeRider"},"dateModified":"2023-01-19T00:00:00+08:00","datePublished":"2023-01-19T00:00:00+08:00","description":"We love dbt - Its popularity seems to have skyrocketed over the last year or so. Everywhere I look people are writing about learning and using dbt. Applying software development practices to data projects, and the beauty of ELT, has really struck a chord with data engineers.","headline":"Why you lack confidence merging dbt data model PRs","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.piperider.io/why-you-lack-confidence-merging-dbt-data-model-PRs.html"},"url":"https://blog.piperider.io/why-you-lack-confidence-merging-dbt-data-model-PRs.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://blog.piperider.io/why-you-lack-confidence-merging-dbt-data-model-PRs.html">
+  <link rel="alternate" type="application/rss+xml" title="PipeRider" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <img src="/img/piperider-logo.svg" alt="PipeRider Logo">
+      PipeRider
+    </a>    
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <!-- <a class="nav-link" href="/">Home</a> -->
+          <a class="nav-link" href="https://piperider.io">PipeRider Website</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://docs.piperider.io">Documentation</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/infuseai/piperider">GitHub</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="/contact">Contact</a>
+        </li> -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"  role="button" data-toggle="dropdown" aria-expanded="false">Community</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="https://discord.gg/328QcXnkKD">Discord</a>
+            <a class="dropdown-item" href="mailto:support@piperider.io">Support</a>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+
+  <header class="piperider-masthead">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Why you lack confidence merging dbt data model PRs</h1>
+            
+            <h2 class="subheading">Improve the PR review process with automated metric comparisons</h2>
+            
+            <span class="meta">Posted by
+              PipeRider
+              
+              &middot; <span class="reading-time" title="Estimated read time">
+  
+   6 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <article class="post-single">
+
+          
+          <div class="featured-image">
+            <img src="/img/posts/dbtman.jpg" />
+          </div>
+          
+
+          <p>We love dbt - Its popularity seems to have skyrocketed over the last year or so. Everywhere I look people are writing about learning and using dbt. Applying software development practices to data projects, and the beauty of ELT, has really struck a chord with data engineers.</p>
+
+<p>With dbt projects managed in Git, data engineers can take advantage of versioning, pull requests, issues, and all the related good stuff such as continuous integration (CI) and continuous deployment (CD) to automate tasks when pull requests (PR) are made on a project. This opens the door to so much possibility for augmenting the building and deployment process with extra features.</p>
+
+<h2 id="with-great-power-comes-great-responsibility">With great power, comes great responsibility</h2>
+
+<p>The power that dbt and Git/CI brings is great, and it makes collaborating on data projects so much easier, but with more engineers working together on projects, and increasing size and complexity of data pipelines, the process of reviewing data project pull requests is getting much more difficult.</p>
+
+<h2 id="are-you-confident-merging-changes-to-production">Are you confident merging changes to production?</h2>
+
+<p>Reviewing a pull request already has a <a href="https://www.getdbt.com/blog/how-to-review-an-analytics-pull-request/">laundry list of things to consider</a>, but there’s one aspect which can be particularly difficult - Ensuring that the “<a href="https://www.getdbt.com/blog/how-to-review-an-analytics-pull-request/#-data-returns-expected-results">data returns expected results</a>”, especially when you’re looking at model changes to an existing pipeline and need to determine the impact of the change.</p>
+
+<p>If you can’t determine the full impact of the changes, then it’s impossible to be completely confident in merging data model changes. The amount of confidence you have depends on the method you use to check the data, and for that, you’re on your own.</p>
+
+<h2 id="how-do-you-check-the-data">How do you check the data?</h2>
+
+<p>Comparing the data from production with the data from the PR isn’t always straightforward, and it’s the part of the process when ‘silent errors’ can sneak into the pipeline, especially with <a href="https://docs.getdbt.com/docs/build/metrics">key metrics</a>. So, what are the common ways to check the data, and are they any good?</p>
+
+<h3 id="manually-check">Manually check</h3>
+
+<p>This method involves querying the data, checking values against known correct values, and generally trying to get a ‘feel’ for if the data is correct. The problem is that it’s a slow process, and manual checks are error prone. It’s too easy to miss something and have errors sneak into production.</p>
+
+<h3 id="bi-tools">BI Tools</h3>
+
+<p>The data ends up in BI tools anyway. Couldn’t you just check the data there? You could load the PR data into a BI tool but, again, it’s a slow process, and there’s no great way to compare production and PR environments in a BI tool.</p>
+
+<h3 id="dbt-tests">dbt tests</h3>
+
+<p>dbt has assertions that you can use to test the data in a pass/fail sense: <code class="language-plaintext highlighter-rouge">unique</code>, <code class="language-plaintext highlighter-rouge">not null</code>, <code class="language-plaintext highlighter-rouge">accepted values</code> and <code class="language-plaintext highlighter-rouge">relationships</code>.  dbt tests are useful for some cases but, for metrics, there’s no way to define what ‘correct’ data looks like. The only way to know if a change in metrics is desired is to compare metrics from the PR environment with production and then assess, given the modeling changes, if the impact of these changes are expected.</p>
+
+<h2 id="solution-automated-metrics-comparison">Solution: Automated metrics comparison</h2>
+
+<blockquote>
+  <p>One of the many benefits of running dbt in a CI environment is being able to query the production data and see how it compares to the data built by the changes in the PR.</p>
+</blockquote>
+
+<p style="text-align: right">-- Erin Vaughan, Director of Customer Success @ dbt labs</p>
+
+<p>As Erin mentions above, a CI process is invaluable for dbt projects, and with dbt’s <a href="https://docs.getdbt.com/reference/node-selection/methods#the-state-method">state</a> method (<a href="https://docs.getdbt.com/guides/legacy/best-practices#run-only-modified-models-to-test-changes-slim-ci">SlimCI</a>) you can create a PR environment and <a href="https://discourse.getdbt.com/t/how-we-sped-up-our-ci-runs-by-10x-using-slim-ci/2603">only run/test models that have changed</a>.</p>
+
+<p>This is where our solution comes in - To automatically query and compare key metrics as part of CI/CD and provide a summary of changes for the review to quickly grasp the impact.</p>
+
+<p>The CI process goes something like:</p>
+
+<ul>
+  <li>Create a PR environment (using dbt state)</li>
+  <li>Query key metrics from PR environment</li>
+  <li>Query key metrics from production environment</li>
+  <li>Compare the metrics from both environments</li>
+  <li><strong>Attach a metrics comparison summary to the PR comment</strong></li>
+</ul>
+
+<p><img src="/img/posts/piperider_compare-business-metrics.png" alt="Compare metrics" title="Compare metrics with PipeRider" /></p>
+<p style="text-align: center">Compare metrics using PipeRider</p>
+
+<h3 id="confidence-acquired">Confidence Acquired</h3>
+
+<p>The PR reviewer can now not only be alerted to model changes that affect metrics, but also see the impact of those changes. They can then determine if those changes are desirable and expected, or are the result of an error in the modeling queries.</p>
+
+<p>With this knowledge to hand, data engineers and PR reviewers can <a href="https://blog.infuseai.io/how-to-be-more-confident-making-data-model-changes-76a2f65feffa">be more confident merging data model changes into production</a>, and stop letting silent errors slip into production.</p>
+
+<h2 id="piperider">PipeRider</h2>
+
+<p>At PipeRider, we’re already well into solving this problem and you can try out our solution right now. PipeRider is our data reliability tool with a special focus on dbt project integration and automation with CI.</p>
+
+<ul>
+  <li>Read more about <a href="https://docs.piperider.io/cli/continuous-integration-ci">using PipeRider with continuous intergration</a> in the documentation</li>
+  <li>You can also <a href="https://docs.piperider.io/cli/dbt-integration/metrics">add dbt metrics to your PipeRider reports</a>, and compare metics between runs</li>
+</ul>
+
+<p>If you’re interested in better understanding the impact of data model changes, get started with <a href="https://docs.piperider.io/cli/dbt-integration">PipeRider and dbt</a>, or sign-up at <a href="https://piperider.io">piperider.io</a> to arrange a call.</p>
+
+
+          
+            
+
+        </article>
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/share-the-spectacular-world-cup-construction-with-chatgpt.html" data-toggle="tooltip" data-placement="top" title="Share the Spectacular World Cup construction with ChatGPT">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center social-icons">
+          
+          <li class="list-inline-item">
+            <a href="mailto:support@piperider.io">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/company/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/infuseai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; <a href="https://infuseai.io">InfuseAI</a> 2023</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/atom-one-dark-reasonable.min.css">
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1P3NVFS4NW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1P3NVFS4NW');
+</script>
+
+
+
+  <script>
+  window.intercomSettings = {
+    api_base: "https://api-iam.intercom.io",
+    app_id: "ofl16ydc"
+  };
+</script>
+
+<script>
+// We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/ofl16ydc'
+(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/ofl16ydc';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+</script>  
+
+</body>
+
+</html>
