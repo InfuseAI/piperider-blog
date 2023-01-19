@@ -1,4 +1,74 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://blog.piperider.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.piperider.io/" rel="alternate" type="text/html" /><updated>2023-01-16T17:07:12+08:00</updated><id>https://blog.piperider.io/feed.xml</id><title type="html">PipeRider</title><subtitle>Data Reliability Automated</subtitle><author><name>PipeRider</name></author><entry><title type="html">Share the Spectacular World Cup construction with ChatGPT</title><link href="https://blog.piperider.io/share-the-spectacular-world-cup-construction-with-chatgpt.html" rel="alternate" type="text/html" title="Share the Spectacular World Cup construction with ChatGPT" /><published>2022-12-15T00:00:00+08:00</published><updated>2022-12-15T00:00:00+08:00</updated><id>https://blog.piperider.io/share-the-spectacular-world-cup-construction-with-chatgpt</id><content type="html" xml:base="https://blog.piperider.io/share-the-spectacular-world-cup-construction-with-chatgpt.html"><![CDATA[<p>The <a href="https://www.fifa.com/fifaplus/en/tournaments/mens/worldcup/qatar2022">World Cup</a> ⚽️ and <a href="https://chat.openai.com/chat">ChatGPT</a> have recently been the most popular subjects all across the world. The World Cup is the largest football event conducted every four years, and it is being held in Qatar this year, and ChatGPT is the natural language model for dialogue built by <a href="https://openai.com/">OpenAI</a>.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://blog.piperider.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.piperider.io/" rel="alternate" type="text/html" /><updated>2023-01-19T18:05:04+08:00</updated><id>https://blog.piperider.io/feed.xml</id><title type="html">PipeRider</title><subtitle>Data Reliability Automated</subtitle><author><name>PipeRider</name></author><entry><title type="html">Why you lack confidence merging dbt data model PRs</title><link href="https://blog.piperider.io/why-you-lack-confidence-merging-dbt-data-model-PRs.html" rel="alternate" type="text/html" title="Why you lack confidence merging dbt data model PRs" /><published>2023-01-19T00:00:00+08:00</published><updated>2023-01-19T00:00:00+08:00</updated><id>https://blog.piperider.io/why-you-lack-confidence-merging-dbt-data-model-PRs</id><content type="html" xml:base="https://blog.piperider.io/why-you-lack-confidence-merging-dbt-data-model-PRs.html"><![CDATA[<p>We love dbt - Its popularity seems to have skyrocketed over the last year or so. Everywhere I look people are writing about learning and using dbt. Applying software development practices to data projects, and the beauty of ELT, has really struck a chord with data engineers.</p>
+
+<p>With dbt projects managed in Git, data engineers can take advantage of versioning, pull requests, issues, and all the related good stuff such as continuous integration (CI) and continuous deployment (CD) to automate tasks when pull requests (PR) are made on a project. This opens the door to so much possibility for augmenting the building and deployment process with extra features.</p>
+
+<h2 id="with-great-power-comes-great-responsibility">With great power, comes great responsibility</h2>
+
+<p>The power that dbt and Git/CI brings is great, and it makes collaborating on data projects so much easier, but with more engineers working together on projects, and increasing size and complexity of data pipelines, the process of reviewing data project pull requests is getting much more difficult.</p>
+
+<h2 id="are-you-confident-merging-changes-to-production">Are you confident merging changes to production?</h2>
+
+<p>Reviewing a pull request already has a <a href="https://www.getdbt.com/blog/how-to-review-an-analytics-pull-request/">laundry list of things to consider</a>, but there’s one aspect which can be particularly difficult - Ensuring that the “<a href="https://www.getdbt.com/blog/how-to-review-an-analytics-pull-request/#-data-returns-expected-results">data returns expected results</a>”, especially when you’re looking at model changes to an existing pipeline and need to determine the impact of the change.</p>
+
+<p>If you can’t determine the full impact of the changes, then it’s impossible to be completely confident in merging data model changes. The amount of confidence you have depends on the method you use to check the data, and for that, you’re on your own.</p>
+
+<h2 id="how-do-you-check-the-data">How do you check the data?</h2>
+
+<p>Comparing the data from production with the data from the PR isn’t always straightforward, and it’s the part of the process when ‘silent errors’ can sneak into the pipeline, especially with <a href="https://docs.getdbt.com/docs/build/metrics">key metrics</a>. So, what are the common ways to check the data, and are they any good?</p>
+
+<h3 id="manually-check">Manually check</h3>
+
+<p>This method involves querying the data, checking values against known correct values, and generally trying to get a ‘feel’ for if the data is correct. The problem is that it’s a slow process, and manual checks are error prone. It’s too easy to miss something and have errors sneak into production.</p>
+
+<h3 id="bi-tools">BI Tools</h3>
+
+<p>The data ends up in BI tools anyway. Couldn’t you just check the data there? You could load the PR data into a BI tool but, again, it’s a slow process, and there’s no great way to compare production and PR environments in a BI tool.</p>
+
+<h3 id="dbt-tests">dbt tests</h3>
+
+<p>dbt has assertions that you can use to test the data in a pass/fail sense: <code class="language-plaintext highlighter-rouge">unique</code>, <code class="language-plaintext highlighter-rouge">not null</code>, <code class="language-plaintext highlighter-rouge">accepted values</code> and <code class="language-plaintext highlighter-rouge">relationships</code>.  dbt tests are useful for some cases but, for metrics, there’s no way to define what ‘correct’ data looks like. The only way to know if a change in metrics is desired is to compare metrics from the PR environment with production and then assess, given the modeling changes, if the impact of these changes are expected.</p>
+
+<h2 id="solution-automated-metrics-comparison">Solution: Automated metrics comparison</h2>
+
+<blockquote>
+  <p>One of the many benefits of running dbt in a CI environment is being able to query the production data and see how it compares to the data built by the changes in the PR.</p>
+</blockquote>
+
+<p style="text-align: right">-- Erin Vaughan, Director of Customer Success @ dbt labs</p>
+
+<p>As Erin mentions above, a CI process is invaluable for dbt projects, and with dbt’s <a href="https://docs.getdbt.com/reference/node-selection/methods#the-state-method">state</a> method (<a href="https://docs.getdbt.com/guides/legacy/best-practices#run-only-modified-models-to-test-changes-slim-ci">SlimCI</a>) you can create a PR environment and <a href="https://discourse.getdbt.com/t/how-we-sped-up-our-ci-runs-by-10x-using-slim-ci/2603">only run/test models that have changed</a>.</p>
+
+<p>This is where our solution comes in - To automatically query and compare key metrics as part of CI/CD and provide a summary of changes for the review to quickly grasp the impact.</p>
+
+<p>The CI process goes something like:</p>
+
+<ul>
+  <li>Create a PR environment (using dbt state)</li>
+  <li>Query key metrics from PR environment</li>
+  <li>Query key metrics from production environment</li>
+  <li>Compare the metrics from both environments</li>
+  <li><strong>Attach a metrics comparison summary to the PR comment</strong></li>
+</ul>
+
+<p><img src="/img/posts/piperider_compare-business-metrics.png" alt="Compare metrics" title="Compare metrics with PipeRider" /></p>
+<p style="text-align: center">Compare metrics using PipeRider</p>
+
+<h3 id="confidence-acquired">Confidence Acquired</h3>
+
+<p>The PR reviewer can now not only be alerted to model changes that affect metrics, but also see the impact of those changes. They can then determine if those changes are desirable and expected, or are the result of an error in the modeling queries.</p>
+
+<p>With this knowledge to hand, data engineers and PR reviewers can <a href="https://blog.infuseai.io/how-to-be-more-confident-making-data-model-changes-76a2f65feffa">be more confident merging data model changes into production</a>, and stop letting silent errors slip into production.</p>
+
+<h2 id="piperider">PipeRider</h2>
+
+<p>At PipeRider, we’re already well into solving this problem and you can try out our solution right now. PipeRider is our data reliability tool with a special focus on dbt project integration and automation with CI.</p>
+
+<ul>
+  <li>Read more about <a href="https://docs.piperider.io/cli/continuous-integration-ci">using PipeRider with continuous intergration</a> in the documentation</li>
+  <li>You can also <a href="https://docs.piperider.io/cli/dbt-integration/metrics">add dbt metrics to your PipeRider reports</a>, and compare metics between runs</li>
+</ul>
+
+<p>If you’re interested in better understanding the impact of data model changes, get started with <a href="https://docs.piperider.io/cli/dbt-integration">PipeRider and dbt</a>, or sign-up at <a href="https://piperider.io">piperider.io</a> to arrange a call.</p>]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[We love dbt - Its popularity seems to have skyrocketed over the last year or so. Everywhere I look people are writing about learning and using dbt. Applying software development practices to data projects, and the beauty of ELT, has really struck a chord with data engineers.]]></summary></entry><entry><title type="html">Share the Spectacular World Cup construction with ChatGPT</title><link href="https://blog.piperider.io/share-the-spectacular-world-cup-construction-with-chatgpt.html" rel="alternate" type="text/html" title="Share the Spectacular World Cup construction with ChatGPT" /><published>2022-12-15T00:00:00+08:00</published><updated>2022-12-15T00:00:00+08:00</updated><id>https://blog.piperider.io/share-the-spectacular-world-cup-construction-with-chatgpt</id><content type="html" xml:base="https://blog.piperider.io/share-the-spectacular-world-cup-construction-with-chatgpt.html"><![CDATA[<p>The <a href="https://www.fifa.com/fifaplus/en/tournaments/mens/worldcup/qatar2022">World Cup</a> ⚽️ and <a href="https://chat.openai.com/chat">ChatGPT</a> have recently been the most popular subjects all across the world. The World Cup is the largest football event conducted every four years, and it is being held in Qatar this year, and ChatGPT is the natural language model for dialogue built by <a href="https://openai.com/">OpenAI</a>.</p>
 
 <p>On 18 December 2022, the World Cup Final will be held in the <a href="https://www.qatar2022.qa/en/tournament/stadiums/lusail-stadium">Lusail Stadium</a> of Lusail city. Lusail city was still desert in 2010 but the new municipality now includes an urban center and an artificial archipelago.</p>
 
@@ -654,116 +724,4 @@ According to research, one-third of data analysts spend more than 40 percent of 
 
 <h2 id="integrate-data-observability-with-piperider">Integrate Data Observability with PipeRider</h2>
 
-<p>PipeRider is an open-source, free, and easy-to-use data observability tool with data profiling and data quality checks through assertions. It executes no-code data profiling and test assertions against your dataset with simple commands. It recommends assertions to save you time and renders your test results into a visual report in minutes. Using the data profiling report you can verify that the data meets your requirements enabling you to trust your data and make better decisions. PipeRider embraces the modern data stack and connects anywhere on your data pipeline that uses a supported data source.</p>]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[The number of data sources that data teams have to deal with is ever increasing. According to a recent survey by Matillion and IDG, the number of data sources per organization is around 400, with over 20 percent of organizations having 1000 or more. The sheer amount of data makes managing and tracking it increasingly difficult, never mind understanding the bigger picture. That’s where data observability comes in.]]></summary></entry><entry><title type="html">Adding Data Observability and Alerts to your Data Pipeline is easier than you think</title><link href="https://blog.piperider.io/adding-data-observability-and-alerts-to-your-data-pipeline-is-easier-than-you-think.html" rel="alternate" type="text/html" title="Adding Data Observability and Alerts to your Data Pipeline is easier than you think" /><published>2022-09-05T00:00:00+08:00</published><updated>2022-09-05T00:00:00+08:00</updated><id>https://blog.piperider.io/adding-data-observability-and-alerts-to-your-data-pipeline-is-easier-than-you-think</id><content type="html" xml:base="https://blog.piperider.io/adding-data-observability-and-alerts-to-your-data-pipeline-is-easier-than-you-think.html"><![CDATA[<p>After you’ve transformed the data in your data warehouse and sent it on its way, you might think that your job is done. That is, until you get a call that there’s missing data, an unexpected schema change, or some unexpected data or outlier has been introduced. To understand when these issues might have occurred, you need some form of data observability for your pipeline.</p>
-
-<p>Data observability means that you can monitor the data moving through the pipeline, be alerted to any changes or issues with the data structure, and compare data to help visualize change and aid in tracking down issues.</p>
-
-<hr />
-
-<p>With the open-source data observability toolkit, <a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a>, you can add data observability to your data source and start understanding more about your data in minutes with:</p>
-
-<p>Non-intrusive implementation — Focus on understanding your data without changing it
-Data profiling — In-depth analysis of the structure of your data source
-Data assertions — Ensure your data stays within acceptable ranges through testing
-Reporting — The data profile and testing results are exported to an HTML report
-Following are the steps you need to get starting adding data observability and data assertions to your existing data pipeline.</p>
-
-<h2 id="1-install-piperider">1. Install PipeRider</h2>
-<p>PipeRider is installed via pip:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install -U piperider
-</code></pre></div></div>
-
-<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style>
-<div class="embed-container">    <iframe title="YouTube video player" width="640" height="390" src="//www.youtube.com/embed/vZVHo09fD-c" frameborder="0" allowfullscreen=""></iframe></div>
-
-<p>By default it comes with SQLite, but the following connectors are also available:</p>
-
-<ul>
-  <li>Postgres</li>
-  <li>Snowflake</li>
-  <li>BigQuery</li>
-  <li>Redshift</li>
-  <li>dbt (with one of the supported connectors)</li>
-  <li>duckdb</li>
-  <li>CSV</li>
-  <li>Parquet</li>
-</ul>
-
-<p>Install PipeRider with a connector like this:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install -U 'piperider[postgres,snowflake]'
-</code></pre></div></div>
-<h2>　</h2>
-<h2 id="2-initialize-a-piperider-project">2. Initialize a PipeRider project</h2>
-<p>Once installed, initialize a new project with the following command.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider init
-</code></pre></div></div>
-
-<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style>
-<div class="embed-container">    <iframe title="YouTube video player" width="640" height="390" src="//www.youtube.com/embed/jRxZQJoMQGc" frameborder="0" allowfullscreen=""></iframe></div>
-
-<p>Just select your data source, enter the relevant details and you’re ready to go. dbt project settings will be auto-detected, so dbt projects really are zero config!</p>
-
-<p>Verify your connection settings with the diagnose command.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider diagnose
-</code></pre></div></div>
-<h2 id="-1">　</h2>
-<h2 id="3-run-piperider">3. Run PipeRider</h2>
-<p>With a data source connected you’re ready to run PipeRider.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider run
-</code></pre></div></div>
-
-<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style>
-<div class="embed-container">    <iframe title="YouTube video player" width="640" height="390" src="//www.youtube.com/embed/Y9KIqu2DOsg" frameborder="0" allowfullscreen=""></iframe></div>
-
-<p>This one command will do the following:</p>
-
-<ul>
-  <li>Profile your data source</li>
-  <li>Generate recommended data assertions (on first run)</li>
-  <li>Test the data profile against the data assertions</li>
-  <li>Display the data assertion test results on the CLI</li>
-  <li>Generate an HTML report with the data profile and test results</li>
-</ul>
-
-<h2 id="-2">　</h2>
-<h2 id="4-test-your-piperider-data-profile-with-data-assertions">4. Test your PipeRider data profile with data assertions</h2>
-<p>PipeRider creates a set of recommended assertions based on the current state of your data. You can add to or edit these using the available suite of <a href="https://docs.piperider.io/cli/data-quality-assertions/assertion-configuration">built-in assertions</a>, and through custom assertions you can <a href="https://blog.piperider.io/define-your-own-data-quality-tests-in-piperider.html">create your own data reliability tests</a>.</p>
-
-<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style>
-<div class="embed-container">    <iframe title="YouTube video player" width="640" height="390" src="//www.youtube.com/embed/t4YHkynRIpI" frameborder="0" allowfullscreen=""></iframe></div>
-
-<h2 id="-3">　</h2>
-<h2 id="5-compare-data-profile-reports">5. Compare data profile reports</h2>
-<p>When your data changes and you have multiple PipeRider runs, compare reports easily with the following command.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider compare-reports
-</code></pre></div></div>
-
-<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style>
-<div class="embed-container">    <iframe title="YouTube video player" width="640" height="390" src="//www.youtube.com/embed/COohk2TAiPA" frameborder="0" allowfullscreen=""></iframe></div>
-
-<p>You can also compare the last two reports automatically (without needing to manually select them) by using the <code class="language-plaintext highlighter-rouge">--last</code> flag.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>piperider compare-reports —last
-</code></pre></div></div>
-
-<p>　</p>
-<h2 id="sample-reports">Sample Reports</h2>
-<p>Links to example reports will always be available in the PipeRider documentation. Here are samples created with PipeRider 0.7:</p>
-
-<ul>
-  <li><a href="https://piperider-github-readme.s3.ap-northeast-1.amazonaws.com/run-0.7.0/index.html#/">Sample PipeRider data profile report</a></li>
-  <li><a href="https://piperider-github-readme.s3.ap-northeast-1.amazonaws.com/comparison-0.7.0/index.html">Sample PipeRider report comparison</a></li>
-</ul>
-
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">1/ PipeRider is our open-source data reliability tool that brings data profiling and reliability to your data pipeline<br /><br />Here’s a series of rough-and-ready videos to show how easy it is to get started using PipeRider<br /><br />⭐️<a href="https://t.co/6gkuAMEhMz">https://t.co/6gkuAMEhMz</a><a href="https://twitter.com/hashtag/opensource?src=hash&amp;ref_src=twsrc%5Etfw">#opensource</a> <a href="https://twitter.com/hashtag/dataquality?src=hash&amp;ref_src=twsrc%5Etfw">#dataquality</a> <a href="https://t.co/8N6ZGTAAlu">pic.twitter.com/8N6ZGTAAlu</a></p>&mdash; InfuseAI (@InfuseAI) <a href="https://twitter.com/InfuseAI/status/1555112648643350528?ref_src=twsrc%5Etfw">August 4, 2022</a></blockquote>
-<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-<h2 id="-4">　</h2>
-<h2 id="who-makes-piperider">Who makes PipeRider?</h2>
-<p><a href="https://piperider.io/?utm_source=piperiderblog&amp;utm_medium=blog">PipeRider</a> is developed by <a href="https://infuseai.io/">InfuseAI</a>, the company behind the end-to-end machine learning platform <a href="https://www.infuseai.io/primehub-ai-platform">PrimeHub</a>.</p>
-
-<p>InfuseAI has an impressive <a href="https://github.com/InfuseAI/">portfolio of open-source projects</a> so you know you’re in good hands!</p>]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[After you’ve transformed the data in your data warehouse and sent it on its way, you might think that your job is done. That is, until you get a call that there’s missing data, an unexpected schema change, or some unexpected data or outlier has been introduced. To understand when these issues might have occurred, you need some form of data observability for your pipeline.]]></summary></entry></feed>
+<p>PipeRider is an open-source, free, and easy-to-use data observability tool with data profiling and data quality checks through assertions. It executes no-code data profiling and test assertions against your dataset with simple commands. It recommends assertions to save you time and renders your test results into a visual report in minutes. Using the data profiling report you can verify that the data meets your requirements enabling you to trust your data and make better decisions. PipeRider embraces the modern data stack and connects anywhere on your data pipeline that uses a supported data source.</p>]]></content><author><name>PipeRider</name></author><summary type="html"><![CDATA[The number of data sources that data teams have to deal with is ever increasing. According to a recent survey by Matillion and IDG, the number of data sources per organization is around 400, with over 20 percent of organizations having 1000 or more. The sheer amount of data makes managing and tracking it increasingly difficult, never mind understanding the bigger picture. That’s where data observability comes in.]]></summary></entry></feed>

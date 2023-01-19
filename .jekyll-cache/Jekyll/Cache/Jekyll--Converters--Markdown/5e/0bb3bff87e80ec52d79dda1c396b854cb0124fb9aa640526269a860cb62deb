@@ -1,0 +1,72 @@
+I"�<p>We love dbt - Its popularity seems to have skyrocketed over the last year or so. Everywhere I look people are writing about learning and using dbt. Applying software development practices to data projects, and the beauty of ELT, has really struck a chord with data engineers.</p>
+
+<p>With dbt projects managed in Git, data engineers can take advantage of versioning, pull requests, issues, and all the related good stuff such as continuous integration (CI) and continuous deployment (CD) to automate tasks when pull requests (PR) are made on a project. This opens the door to so much possibility for augmenting the building and deployment process with extra features.</p>
+
+<h2 id="with-great-power-comes-great-responsibility">With great power, comes great responsibility</h2>
+
+<p>The power that dbt and Git/CI brings is great, and it makes collaborating on data projects so much easier, but with more engineers working together on projects, and increasing size and complexity of data pipelines, the process of reviewing data project pull requests is getting much more difficult.</p>
+
+<h2 id="are-you-confident-merging-changes-to-production">Are you confident merging changes to production?</h2>
+
+<p>Reviewing a pull request already has a <a href="https://www.getdbt.com/blog/how-to-review-an-analytics-pull-request/">laundry list of things to consider</a>, but there’s one aspect which can be particularly difficult - Ensuring that the “<a href="https://www.getdbt.com/blog/how-to-review-an-analytics-pull-request/#-data-returns-expected-results">data returns expected results</a>”, especially when you’re looking at model changes to an existing pipeline and need to determine the impact of the change.</p>
+
+<p>If you can’t determine the full impact of the changes, then it’s impossible to be completely confident in merging data model changes. The amount of confidence you have depends on the method you use to check the data, and for that, you’re on your own.</p>
+
+<h2 id="how-do-you-check-the-data">How do you check the data?</h2>
+
+<p>Comparing the data from production with the data from the PR isn’t always straightforward, and it’s the part of the process when ‘silent errors’ can sneak into the pipeline, especially with <a href="https://docs.getdbt.com/docs/build/metrics">key metrics</a>. So, what are the common ways to check the data, and are they any good?</p>
+
+<h3 id="manually-check">Manually check</h3>
+
+<p>This method involves querying the data, checking values against known correct values, and generally trying to get a ‘feel’ for if the data is correct. The problem is that it’s a slow process, and manual checks are error prone. It’s too easy to miss something and have errors sneak into production.</p>
+
+<h3 id="bi-tools">BI Tools</h3>
+
+<p>The data ends up in BI tools anyway. Couldn’t you just check the data there? You could load the PR data into a BI tool but, again, it’s a slow process, and there’s no great way to compare production and PR environments in a BI tool.</p>
+
+<h3 id="dbt-tests">dbt tests</h3>
+
+<p>dbt has assertions that you can use to test the data in a pass/fail sense: <code class="language-plaintext highlighter-rouge">unique</code>, <code class="language-plaintext highlighter-rouge">not null</code>, <code class="language-plaintext highlighter-rouge">accepted values</code> and <code class="language-plaintext highlighter-rouge">relationships</code>.  dbt tests are useful for some cases but, for metrics, there’s no way to define what ‘correct’ data looks like. The only way to know if a change in metrics is desired is to compare metrics from the PR environment with production and then assess, given the modeling changes, if the impact of these changes are expected.</p>
+
+<h2 id="solution-automated-metrics-comparison">Solution: Automated metrics comparison</h2>
+
+<blockquote>
+  <p>One of the many benefits of running dbt in a CI environment is being able to query the production data and see how it compares to the data built by the changes in the PR.</p>
+</blockquote>
+
+<p style="text-align: right">-- Erin Vaughan, Director of Customer Success @ dbt labs</p>
+
+<p>As Erin mentions above, a CI process is invaluable for dbt projects, and with dbt’s <a href="https://docs.getdbt.com/reference/node-selection/methods#the-state-method">state</a> method (<a href="https://docs.getdbt.com/guides/legacy/best-practices#run-only-modified-models-to-test-changes-slim-ci">SlimCI</a>) you can create a PR environment and <a href="https://discourse.getdbt.com/t/how-we-sped-up-our-ci-runs-by-10x-using-slim-ci/2603">only run/test models that have changed</a>.</p>
+
+<p>This is where our solution comes in - To automatically query and compare key metrics as part of CI/CD and provide a summary of changes for the review to quickly grasp the impact.</p>
+
+<p>The CI process goes something like:</p>
+
+<ul>
+  <li>Create a PR environment (using dbt state)</li>
+  <li>Query key metrics from PR environment</li>
+  <li>Query key metrics from production environment</li>
+  <li>Compare the metrics from both environments</li>
+  <li><strong>Attach a metrics comparison summary to the PR comment</strong></li>
+</ul>
+
+<p><img src="/img/posts/piperider_compare-business-metrics.png" alt="Compare metrics" title="Compare metrics with PipeRider" /></p>
+<p style="text-align: center">Compare metrics using PipeRider</p>
+
+<h3 id="confidence-acquired">Confidence Acquired</h3>
+
+<p>The PR reviewer can now not only be alerted to model changes that affect metrics, but also see the impact of those changes. They can then determine if those changes are desirable and expected, or are the result of an error in the modeling queries.</p>
+
+<p>With this knowledge to hand, data engineers and PR reviewers can <a href="https://blog.infuseai.io/how-to-be-more-confident-making-data-model-changes-76a2f65feffa">be more confident merging data model changes into production</a>, and stop letting silent errors slip into production.</p>
+
+<h2 id="piperider">PipeRider</h2>
+
+<p>At PipeRider, we’re already well into solving this problem and you can try out our solution right now. PipeRider is our data reliability tool with a special focus on dbt project integration and automation with CI.</p>
+
+<ul>
+  <li>Read more about <a href="https://docs.piperider.io/cli/continuous-integration-ci">using PipeRider with continuous intergration</a> in the documentation</li>
+  <li>You can also <a href="https://docs.piperider.io/cli/dbt-integration/metrics">add dbt metrics to your PipeRider reports</a>, and compare metics between runs</li>
+</ul>
+
+<p>If you’re interested in better understanding the impact of data model changes, get started with <a href="https://docs.piperider.io/cli/dbt-integration">PipeRider and dbt</a>, or sign-up at <a href="https://piperider.io">piperider.io</a> to arrange a call.</p>
+:ET
